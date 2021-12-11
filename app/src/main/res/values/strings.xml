@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Healer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="setting">Setting</string>
+    <string name="change_language">Change Language</string>
+    <string name="appointments">Appointments</string>
+    <string name="chats">Chats</string>
+    <string name="home">Home</string>
+</resources>

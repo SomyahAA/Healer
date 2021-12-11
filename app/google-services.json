@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427362640286",
+    "project_id": "healer-a388a",
+    "storage_bucket": "healer-a388a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427362640286:android:69161b3f88d1e97527b68f",
+        "android_client_info": {
+          "package_name": "com.example.healer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427362640286-6brem7n7urr7neeq2eh784qmges4pj9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw_Ka6XG4Ly4vg5YRTtcHkZpoj1EFj2uc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427362640286-6brem7n7urr7neeq2eh784qmges4pj9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
