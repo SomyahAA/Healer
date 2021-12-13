@@ -78,7 +78,7 @@ class PsychologistRegisterFragment : Fragment() {
                             .document(PsycAuth.currentUser?.uid!!)
                             .set(psyUser)
                             .addOnSuccessListener {
-                                Log.d(TAG, "Done creating user in firestore successfully")
+                                Log.d(TAG, "Done creating user in fireStore successfully")
                             }
                             .addOnFailureListener { e ->
                                 Log.w(TAG, "Error adding document", e)
@@ -89,7 +89,6 @@ class PsychologistRegisterFragment : Fragment() {
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
-
         }
     }
     }

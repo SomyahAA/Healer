@@ -51,4 +51,24 @@
         android:name="com.example.healer.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.example.healer.ChatsFragment"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.healer.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.healer.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/appointmentsFragment"
+        android:name="com.example.healer.AppointmentsFragment"
+        android:label="fragment_appointments"
+        tools:layout="@layout/fragment_appointments" />
 </navigation>

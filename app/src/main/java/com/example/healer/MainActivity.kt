@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.nav_home -> {
-                navController.navigate(R.id.userOrPsyFragment)
+                navController.navigate(R.id.homeFragment)
             }
 
             R.id.nav_login -> {
@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 menu.findItem(R.id.nav_logout).isVisible = true
                 menu.findItem(R.id.nav_profile).isVisible = true
                 menu.findItem(R.id.nav_login).isVisible = false
-
             }
 
             R.id.nav_logout -> {
@@ -87,7 +86,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 menu.findItem(R.id.nav_login).isVisible = true
             }
             R.id.nav_chats->{
-             navController.navigate(R.id.psychologistRegisterFragment)
+             navController.navigate(R.id.chatsFragment)
+            }
+            R.id.nav_appointments->{
+                navController.navigate(R.id.appointmentsFragment)
+            }
+            R.id.nav_profile->{
+                navController.navigate(R.id.profileFragment)
+            }
+            R.id.nav_logout->{
+                navController.navigate(R.id.psychologistRegisterFragment)
+            }
+            R.id.nav_setting -> {
+                navController.navigate(R.id.settingFragment)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
