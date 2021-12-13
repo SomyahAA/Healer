@@ -21,7 +21,6 @@ class PsychologistRegisterFragment : Fragment() {
     private val PsycAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
-    private var database: DatabaseReference = Firebase.database.reference
     private lateinit var registerPsy: Button
     private lateinit var name: TextView
     private lateinit var phoneNumber: TextView
@@ -59,22 +58,38 @@ class PsychologistRegisterFragment : Fragment() {
         }
         else{
             val model = Psychologist(
-                name.text.toString(), phoneNumber.text.toString(), email.text.toString(), password.text.toString()
+                name.text.toString(), phoneNumber.text.toString(), email.text.toString()
                 ,specialty.text.toString(),experienceYears.text.toString(), bio.text.toString())
-            PsycAuth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+
+                PsycAuth.createUserWithEmailAndPassword(email.text.toString(),password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
+                        val psyUser = hashMapOf(
+                            "name" to name.text.toString(),
+                            "phone Number" to phoneNumber.text.toString(),
+                            "email" to email.text.toString(),
+                            "specialty" to specialty.text.toString(),
+                            "experience Years" to experienceYears.text.toString(),
+                            "bio" to bio.text.toString()
+                        )
 
-                        database.child("Psychologist Information")
-                            .child(PsycAuth.currentUser?.uid!!).setValue(model)
-                        Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_psychologistRegisterFragment_to_homeFragment2)
+                        database.collection("PsyUsers")
+                            .document(PsycAuth.currentUser?.uid!!)
+                            .set(psyUser)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "Done creating user in firestore successfully")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                        findNavController().navigate(R.id.action_psychologistRegisterFragment_to_homeFragment)
                     } else {
                         Log.d("healer", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
+
         }
     }
     }

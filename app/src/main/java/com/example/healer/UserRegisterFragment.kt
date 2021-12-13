@@ -13,16 +13,17 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
-
+const val TAG ="UserRegister"
+val database = Firebase.firestore
 class UserRegisterFragment : Fragment() {
 
 
     private val userAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
-    private var database: DatabaseReference = Firebase.database.reference
+
 
     private lateinit var userRegister: Button
     lateinit var name: TextView
@@ -57,25 +58,40 @@ class UserRegisterFragment : Fragment() {
             || gender.text.isEmpty() ||password.text.isEmpty()){
             Toast.makeText(requireContext(), "You must fill all fields", Toast.LENGTH_SHORT).show()
         }
+
         else{
             val model = User(
-                name.text.toString(), phoneNumber.text.toString(), email.text.toString(),  gender.text.toString(),
-                password.text.toString()
+                name.text.toString(), phoneNumber.text.toString(), email.text.toString(),  gender.text.toString()
             )
-            userAuth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+            userAuth.createUserWithEmailAndPassword( email.text.toString(),password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
 
-                        database.child("User Information")
-                            .child(userAuth.currentUser?.uid!!).setValue(model)
-                        Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_userRegisterFragment_to_homeFragment2)
+//
+                        val user = hashMapOf(
+                            "name" to name.text.toString(),
+                            "phone Number" to phoneNumber.text.toString(),
+                            "email" to email.text.toString(),
+                            "gender" to gender.text.toString()
+                        )
+                        database.collection("users")
+                            .document(userAuth.currentUser?.uid!!)
+                            .set(user)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "done added user in firebase")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                        findNavController().navigate(R.id.action_userRegisterFragment_to_homeFragment)
                     } else {
                         Log.d("healer", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
+
+
         }
     }
     }

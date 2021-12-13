@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <group>
         <item
-            android:id="@+id/homeFragment"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_24"
             android:title="@string/home" />
 
         <item
-            android:id="@+id/chatsFragment"
+            android:id="@+id/nav_chats"
             android:icon="@drawable/ic_chat_24"
             android:title="@string/chats" />
 
         <item
-            android:id="@+id/appointmentsFragment"
+            android:id="@+id/nav_appointments"
             android:icon="@drawable/ic_appointments_24"
             android:title="@string/appointments" />
     </group>
 
     <item android:title="@string/profile">
-
         <menu>
-
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_profile"

@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/healer"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/psychologistRegisterFragment"
         android:name="com.example.healer.PsychologistRegisterFragment"
         android:label="fragment_psychologist_register"
         tools:layout="@layout/fragment_psychologist_register" >
         <action
-            android:id="@+id/action_psychologistRegisterFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            android:id="@+id/action_psychologistRegisterFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/userOrPsyFragment"
@@ -31,8 +31,8 @@
         android:label="fragment_user_register"
         tools:layout="@layout/fragment_user_register" >
         <action
-            android:id="@+id/action_userRegisterFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            android:id="@+id/action_userRegisterFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -43,11 +43,11 @@
             android:id="@+id/action_loginFragment_to_userOrPsyFragment"
             app:destination="@id/userOrPsyFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment2"
+        android:id="@+id/homeFragment"
         android:name="com.example.healer.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />

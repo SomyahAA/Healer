@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
     ): View? {
 
         if (auth.currentUser != null) {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
                             Log.d("healer", "signInUserWithEmail:success")
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
+                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         } else {
                             Log.d("healer", "signInUserWithEmail:failure", task.exception)
                             Toast.makeText(requireContext(), "Login failed" + task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
