@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/drawer_layout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".HomeFragment"
-android:fitsSystemWindows="true"
-tools:openDrawer="start">
+tools:context=".HomeFragment">
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/side_navigation"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/main_menu"
-        android:layout_gravity="start">
-    </com.google.android.material.navigation.NavigationView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<RelativeLayout
-    android:layout_width="408dp"
-    android:layout_height="wrap_content"
-    android:padding="20dp">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_menu_24" />
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="408dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:padding="5dp"
-        android:src="@drawable/ic_search_24"/>
-</RelativeLayout>
+                <TextView
+                    android:layout_width="265dp"
+                    android:layout_height="33dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="38dp"
+                    android:layout_marginTop="108dp"
+                    android:text="Our Therapist"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="40dp"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="317dp"
+                    android:layout_height="291dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="161dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardBackgroundColor="#EADFB5"
+                    app:cardCornerRadius="40dp" />
+            </RelativeLayout>
+    </ScrollView>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

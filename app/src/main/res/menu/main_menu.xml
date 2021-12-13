@@ -2,20 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/homeFragment"
             android:icon="@drawable/ic_home_24"
             android:title="@string/home" />
 
         <item
-            android:id="@+id/nav_chats"
+            android:id="@+id/chatsFragment"
             android:icon="@drawable/ic_chat_24"
             android:title="@string/chats" />
 
         <item
-            android:id="@+id/nav_appointments"
+            android:id="@+id/appointmentsFragment"
             android:icon="@drawable/ic_appointments_24"
             android:title="@string/appointments" />
-
     </group>
 
     <item android:title="@string/profile">
@@ -36,7 +35,6 @@
                     android:icon="@drawable/ic_logout_24"
                     android:title="@string/logout" />
             </group>
-
         </menu>
     </item>
     <item android:title="@string/setting">

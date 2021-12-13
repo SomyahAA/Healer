@@ -9,4 +9,7 @@
     <string name="appointments">Appointments</string>
     <string name="chats">Chats</string>
     <string name="home">Home</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+
 </resources>

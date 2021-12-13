@@ -6,5 +6,4 @@ data class Psychologist ( val name: String,
                           val password: String,
                           val specialty:String,
                           val experienceYears:String,
-                          val bio:String,
-)
+                          val bio:String)

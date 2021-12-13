@@ -59,9 +59,9 @@ class PsychologistRegisterFragment : Fragment() {
         }
         else{
             val model = Psychologist(
-                name.toString(), phoneNumber.toString(), email.toString(), password.toString()
-                ,specialty.toString(),experienceYears.toString(), bio.toString())
-            PsycAuth.createUserWithEmailAndPassword(email.toString(), password.toString())
+                name.text.toString(), phoneNumber.text.toString(), email.text.toString(), password.text.toString()
+                ,specialty.text.toString(),experienceYears.text.toString(), bio.text.toString())
+            PsycAuth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
@@ -69,7 +69,7 @@ class PsychologistRegisterFragment : Fragment() {
                         database.child("Psychologist Information")
                             .child(PsycAuth.currentUser?.uid!!).setValue(model)
                         Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_psychologistRegisterFragment_to_homeFragment)
+                        findNavController().navigate(R.id.action_psychologistRegisterFragment_to_homeFragment2)
                     } else {
                         Log.d("healer", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()

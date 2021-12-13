@@ -59,10 +59,10 @@ class UserRegisterFragment : Fragment() {
         }
         else{
             val model = User(
-                name.toString(), phoneNumber.toString(), email.toString(),  gender.toString(),
-                password.toString()
+                name.text.toString(), phoneNumber.text.toString(), email.text.toString(),  gender.text.toString(),
+                password.text.toString()
             )
-            userAuth.createUserWithEmailAndPassword(email.toString(), password.toString())
+            userAuth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
@@ -70,7 +70,7 @@ class UserRegisterFragment : Fragment() {
                         database.child("User Information")
                             .child(userAuth.currentUser?.uid!!).setValue(model)
                         Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_userRegisterFragment_to_homeFragment)
+                        findNavController().navigate(R.id.action_userRegisterFragment_to_homeFragment2)
                     } else {
                         Log.d("healer", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
