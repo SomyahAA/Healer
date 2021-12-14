@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
             android:id="@+id/nav_home"
@@ -18,6 +17,7 @@
             android:icon="@drawable/ic_appointments_24"
             android:title="@string/appointments" />
     </group>
+
 
     <item android:title="@string/profile">
         <menu>
@@ -43,6 +43,14 @@
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_settings_24"
                 android:title="@string/setting"/>
+        </menu>
+    </item>
+    <item android:title="@string/work_with_us">
+        <menu>
+            <item
+                android:id="@+id/nav_workWithUs"
+                android:icon="@android:drawable/btn_star"
+                android:title="@string/work_with_us"/>
         </menu>
     </item>
 </menu>

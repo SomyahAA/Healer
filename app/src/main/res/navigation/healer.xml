@@ -14,18 +14,6 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userOrPsyFragment"
-        android:name="com.example.healer.UserOrPsyFragment"
-        android:label="fragment_user_or_psy"
-        tools:layout="@layout/fragment_user_or_psy" >
-        <action
-            android:id="@+id/action_userOrPsyFragment_to_psychologistRegisterFragment"
-            app:destination="@id/psychologistRegisterFragment" />
-        <action
-            android:id="@+id/action_userOrPsyFragment_to_userRegisterFragment"
-            app:destination="@id/userRegisterFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/userRegisterFragment"
         android:name="com.example.healer.UserRegisterFragment"
         android:label="fragment_user_register"
@@ -40,11 +28,11 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_userOrPsyFragment"
-            app:destination="@id/userOrPsyFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userRegisterFragment"
+            app:destination="@id/userRegisterFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

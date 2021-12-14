@@ -14,12 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 
 
+ val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 class LoginFragment : Fragment() {
 
-    private val auth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
 
     private lateinit var email: EditText
     private lateinit var password: EditText
@@ -43,7 +41,6 @@ class LoginFragment : Fragment() {
         password=view.findViewById(R.id.loginPassword)
         register=view.findViewById(R.id.goToRegister)
 
-
         login.setOnClickListener {
             if (email.text.toString().isEmpty() || password.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "You must add email and password", Toast.LENGTH_SHORT).show()
@@ -61,7 +58,7 @@ class LoginFragment : Fragment() {
             }
         }
         register.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_userOrPsyFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
         }
         return view
     }

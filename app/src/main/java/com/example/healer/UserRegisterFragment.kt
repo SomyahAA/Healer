@@ -1,5 +1,6 @@
 package com.example.healer
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,13 +17,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 const val TAG ="UserRegister"
+
 val database = Firebase.firestore
+
 class UserRegisterFragment : Fragment() {
-
-
-    private val userAuth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
 
 
     private lateinit var userRegister: Button
@@ -63,20 +61,21 @@ class UserRegisterFragment : Fragment() {
             val model = User(
                 name.text.toString(), phoneNumber.text.toString(), email.text.toString(),  gender.text.toString()
             )
-            userAuth.createUserWithEmailAndPassword( email.text.toString(),password.text.toString())
+            auth.createUserWithEmailAndPassword( email.text.toString(),password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
 
-//
+
                         val user = hashMapOf(
                             "name" to name.text.toString(),
                             "phone Number" to phoneNumber.text.toString(),
                             "email" to email.text.toString(),
-                            "gender" to gender.text.toString()
+                            "gender" to gender.text.toString(),
+                            "profile_image" to ""
                         )
                         database.collection("users")
-                            .document(userAuth.currentUser?.uid!!)
+                            .document(auth.currentUser?.uid!!)
                             .set(user)
                             .addOnSuccessListener {
                                 Log.d(TAG, "done added user in firebase")
@@ -90,7 +89,6 @@ class UserRegisterFragment : Fragment() {
                         Toast.makeText(requireContext(), task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
-
 
         }
     }

@@ -6,16 +6,16 @@
     android:layout_height="100dp"
     android:gravity="bottom">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="69dp"
         android:layout_height="73dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ic_person_24"
+        android:src="@drawable/default_profile_picture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <TextView
         android:layout_width="192dp"
         android:layout_height="57dp"
@@ -28,6 +28,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName"/>
 
     <Button
         android:id="@+id/userRegister"
@@ -97,6 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/userPhoneNumber"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

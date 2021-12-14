@@ -10,17 +10,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
+
 
 class PsychologistRegisterFragment : Fragment() {
 
-    private val PsycAuth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
+
     private lateinit var registerPsy: Button
     private lateinit var name: TextView
     private lateinit var phoneNumber: TextView
@@ -61,7 +55,7 @@ class PsychologistRegisterFragment : Fragment() {
                 name.text.toString(), phoneNumber.text.toString(), email.text.toString()
                 ,specialty.text.toString(),experienceYears.text.toString(), bio.text.toString())
 
-                PsycAuth.createUserWithEmailAndPassword(email.text.toString(),password.text.toString())
+                auth.createUserWithEmailAndPassword(email.text.toString(),password.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
                         Log.d("healer", "createUserWithEmail:success")
@@ -75,7 +69,7 @@ class PsychologistRegisterFragment : Fragment() {
                         )
 
                         database.collection("PsyUsers")
-                            .document(PsycAuth.currentUser?.uid!!)
+                            .document(auth.currentUser?.uid!!)
                             .set(psyUser)
                             .addOnSuccessListener {
                                 Log.d(TAG, "Done creating user in fireStore successfully")

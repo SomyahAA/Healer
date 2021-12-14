@@ -72,34 +72,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_home -> {
                 navController.navigate(R.id.homeFragment)
             }
-
             R.id.nav_login -> {
                 navController.navigate(R.id.loginFragment)
-                menu.findItem(R.id.nav_logout).isVisible = true
-                menu.findItem(R.id.nav_profile).isVisible = true
-                menu.findItem(R.id.nav_login).isVisible = false
+                if (auth.currentUser != null){
+                    menu.findItem(R.id.nav_logout).isVisible = true
+                    menu.findItem(R.id.nav_profile).isVisible = true
+                    menu.findItem(R.id.nav_login).isVisible = false
+                }
             }
-
             R.id.nav_logout -> {
+                auth.signOut()
                 menu.findItem(R.id.nav_logout).isVisible = false
                 menu.findItem(R.id.nav_profile).isVisible = false
                 menu.findItem(R.id.nav_login).isVisible = true
             }
-            R.id.nav_chats->{
-             navController.navigate(R.id.chatsFragment)
-            }
-            R.id.nav_appointments->{
-                navController.navigate(R.id.appointmentsFragment)
-            }
-            R.id.nav_profile->{
-                navController.navigate(R.id.profileFragment)
-            }
-            R.id.nav_logout->{
-                navController.navigate(R.id.psychologistRegisterFragment)
-            }
-            R.id.nav_setting -> {
-                navController.navigate(R.id.settingFragment)
-            }
+            R.id.nav_chats-> navController.navigate(R.id.chatsFragment)
+            R.id.nav_appointments-> navController.navigate(R.id.appointmentsFragment)
+            R.id.nav_profile-> navController.navigate(R.id.profileFragment)
+            R.id.nav_setting -> navController.navigate(R.id.settingFragment)
+            R.id.nav_workWithUs -> navController.navigate(R.id.psychologistRegisterFragment)
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
