@@ -1,69 +1,56 @@
-package com.example.healer
+package com.example.healer.ui.fragments.accounts
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.healer.R
+import com.example.healer.databinding.FragmentLoginBinding
+import com.example.healer.utils.Constants.AUTH
+import com.example.healer.utils.Constants.SIGN_IN
 import com.google.firebase.auth.FirebaseAuth
 
 
- val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
 class LoginFragment : Fragment() {
 
-
-    private lateinit var email: EditText
-    private lateinit var password: EditText
-    private lateinit var login: Button
-    private lateinit var register: TextView
-
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
 
         if (auth.currentUser != null) {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
 
-        login = view.findViewById(R.id.login)
-        email = view.findViewById(R.id.loginEmail)
-        password=view.findViewById(R.id.loginPassword)
-        register=view.findViewById(R.id.goToRegister)
-
-        login.setOnClickListener {
-            if (email.text.toString().isEmpty() || password.text.toString().isEmpty()) {
+        binding.login.setOnClickListener {
+            if (binding.loginEmail.text.toString().isEmpty() || binding.loginPassword.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "You must add email and password", Toast.LENGTH_SHORT).show()
             } else {
-                auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                AUTH.signInWithEmailAndPassword(binding.loginEmail.text.toString(), binding.loginPassword.text.toString())
                     .addOnCompleteListener() { task ->
                         if (task.isSuccessful) {
-                            Log.d("healer", "signInUserWithEmail:success")
+                            Log.d(SIGN_IN, "signInUserWithEmail:success")
                             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         } else {
-                            Log.d("healer", "signInUserWithEmail:failure", task.exception)
+                            Log.d(SIGN_IN, "signInUserWithEmail:failure", task.exception)
                             Toast.makeText(requireContext(), "Login failed" + task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                         }
                     }
             }
         }
-        register.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
+        binding.goToRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment2)
         }
-        return view
+        return binding.root
     }
 }
-
-
-
-

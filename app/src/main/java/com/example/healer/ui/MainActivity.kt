@@ -1,4 +1,4 @@
-package com.example.healer
+package com.example.healer.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +10,13 @@ import android.view.MenuItem
 import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
+import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
+import com.example.healer.repository.Repository
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toolbar: Toolbar
     private lateinit var menu: Menu
 
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val repo = Repository.getInstace()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,12 +39,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // to find the nav controller from the nav host fragment
 
 
-        drawerLayout=findViewById(R.id.drawer_layout)
-        navigationView=findViewById(R.id.side_navigation)
-        toolbar=findViewById(R.id.tool_bar)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navigationView = findViewById(R.id.side_navigation)
+        toolbar = findViewById(R.id.tool_bar)
         navController = findNavController(R.id.fragmentContainerView)
 
-        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
@@ -59,7 +65,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_login -> {
                 navController.navigate(R.id.loginFragment)
-                if (auth.currentUser != null){
+                if (auth.currentUser != null) {
                     menu.findItem(R.id.nav_logout).isVisible = true
                     menu.findItem(R.id.nav_profile).isVisible = true
                     menu.findItem(R.id.nav_login).isVisible = false
@@ -86,14 +91,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 menu.findItem(R.id.nav_profile).isVisible = false
                 menu.findItem(R.id.nav_login).isVisible = true
             }
-            R.id.nav_chats-> navController.navigate(R.id.chatsFragment)
-            R.id.nav_appointments-> navController.navigate(R.id.appointmentsFragment)
-            R.id.nav_profile-> navController.navigate(R.id.profileFragment)
+            R.id.nav_chats -> navController.navigate(R.id.chatsFragment)
+            R.id.nav_appointments -> navController.navigate(R.id.appointmentsFragment)
+            R.id.nav_profile -> {
+                var state = false
+                lifecycleScope.launch {
+                   state = repo.userTypeIsUser()
+                }.invokeOnCompletion {
+                    if (state){
+                        navController.navigate(R.id.userProfileFragment)
+                    } else {
+                        navController.navigate(R.id.psychologistProfileFragment)
+                    }
+                }
+            }
             R.id.nav_setting -> navController.navigate(R.id.settingFragment)
             R.id.nav_workWithUs -> navController.navigate(R.id.psychologistRegisterFragment)
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
 }
