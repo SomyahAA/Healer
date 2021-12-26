@@ -1,5 +1,6 @@
 package com.example.healer.ui.fragments.accounts.login
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healer.repository.Repository
@@ -17,6 +18,10 @@ class LoginVM :ViewModel(){
             state
         }
         return false
+    }
+
+    fun login(loginEmail:String,loginPassword:String ,requiredContext: Context){
+          return repo.login(loginEmail,loginPassword ,requiredContext)
     }
 
 }

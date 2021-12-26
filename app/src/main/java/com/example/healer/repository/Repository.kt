@@ -1,6 +1,9 @@
 package com.example.healer.repository
 
 
+import android.Manifest.permission.CALL_PHONE
+import android.app.Activity
+import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -16,6 +19,18 @@ import kotlinx.coroutines.tasks.await
 import coil.load
 import com.example.healer.utils.Constants.REPOSITORY_TAG
 import de.hdodenhof.circleimageview.CircleImageView
+import androidx.core.content.ContextCompat.startActivity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.widget.Toast
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.healer.R
+import com.example.healer.utils.Constants.REQUEST_CALL
+
 
 
 class Repository {
@@ -27,6 +42,21 @@ class Repository {
     companion object {
         fun getInstance(): Repository = Repository()
     }
+
+     fun login(loginEmail:String,loginPassword:String ,requiredContext: Context){
+        if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
+            Toast.makeText(requiredContext, "You must add email and password", Toast.LENGTH_SHORT).show()
+        } else { auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(Constants.LOGIN_TAG, "signInUserWithEmail:success")
+                } else {
+                    Log.d(Constants.LOGIN_TAG, "signInUserWithEmail:failure", task.exception)
+                    Toast.makeText(requiredContext, "Login failed" + task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+     }
 
     suspend fun userTypeIsUser(): Boolean {
         var state = false
@@ -125,7 +155,7 @@ class Repository {
         return psyList
     }
 
-     fun uploadPhotoToFirebaseStorage(imageURI: Uri){
+    fun uploadPhotoToFirebaseStorage(imageURI: Uri){
         val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
 
         imageRef.putFile(imageURI)
@@ -147,10 +177,19 @@ class Repository {
 
     }
 
-     fun getPhotoFromStorage(image: CircleImageView,userUrl: String? = auth.currentUser?.uid){
+    fun getPhotoFromStorage(image: CircleImageView,userUrl: String? = auth.currentUser?.uid){
        val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
         imageUrl.addOnSuccessListener {
             image.load(it)
+        }
+    }
+
+    fun makeCall(requiredContext:Context,number:String,bundle:Bundle){
+
+        if (ContextCompat.checkSelfPermission(requiredContext, CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(requiredContext as Activity, arrayOf(CALL_PHONE), REQUEST_CALL)
+        }else {
+            startActivity(requiredContext,Intent(Intent.ACTION_CALL,Uri.parse("tel:$number")),bundle)
         }
     }
 
