@@ -1,29 +1,33 @@
-package com.example.healer.ui.fragments.accounts
+package com.example.healer.ui.fragments.home.user_home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
 
-class PsychologistProfileVM: ViewModel() {
 
-    private val repo = Repository.getInstace()
+class HomeViewModel :ViewModel(){
 
+    private val repo = Repository.getInstance()
+
+    fun psyLiveData() :LiveData<List<Psychologist>>{
+        val liveDataList = liveData {
+            emit(repo.getAllPsy())
+        }
+        return liveDataList
+    }
     fun userTypeIsUser() :Boolean{
         var state = false
         viewModelScope.launch {
             state = repo.userTypeIsUser()
         }.invokeOnCompletion {
-            state
+             state  //return repo state ?
         }
         return false
-
     }
 
-    fun readPsyDataFromFirestore (): LiveData<Psychologist> {
-        return repo.readPsyDataFromFirestore()
-    }
 
 }

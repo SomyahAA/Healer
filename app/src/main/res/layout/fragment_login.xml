@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         tools:context=".LoginFragment">
 
-
         <EditText
             android:id="@+id/loginEmail"
             android:layout_width="272dp"
@@ -34,7 +33,7 @@
             android:drawableStart="@android:drawable/ic_lock_lock"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -62,7 +61,7 @@
             android:layout_marginStart="266dp"
             android:layout_marginTop="19dp"
             android:layout_marginEnd="60dp"
-            android:text="Register now "
+            android:text="Register now"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.example.healer.ui.fragments.accounts
+package com.example.healer.ui.fragments.accounts.register.psycholgist_register
 
 import android.os.Bundle
 import android.util.Log
@@ -11,20 +11,22 @@ import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.FragmentPsychologistRegisterBinding
 import com.example.healer.models.Psychologist
-import com.example.healer.utils.Constants.AUTH
-import com.example.healer.utils.Constants.FIRE_STORE
 import com.example.healer.utils.Constants.PSYCHOLOGIST_REGISTER
 import com.example.healer.utils.Constants.USER_REGISTER
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PsychologistRegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentPsychologistRegisterBinding
-
+    private val fireStore = Firebase.firestore
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentPsychologistRegisterBinding.inflate(layoutInflater)
         return binding.root
@@ -32,6 +34,8 @@ class PsychologistRegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         binding.registerPsy.setOnClickListener {
 
             if (binding.psyName.text.isEmpty() || binding.psyPhoneNumber.text.isEmpty() || binding.psyEmail.text.isEmpty() || binding.psyPassword.text.isEmpty()
@@ -50,16 +54,16 @@ class PsychologistRegisterFragment : Fragment() {
                     binding.psyBio.text.toString()
                 )
 
-                AUTH.createUserWithEmailAndPassword(
+                auth.createUserWithEmailAndPassword(
                     binding.psyEmail.text.toString(),
                     binding.psyPassword.text.toString()
                 )
-                    .addOnCompleteListener() { task ->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.d(PSYCHOLOGIST_REGISTER, "createPsyWithEmail:success")
 
-                            FIRE_STORE.collection("PsyUsers")
-                                .document(AUTH.currentUser?.uid!!)
+                            fireStore.collection("PsyUsers")
+                                .document(auth.currentUser?.uid!!)
                                 .set(psychologistModel)
                                 .addOnSuccessListener {
                                     Log.d(
@@ -70,7 +74,7 @@ class PsychologistRegisterFragment : Fragment() {
                                 .addOnFailureListener { e ->
                                     Log.w(USER_REGISTER, "Error while adding user in fireStore", e)
                                 }
-                            findNavController().navigate(R.id.action_psychologistRegisterFragment_to_homeFragment)
+                            findNavController().navigate(R.id.action_psychologistRegisterFragment_to_psyHomeFragment)
                         } else {
                             Log.d(
                                 PSYCHOLOGIST_REGISTER,

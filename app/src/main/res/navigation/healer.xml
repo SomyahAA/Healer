@@ -5,20 +5,6 @@
     android:id="@+id/healer"
     app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/psychologistRegisterFragment"
-        android:name="com.example.healer.ui.fragments.accounts.PsychologistRegisterFragment"
-        android:label="fragment_psychologist_register"
-        tools:layout="@layout/fragment_psychologist_register">
-        <action
-            android:id="@+id/action_psychologistRegisterFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.healer.ui.fragments.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/chatsFragment"
         android:name="com.example.healer.ui.fragments.ChatsFragment"
         android:label="fragment_chats"
@@ -35,30 +21,57 @@
         tools:layout="@layout/fragment_appointments" />
     <fragment
         android:id="@+id/psychologistProfileFragment"
-        android:name="com.example.healer.ui.fragments.accounts.PsychologistProfileFragment"
+        android:name="com.example.healer.ui.fragments.accounts.profile.psychologist_profile.PsychologistProfileFragment"
         android:label="fragment_psychologist_profile"
         tools:layout="@layout/fragment_psychologist_profile" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.healer.ui.fragments.accounts.LoginFragment"
-        android:label="LoginFragment">
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.healer.ui.fragments.accounts.profile.user_profile.UserProfileFragment"
+        android:label="UserProfileFragment" />
+    <fragment
+        android:id="@+id/psyHomeFragment"
+        android:name="com.example.healer.ui.fragments.home.psychologist_home.PsyHomeFragment"
+        android:label="PsyHomeFragment" >
         <action
-            android:id="@+id/action_loginFragment_to_userRegisterFragment2"
-            app:destination="@id/userRegisterFragment2" />
+            android:id="@+id/action_psyHomeFragment_to_setAppointmentFragment"
+            app:destination="@id/setAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/psychologistRegisterFragment"
+        android:name="com.example.healer.ui.fragments.accounts.register.psycholgist_register.PsychologistRegisterFragment"
+        android:label="PsychologistRegisterFragment" >
+        <action
+            android:id="@+id/action_psychologistRegisterFragment_to_psyHomeFragment"
+            app:destination="@id/psyHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.healer.ui.fragments.accounts.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_userRegisterFragment"
+            app:destination="@id/userRegisterFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_psyHomeFragment"
+            app:destination="@id/psyHomeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userRegisterFragment2"
-        android:name="com.example.healer.ui.fragments.accounts.UserRegisterFragment"
-        android:label="UserRegisterFragment">
+        android:id="@+id/userRegisterFragment"
+        android:name="com.example.healer.ui.fragments.accounts.register.user_register.UserRegisterFragment"
+        android:label="UserRegisterFragment" >
         <action
-            android:id="@+id/action_userRegisterFragment2_to_homeFragment2"
+            android:id="@+id/action_userRegisterFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userProfileFragment"
-        android:name="com.example.healer.ui.fragments.accounts.UserProfileFragment"
-        android:label="UserProfileFragment" />
+        android:id="@+id/homeFragment"
+        android:name="com.example.healer.ui.fragments.home.user_home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/setAppointmentFragment"
+        android:name="com.example.healer.ui.fragments.home.psychologist_home.SetAppointmentFragment"
+        android:label="SetAppointmentFragment" />
 </navigation>

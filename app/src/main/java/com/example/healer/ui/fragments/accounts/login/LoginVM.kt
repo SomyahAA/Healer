@@ -1,15 +1,13 @@
-package com.example.healer.ui.fragments.accounts
+package com.example.healer.ui.fragments.accounts.login
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.healer.models.User
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
 
-class UserProfileVM :ViewModel() {
+class LoginVM :ViewModel(){
 
-    private val repo : Repository = Repository.getInstace()
+    private val repo = Repository.getInstance()
 
     fun userTypeIsUser() :Boolean{
         var state = false
@@ -21,7 +19,4 @@ class UserProfileVM :ViewModel() {
         return false
     }
 
-    fun readUserDataFromFirestore (): LiveData<User> {
-        return repo.readUserDataFromFireStore()
-    }
 }

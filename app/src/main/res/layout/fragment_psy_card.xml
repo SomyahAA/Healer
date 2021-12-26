@@ -25,66 +25,94 @@
             tools:ignore="MissingConstraints">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/sycName"
-                    android:layout_width="259dp"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="176dp"
+                    android:layout_marginTop="24dp"
                     android:text="Name"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/sycSpecialty"
-                    android:layout_width="259dp"
-                    android:layout_height="38dp"
+                    android:layout_width="144dp"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="8dp"
                     android:text="specialty"
-                    android:textAlignment="textEnd"
+                    android:textAlignment="textStart"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.907"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sycName" />
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="135dp"
+                    android:layout_height="105dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/doc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.078"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/psyExpYears"
-                    android:layout_width="106dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="14dp"
+                    android:layout_width="96dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
                     android:text="experienceYears"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/button"
                     app:layout_constraintTop_toBottomOf="@+id/sycSpecialty" />
 
                 <TextView
                     android:id="@+id/psyPrice"
-                    android:layout_width="137dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="57dp"
-                    android:text="Price"
+                    android:layout_width="87dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="176dp"
+                    android:layout_marginTop="131dp"
+                    android:layout_marginBottom="11dp"
+                    android:text=" 100 $$"
+                    android:textAlignment="textStart"
+                    app:layout_constraintBottom_toTopOf="@+id/button"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sycSpecialty" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/button"
-                    android:layout_width="122dp"
+                    android:layout_width="137dp"
                     android:layout_height="48dp"
                     android:text="Book"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.495"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/psyPrice"
                     app:layout_constraintVertical_bias="1.0" />
 
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="30dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="6dp"
+                    android:text="years"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/psyExpYears"
+                    app:layout_constraintTop_toBottomOf="@+id/sycSpecialty"
+                    app:layout_constraintVertical_bias="0.017" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </androidx.cardview.widget.CardView>
 

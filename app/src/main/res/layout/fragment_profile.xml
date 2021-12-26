@@ -12,76 +12,67 @@
         android:layout_height="match_parent"
         tools:context=".ProfileFragment">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="320dp"
-            android:layout_height="542dp"
-            android:layout_marginStart="44dp"
-            app:cardBackgroundColor="#591C4E34"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="396dp"
+            android:layout_height="595dp"
+            android:layout_marginTop="92dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.497">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="577dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="218dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="42dp"
+                android:src="@drawable/default_profile_picture"
+                app:layout_constraintBottom_toTopOf="@+id/userName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImage"
-                    android:layout_width="218dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="42dp"
-                    android:src="@drawable/default_profile_picture"
-                    app:layout_constraintBottom_toTopOf="@+id/userName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:ems="10"
+                android:hint="Name"
 
-                <EditText
-                    android:id="@+id/userName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
-                    android:ems="10"
-                    android:hint="Name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                app:layout_constraintBottom_toTopOf="@+id/userGender"
+                app:layout_constraintEnd_toEndOf="@+id/userGender"
+                app:layout_constraintStart_toStartOf="@+id/userGender"
+                app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toTopOf="@+id/userGender"
-                    app:layout_constraintEnd_toEndOf="@+id/userGender"
-                    app:layout_constraintStart_toStartOf="@+id/userGender"
-                    app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+            <EditText
+                android:id="@+id/userPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="131dp"
+                android:ems="10"
+                android:hint="Your Phone Number"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/userGender"
+                app:layout_constraintTop_toBottomOf="@+id/userGender" />
 
-                <EditText
-                    android:id="@+id/userPhoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="131dp"
-                    android:ems="10"
-                    android:hint="Your Phone Number"
-                    android:inputType="phone"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/userGender"
-                    app:layout_constraintTop_toBottomOf="@+id/userGender" />
-
-                <EditText
-                    android:id="@+id/userGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="27dp"
-                    android:ems="10"
-                    android:hint="Gender"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toTopOf="@+id/userPhoneNumber"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userName" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-
+            <EditText
+                android:id="@+id/userGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="27dp"
+                android:ems="10"
+                android:hint="Gender"
+                android:inputType="text"
+                android:minHeight="48dp"
+                app:layout_constraintBottom_toTopOf="@+id/userPhoneNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,8 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+
 }
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 31
@@ -33,7 +34,8 @@ android {
     }
 
     buildFeatures {
-        dataBinding  true
+        dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -75,5 +77,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    //photo loader
+    implementation("io.coil-kt:coil:1.4.0")
 
 }

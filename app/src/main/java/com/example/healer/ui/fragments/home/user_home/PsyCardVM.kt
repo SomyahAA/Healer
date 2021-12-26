@@ -1,38 +1,39 @@
-package com.example.healer.ui.fragments.home
+package com.example.healer.ui.fragments.home.user_home
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
+import com.google.firebase.auth.FirebaseAuth
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
+class PsyCardVM : ViewModel(){
 
-class HomeViewModel :ViewModel(){
 
-    private val repo = Repository.getInstace()
+    private val repo = Repository.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    fun psyLiveData() :LiveData<List<Psychologist>>{
-        val liveDataList = liveData {
-            emit(repo.getAllPsys())
-        }
-        return liveDataList
-    }
 
     fun userTypeIsUser() :Boolean{
         var state = false
         viewModelScope.launch {
             state = repo.userTypeIsUser()
         }.invokeOnCompletion {
-            state  //return repo state ?
+            state
         }
         return false
     }
 
     fun readPsyDataFromFirestore (): LiveData<Psychologist> {
         return repo.readPsyDataFromFirestore()
+
     }
 
+    fun getPhotoFromStorage(imageView: CircleImageView,currentUser: String? = auth.currentUser?.uid,){
+        repo.getPhotoFromStorage(imageView)
+    }
 
 }

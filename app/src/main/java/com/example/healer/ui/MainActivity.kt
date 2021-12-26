@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var menu: Menu
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val repo = Repository.getInstace()
+    private val repo = Repository.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // to find the nav controller from the nav host fragment
-
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.side_navigation)
@@ -63,8 +62,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+        return navController.navigateUp() || super.onSupportNavigateUp() }
+
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -72,10 +71,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
+
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.nav_home -> {
-                navController.navigate(R.id.homeFragment)
+                var state = false
+                lifecycleScope.launch {
+
+                    state = repo.userTypeIsUser()
+
+                }.invokeOnCompletion {
+                    if (state){
+                        navController.navigate(R.id.homeFragment)
+                    } else {
+                        navController.navigate(R.id.psyHomeFragment)
+                    }
+                }
+
             }
             R.id.nav_login -> {
                 navController.navigate(R.id.loginFragment)
@@ -96,7 +108,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_profile -> {
                 var state = false
                 lifecycleScope.launch {
+
                    state = repo.userTypeIsUser()
+
                 }.invokeOnCompletion {
                     if (state){
                         navController.navigate(R.id.userProfileFragment)
@@ -111,4 +125,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
 }
