@@ -5,6 +5,7 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private val loginVM : LoginVM by lazy { ViewModelProvider(this)[LoginVM::class.java] }
+    private val loginVM: LoginVM by lazy { ViewModelProvider(this)[LoginVM::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +32,25 @@ class LoginFragment : Fragment() {
         }
 
         binding.login.setOnClickListener {
-                loginVM.login(binding.loginEmail.text.toString(), binding.loginPassword.text.toString(), requireContext())
+            loginVM.login(
+                binding.loginEmail.text.toString(),
+                binding.loginPassword.text.toString(),
+                requireContext()
+            )
 
-           if (auth.currentUser != null) {
-               if (!loginVM.userTypeIsUser()){
-                   findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
-               }else{
-                   findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-               }
-           }
+            if (auth.currentUser != null) {
+                if (!loginVM.userTypeIsUser()) {
+                    findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
+                } else {
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                }
+            }
         }
 
         binding.goToRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
         }
+
         return binding.root
     }
 }

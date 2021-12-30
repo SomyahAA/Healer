@@ -17,6 +17,7 @@ import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
+import com.example.healer.utils.Constants.HOME_FRAGMENT_TAG
 import kotlinx.coroutines.launch
 
 
@@ -26,8 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val repo = Repository.getInstance()
 
-    private val homeViewModel : HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
-
+    private val homeViewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             state = repo.userTypeIsUser()
         }
-        if (state){
+        if (state) {
             findNavController().navigate(R.id.psyHomeFragment)
         }
 
@@ -50,9 +50,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //Log.d(TAG, "onViewCreated999:${ homeViewModel.token} ")
+
         homeViewModel.psyLiveData().observe(
-            viewLifecycleOwner, Observer{
-                Log.d(TAG, "onViewCreated: $it ")
+            viewLifecycleOwner, Observer {
+                Log.d(HOME_FRAGMENT_TAG, "onViewCreated: $it ")
                 updateUI(it)
             }
         )
@@ -63,22 +66,22 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = psyAdapter
     }
 
-    private inner class PsyHolder(val binding: FragmentPsyCardBinding)
-        :RecyclerView.ViewHolder(binding.root){
+    private inner class PsyHolder(val binding: FragmentPsyCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(psychologist: Psychologist){
+        fun bind(psychologist: Psychologist) {
             if (!homeViewModel.userTypeIsUser()) {
-                homeViewModel.psyLiveData().observe(viewLifecycleOwner){
-                    Log.d("Home","and the result is .... $psychologist.name")
+                homeViewModel.psyLiveData().observe(viewLifecycleOwner) {
+                    Log.d("Home", "and the result is .... $psychologist.name")
                     binding.sycName.text = psychologist.name
-                    binding.sycSpecialty.text =psychologist.specialty
-                    binding.psyExpYears.text =psychologist.experienceYears
+                    binding.sycSpecialty.text = psychologist.specialty
+                    binding.psyExpYears.text = psychologist.experienceYears
                 }
             }
         }
     }
 
-    private inner class PsyAdapter(val psychologists: List<Psychologist>):
+    private inner class PsyAdapter(val psychologists: List<Psychologist>) :
         RecyclerView.Adapter<PsyHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PsyHolder {
             val binding = FragmentPsyCardBinding.inflate(
@@ -96,5 +99,4 @@ class HomeFragment : Fragment() {
 
         override fun getItemCount(): Int = psychologists.size
     }
-
 }

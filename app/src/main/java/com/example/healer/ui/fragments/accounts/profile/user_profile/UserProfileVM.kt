@@ -7,17 +7,19 @@ import com.example.healer.models.User
 import com.example.healer.repository.Repository
 import de.hdodenhof.circleimageview.CircleImageView
 
-class UserProfileVM :ViewModel() {
+class UserProfileVM : ViewModel() {
 
-    private val repo : Repository = Repository.getInstance()
+    private val repo: Repository = Repository.getInstance()
 
-    fun readUserDataFromFirestore (): LiveData<User> {
+    fun readUserDataFromFirestore(): LiveData<User> {
         return repo.readUserDataFromFireStore()
     }
-    fun uploadPhotoToFirebaseStorage(imageUri: Uri){
+
+    fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
         repo.uploadPhotoToFirebaseStorage(imageUri)
     }
-    fun getPhotoFromStorage(imageView: CircleImageView){
+
+    fun getPhotoFromStorage(imageView: CircleImageView) {
         repo.getPhotoFromStorage(imageView)
     }
 }

@@ -17,7 +17,8 @@ import java.util.*
 
 
 private const val TAG = "SetAppointmentFragment"
-class SetAppointmentFragment : Fragment() , View.OnClickListener {
+
+class SetAppointmentFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: SetAppointmentFragmentBinding
     private val fireStore = Firebase.firestore
@@ -37,18 +38,20 @@ class SetAppointmentFragment : Fragment() , View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             binding.btnDate -> {
-
                 // Get Current Date
                 val c: Calendar = Calendar.getInstance()
                 val mYear = c.get(Calendar.YEAR)
                 val mMonth = c.get(Calendar.MONTH)
                 val mDay = c.get(Calendar.DAY_OF_MONTH)
 
-                 DatePickerDialog(requireContext(), { _, year, monthOfYear, dayOfMonth ->
-                    binding.inDate.setText("$dayOfMonth${(monthOfYear+1)}$year")},
-                    mYear, mMonth, mDay).show()
+                DatePickerDialog(
+                    requireContext(), { _, year, monthOfYear, dayOfMonth ->
+                        binding.inDate.setText("$dayOfMonth${(monthOfYear + 1)}$year")
+                    },
+                    mYear, mMonth, mDay
+                ).show()
 
-                Log.d("n"," $mYear, $mMonth ,$mDay")
+                Log.d("n", " $mYear, $mMonth ,$mDay")
             }
             binding.btnTime -> {
 
@@ -58,8 +61,9 @@ class SetAppointmentFragment : Fragment() , View.OnClickListener {
                 val mMinute = c.get(Calendar.MINUTE)
 
                 // Launch Time Picker Dialog
-                val timePickerDialog = TimePickerDialog(requireContext(),
-                    { _, hourOfDay, minute -> binding.inTime.setText("$hourOfDay$minute")},
+                val timePickerDialog = TimePickerDialog(
+                    requireContext(),
+                    { _, hourOfDay, minute -> binding.inTime.setText("$hourOfDay$minute") },
                     mHour,
                     mMinute,
                     false
@@ -69,10 +73,18 @@ class SetAppointmentFragment : Fragment() , View.OnClickListener {
             binding.setAppointment -> {
                 when {
                     binding.inDate.text.isEmpty() -> {
-                        Toast.makeText(requireContext(),"you must add a date to set the appointment",Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "you must add a date to set the appointment",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                     binding.inTime.text.isEmpty() -> {
-                        Toast.makeText(requireContext(),"you must add a time to set the appointment",Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "you must add a time to set the appointment",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                     else -> {
 
@@ -82,16 +94,17 @@ class SetAppointmentFragment : Fragment() , View.OnClickListener {
                         val dateList = listOf(selectedDate)
                         val timeList = listOf(selectedTime)
 
-                        fireStore.collection("PsyUsers").document(auth.currentUser!!.uid).also { ref ->
-                            dateList.forEach {
-                                ref.update("availableDates.$it", timeList)
-                            }
+                        fireStore.collection("PsyUsers").document(auth.currentUser!!.uid)
+                            .also { ref ->
+                                dateList.forEach {
+                                    ref.update("availableDates.$it", timeList)
+                                }
 
-                            ref.get().addOnSuccessListener {
-                                val x = it.get("availableDates") as Map<*, *>
-                                Log.d(TAG, "onClick: $x")
+                                ref.get().addOnSuccessListener {
+                                    val x = it.get("availableDates") as Map<*, *>
+                                    Log.d(TAG, "onClick: $x")
+                                }
                             }
-                        }
                     }
                 }
             }

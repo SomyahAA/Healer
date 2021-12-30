@@ -9,25 +9,28 @@ import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
 
 
-class HomeViewModel :ViewModel(){
+class HomeViewModel : ViewModel() {
 
     private val repo = Repository.getInstance()
 
-    fun psyLiveData() :LiveData<List<Psychologist>>{
+    fun psyLiveData(): LiveData<List<Psychologist>> {
         val liveDataList = liveData {
-            emit(repo.getAllPsy())
+            emit(repo.getAllPsychologist())
         }
         return liveDataList
     }
-    fun userTypeIsUser() :Boolean{
+
+    fun userTypeIsUser(): Boolean {
         var state = false
         viewModelScope.launch {
             state = repo.userTypeIsUser()
         }.invokeOnCompletion {
-             state  //return repo state ?
+            state  //return repo state ?
         }
         return false
     }
+
+    //val token = repo.startVideoCall()
 
 
 }

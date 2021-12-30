@@ -15,7 +15,11 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+//        // Inflate the layout for this fragment
+//        AgoraRTC.instance().bootstrap(requireContext(), "abcbccc386c6473c9455f897b2bd2555", "channel");
+//        //setContentView(R.layout.fragment_chats);
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
+
+
 }

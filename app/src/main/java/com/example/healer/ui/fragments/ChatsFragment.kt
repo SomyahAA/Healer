@@ -1,23 +1,20 @@
 package com.example.healer.ui.fragments
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
+import androidx.databinding.DataBindingUtil.setContentView
 import com.example.healer.R
 import com.example.healer.databinding.FragmentChatsBinding
-import com.example.healer.databinding.FragmentLoginBinding
 import com.example.healer.repository.Repository
 
 
 class ChatsFragment : Fragment() {
 
     private lateinit var binding: FragmentChatsBinding
-    private val repo =Repository.getInstance()
+    private val repo = Repository.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +23,15 @@ class ChatsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentChatsBinding.inflate(layoutInflater)
 
+
         val t = "0545454545"
         binding.phoneCallBTN.setOnClickListener {
-            repo.makeCall(requireContext(),t,Bundle())
+            repo.makePhoneCall(requireContext(), t, Bundle())
         }
 //        val view = inflater.inflate(R.layout.ChatsFragment, container,false)
 //        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 //        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+
         return binding.root
     }
 }

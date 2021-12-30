@@ -10,14 +10,14 @@ import com.google.firebase.auth.FirebaseAuth
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
-class PsyCardVM : ViewModel(){
+class PsyCardVM : ViewModel() {
 
 
     private val repo = Repository.getInstance()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 
-    fun userTypeIsUser() :Boolean{
+    fun userTypeIsUser(): Boolean {
         var state = false
         viewModelScope.launch {
             state = repo.userTypeIsUser()
@@ -27,13 +27,16 @@ class PsyCardVM : ViewModel(){
         return false
     }
 
-    fun readPsyDataFromFirestore (): LiveData<Psychologist> {
-        return repo.readPsyDataFromFirestore()
+    fun readPsyDataFromFirestore(): LiveData<Psychologist> {
+        return repo.readPsychologistDataFromFirestore()
 
     }
 
-    fun getPhotoFromStorage(imageView: CircleImageView,currentUser: String? = auth.currentUser?.uid,){
-        repo.getPhotoFromStorage(imageView)
+    fun getPhotoFromStorage(
+        imageView: CircleImageView,
+        currentUser: String? = auth.currentUser?.uid,
+    ) {
+        repo.getPhotoFromStorage(imageView,currentUser)
     }
 
 }

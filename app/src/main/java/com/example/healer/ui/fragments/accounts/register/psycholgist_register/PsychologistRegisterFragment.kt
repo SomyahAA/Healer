@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.FragmentPsychologistRegisterBinding
 import com.example.healer.models.Psychologist
+import com.example.healer.ui.fragments.accounts.login.LoginVM
 import com.example.healer.utils.Constants.PSYCHOLOGIST_REGISTER
-import com.example.healer.utils.Constants.USER_REGISTER
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,8 +22,9 @@ import com.google.firebase.ktx.Firebase
 class PsychologistRegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentPsychologistRegisterBinding
-    private val fireStore = Firebase.firestore
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val psyRegisterVM: PsyRegisterVM by lazy { ViewModelProvider(this)[PsyRegisterVM::class.java] }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +38,6 @@ class PsychologistRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.registerPsy.setOnClickListener {
 
             if (binding.psyName.text.isEmpty() || binding.psyPhoneNumber.text.isEmpty() || binding.psyEmail.text.isEmpty() || binding.psyPassword.text.isEmpty()
@@ -45,6 +47,7 @@ class PsychologistRegisterFragment : Fragment() {
                     .show()
 
             } else {
+
                 val psychologistModel = Psychologist(
                     binding.psyName.text.toString(),
                     binding.psyPhoneNumber.text.toString(),
@@ -53,42 +56,18 @@ class PsychologistRegisterFragment : Fragment() {
                     binding.psyExperienceYears.text.toString(),
                     binding.psyBio.text.toString()
                 )
-
-                auth.createUserWithEmailAndPassword(
+                psyRegisterVM.registerPsychologist(
                     binding.psyEmail.text.toString(),
-                    binding.psyPassword.text.toString()
+                    binding.psyPassword.text.toString(),
+                    psychologistModel,
+                    requireContext()
                 )
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(PSYCHOLOGIST_REGISTER, "createPsyWithEmail:success")
 
-                            fireStore.collection("PsyUsers")
-                                .document(auth.currentUser?.uid!!)
-                                .set(psychologistModel)
-                                .addOnSuccessListener {
-                                    Log.d(
-                                        USER_REGISTER,
-                                        "Done creating user in fireStore successfully"
-                                    )
-                                }
-                                .addOnFailureListener { e ->
-                                    Log.w(USER_REGISTER, "Error while adding user in fireStore", e)
-                                }
-                            findNavController().navigate(R.id.action_psychologistRegisterFragment_to_psyHomeFragment)
-                        } else {
-                            Log.d(
-                                PSYCHOLOGIST_REGISTER,
-                                "createUserWithEmail:failure",
-                                task.exception
-                            )
-                            Toast.makeText(
-                                requireContext(),
-                                task.exception?.localizedMessage,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+                if (auth.currentUser != null) {
+                    findNavController().navigate(R.id.action_psychologistRegisterFragment_to_psyHomeFragment)
+                }
             }
         }
+
     }
 }

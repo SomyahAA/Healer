@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
 
-class LoginVM :ViewModel(){
+class LoginVM : ViewModel() {
 
     private val repo = Repository.getInstance()
 
-    fun userTypeIsUser() :Boolean{
+    fun userTypeIsUser(): Boolean {
         var state = false
         viewModelScope.launch {
             state = repo.userTypeIsUser()
@@ -20,8 +20,8 @@ class LoginVM :ViewModel(){
         return false
     }
 
-    fun login(loginEmail:String,loginPassword:String ,requiredContext: Context){
-          return repo.login(loginEmail,loginPassword ,requiredContext)
+    fun login(loginEmail: String, loginPassword: String, requiredContext: Context) {
+        return repo.login(loginEmail, loginPassword, requiredContext)
     }
 
 }

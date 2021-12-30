@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
-
 }
 
 android {
@@ -15,7 +14,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -69,7 +67,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
-    implementation 'com.google.firebase:firebase-core:20.0.1'
+    implementation 'com.google.firebase:firebase-core:20.0.2'
 
 
     //coroutines and lifecycle
@@ -79,5 +77,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     //photo loader
     implementation("io.coil-kt:coil:1.4.0")
+    //agora
+    implementation 'io.agora.uikit:agorauikit:2.0.1'
+    implementation 'io.agora.rtc:full-sdk:x.y.z'
+    //implementation 'com.github.agorabuilder:native-full-sdk:3.4.5'
+    implementation fileTree (dir:'libs',includes: ['*.jar'])
+    androidTestImplementation 'androidx.test.rules:1.2.0'
+
+    implementation 'commons-codec:commons-codec:1.15'
 
 }

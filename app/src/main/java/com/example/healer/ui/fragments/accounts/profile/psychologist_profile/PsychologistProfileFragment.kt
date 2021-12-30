@@ -22,7 +22,7 @@ class PsychologistProfileFragment : Fragment() {
     private lateinit var imageUri: Uri
 
 
-    private val psychologistProfileVM : PsychologistProfileVM by lazy { ViewModelProvider(this)[PsychologistProfileVM::class.java] }
+    private val psychologistProfileVM: PsychologistProfileVM by lazy { ViewModelProvider(this)[PsychologistProfileVM::class.java] }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,23 +35,26 @@ class PsychologistProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            psychologistProfileVM.readPsyDataFromFirestore().observe(viewLifecycleOwner){ psy->
+        psychologistProfileVM.readPsyDataFromFirestore().observe(viewLifecycleOwner) { psy ->
 
-                binding.psyName.setText(psy.name)
-                binding.psyPhoneNumber.setText(psy.phoneNumber)
-                binding.psyExperienceYears.setText(psy.experienceYears)
-                binding.psySpecialty.setText(psy.specialty)
-                binding.psyBio.setText(psy.bio)
-                psychologistProfileVM.getPhotoFromStorage(binding.profileImage)
-            }
+            binding.psyName.setText(psy.name)
+            binding.psyPhoneNumber.setText(psy.phoneNumber)
+            binding.psyExperienceYears.setText(psy.experienceYears)
+            binding.psySpecialty.setText(psy.specialty)
+            binding.psyBio.setText(psy.bio)
+            psychologistProfileVM.getPhotoFromStorage(binding.profileImage)
+        }
         binding.profileImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "*/*"
-            startActivityForResult(Intent.createChooser(intent, "Select Photo"), Constants.PICK_PHOTO)
+            startActivityForResult(
+                Intent.createChooser(intent, "Select Photo"),
+                Constants.PICK_PHOTO
+            )
         }
     }
 
-    override  fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constants.PICK_PHOTO && resultCode == Activity.RESULT_OK) {
             if (data != null) {

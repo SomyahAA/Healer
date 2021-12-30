@@ -1,6 +1,5 @@
 package com.example.healer.repository
 
-
 import android.Manifest.permission.CALL_PHONE
 import android.app.Activity
 import android.content.Context
@@ -23,13 +22,18 @@ import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.UserDictionary.Words.APP_ID
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.healer.R
+import com.example.healer.utils.Constants.LOGIN_TAG
 import com.example.healer.utils.Constants.REQUEST_CALL
+import com.example.healer.agora.media.RtcTokenBuilder
+import io.agora.rtc.IRtcEngineEventHandler
+import io.agora.rtc.RtcEngine
+import io.agora.rtc.video.VideoCanvas
 
 
 
@@ -37,26 +41,106 @@ class Repository {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val fireStore = Firebase.firestore
-    private val  currentUser = auth.currentUser?.uid
+    private val currentUser = auth.currentUser?.uid
+
 
     companion object {
         fun getInstance(): Repository = Repository()
     }
 
-     fun login(loginEmail:String,loginPassword:String ,requiredContext: Context){
+    fun login(loginEmail: String, loginPassword: String, requiredContext: Context) {
         if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
-            Toast.makeText(requiredContext, "You must add email and password", Toast.LENGTH_SHORT).show()
-        } else { auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+            Toast.makeText(requiredContext, "You must add email and password", Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(LOGIN_TAG, "signInUserWithEmail:success")
+                    } else {
+                        Log.d(LOGIN_TAG, "signInUserWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            requiredContext,
+                            "Login failed" + task.exception?.localizedMessage,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        }
+    }
+
+    fun registerUser(email: String, password: String, user: User, requiredContext: Context) {
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(Constants.LOGIN_TAG, "signInUserWithEmail:success")
+                    Log.d(Constants.USER_REGISTER_TAG, "createUserWithEmail:success")
+
+                    //add user info to fireStore
+                    fireStore.collection("users")
+                        .document(auth.currentUser?.uid!!)
+                        .set(user)
+                        .addOnSuccessListener {
+                            Log.d(Constants.USER_REGISTER_TAG, "done added user in firebase")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(Constants.USER_REGISTER_TAG, "Error adding document", e)
+                        }
                 } else {
-                    Log.d(Constants.LOGIN_TAG, "signInUserWithEmail:failure", task.exception)
-                    Toast.makeText(requiredContext, "Login failed" + task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Log.d(
+                        Constants.USER_REGISTER_TAG,
+                        "createUserWithEmail:failure",
+                        task.exception
+                    )
+                    Toast.makeText(
+                        requiredContext,
+                        task.exception?.localizedMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        }
-     }
+    }
+
+    fun registerPsychologist(
+        email: String,
+        password: String,
+        psychologistModel: Psychologist,
+        requiredContext: Context
+    ) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(Constants.PSYCHOLOGIST_REGISTER, "createPsyWithEmail:success")
+
+                    fireStore.collection("PsyUsers")
+                        .document(auth.currentUser?.uid!!)
+                        .set(psychologistModel)
+                        .addOnSuccessListener {
+                            Log.d(
+                                Constants.PSYCHOLOGIST_REGISTER,
+                                "Done creating user in fireStore successfully"
+                            )
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(
+                                Constants.PSYCHOLOGIST_REGISTER,
+                                "Error while adding user in fireStore",
+                                e
+                            )
+                        }
+                } else {
+                    Log.d(
+                        Constants.PSYCHOLOGIST_REGISTER,
+                        "createUserWithEmail:failure",
+                        task.exception
+                    )
+                    Toast.makeText(
+                        requiredContext,
+                        task.exception?.localizedMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
 
     suspend fun userTypeIsUser(): Boolean {
         var state = false
@@ -72,7 +156,7 @@ class Repository {
         return state
     }
 
-    fun readPsyDataFromFirestore(): LiveData<Psychologist> {
+    fun readPsychologistDataFromFirestore(): LiveData<Psychologist> {
 
         val psychologistLiveData: MutableLiveData<Psychologist> = MutableLiveData()
 
@@ -119,7 +203,7 @@ class Repository {
                         }
                         "phone Number" -> user.phoneNumber = it.value as String
                         "gender" -> user.gender = it.value as String
-                        "profileImage" -> user.profileImage= it.value.toString()
+                        "profileImage" -> user.profileImage = it.value.toString()
                     }
                 }
                 userLiveData.value = user
@@ -130,7 +214,7 @@ class Repository {
         return userLiveData
     }
 
-    suspend fun getAllPsy(): List<Psychologist> {
+    suspend fun getAllPsychologist(): List<Psychologist> {
 
         val dataList = mutableMapOf<String, Any>()
         val psyList = mutableListOf<Psychologist>()
@@ -145,7 +229,7 @@ class Repository {
                     psychologist.name = document.getString("name").toString()
                     psychologist.specialty = document.getString("specialty").toString()
                     psychologist.experienceYears = document.getString("experience Years").toString()
-                    psychologist.profileImage=document.getString("profileImage").toString()
+                    psychologist.profileImage = document.getString("profileImage").toString()
                     psyList.add(psychologist)
 
                     //Log.d( repository," adding${document.data} in ${document.id} is done successfully")
@@ -155,7 +239,7 @@ class Repository {
         return psyList
     }
 
-    fun uploadPhotoToFirebaseStorage(imageURI: Uri){
+    fun uploadPhotoToFirebaseStorage(imageURI: Uri) {
         val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
 
         imageRef.putFile(imageURI)
@@ -166,30 +250,37 @@ class Repository {
                 }
             }
             .addOnFailureListener {
-                Log.d(REPOSITORY_TAG,"error occur uploading the image to firebase storage")
+                Log.d(REPOSITORY_TAG, "error occur uploading the image to firebase storage")
             }
     }
 
     private fun saveImageToFireStore(profileImageUrl: String) {
         fireStore.collection("users")
             .document(auth.currentUser!!.uid)
-            .update("profileImage",profileImageUrl)
-
+            .update("profileImage", profileImageUrl)
     }
 
-    fun getPhotoFromStorage(image: CircleImageView,userUrl: String? = auth.currentUser?.uid){
-       val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
+    fun getPhotoFromStorage(image: CircleImageView, userUrl: String? = auth.currentUser?.uid) {
+        val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
         imageUrl.addOnSuccessListener {
             image.load(it)
         }
     }
 
-    fun makeCall(requiredContext:Context,number:String,bundle:Bundle){
+    fun makePhoneCall(requiredContext: Context, number: String, bundle: Bundle) {
 
-        if (ContextCompat.checkSelfPermission(requiredContext, CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                requiredContext,
+                CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             requestPermissions(requiredContext as Activity, arrayOf(CALL_PHONE), REQUEST_CALL)
-        }else {
-            startActivity(requiredContext,Intent(Intent.ACTION_CALL,Uri.parse("tel:$number")),bundle)
+        } else {
+            startActivity(
+                requiredContext,
+                Intent(Intent.ACTION_CALL, Uri.parse("tel:$number")),
+                bundle
+            )
         }
     }
 

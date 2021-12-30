@@ -82,15 +82,15 @@
                     android:layout_marginBottom="11dp"
                     android:text=" 100 $$"
                     android:textAlignment="textStart"
-                    app:layout_constraintBottom_toTopOf="@+id/button"
+                    app:layout_constraintBottom_toTopOf="@+id/bookBTN"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button"
-                    android:layout_width="137dp"
+                    android:id="@+id/bookBTN"
+                    android:layout_width="186dp"
                     android:layout_height="48dp"
-                    android:text="Book"
+                    android:text="Consult now"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.495"
@@ -100,17 +100,17 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="24dp"
-                    android:layout_height="13dp"
+                    android:layout_width="69dp"
+                    android:layout_height="21dp"
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="6dp"
                     android:text="years"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.642"
                     app:layout_constraintStart_toEndOf="@+id/psyExpYears"
                     app:layout_constraintTop_toBottomOf="@+id/sycSpecialty"
-                    app:layout_constraintVertical_bias="0.017" />
+                    app:layout_constraintVertical_bias="0.018" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

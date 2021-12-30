@@ -16,6 +16,7 @@ import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
 import com.example.healer.repository.Repository
 import com.google.firebase.auth.FirebaseAuth
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var navigationView: NavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var menu: Menu
+    private lateinit var hederPhoto :CircleImageView
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val repo = Repository.getInstance()
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.side_navigation)
         toolbar = findViewById(R.id.tool_bar)
+
         navController = findNavController(R.id.fragmentContainerView)
 
         val toggle = ActionBarDrawerToggle(
@@ -59,10 +62,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu = navigationView.menu
         menu.findItem(R.id.nav_logout).isVisible = false
         menu.findItem(R.id.nav_profile).isVisible = false
+
+        //repo.getPhotoFromStorage(findViewById(R.id.headerPhoto))
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp() }
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -81,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     state = repo.userTypeIsUser()
 
                 }.invokeOnCompletion {
-                    if (state){
+                    if (state) {
                         navController.navigate(R.id.homeFragment)
                     } else {
                         navController.navigate(R.id.psyHomeFragment)
@@ -109,10 +115,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var state = false
                 lifecycleScope.launch {
 
-                   state = repo.userTypeIsUser()
+                    state = repo.userTypeIsUser()
 
                 }.invokeOnCompletion {
-                    if (state){
+                    if (state) {
                         navController.navigate(R.id.userProfileFragment)
                     } else {
                         navController.navigate(R.id.psychologistProfileFragment)

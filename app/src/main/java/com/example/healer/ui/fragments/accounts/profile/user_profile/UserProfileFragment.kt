@@ -41,6 +41,7 @@ class UserProfileFragment : Fragment() {
             binding.userGender.setText(user.gender)
             userProfileVM.getPhotoFromStorage(binding.profileImage)
         }
+
         binding.profileImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "*/*"
@@ -65,5 +66,4 @@ class UserProfileFragment : Fragment() {
             }
         }
     }
-
 }
