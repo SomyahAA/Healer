@@ -167,7 +167,7 @@ class VideoCallRepository {
         mRtcEngine!!.setupLocalVideo(VideoCanvas(localFrame, VideoCanvas.RENDER_MODE_FIT, 0))
         generateTokenForCall()
         //the uid it must match the id used to generate the token
-        mRtcEngine!!.joinChannel(generateTokenForCall(), Constants.CHANNEL, "", 0)
+        mRtcEngine!!.joinChannel(generateTokenForCall(), CHANNEL, "", 0)
     }
 
 }

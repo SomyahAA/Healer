@@ -80,7 +80,7 @@ dependencies {
     //agora video call
     implementation 'io.agora.uikit:agorauikit:2.0.1'
     implementation 'io.agora.rtc:full-sdk:x.y.z'
-    implementation fileTree (dir:'libs',includes: ['*.jar'])
+
     androidTestImplementation 'androidx.test.rules:1.2.0'
     implementation 'commons-codec:commons-codec:1.15'
     //easy permissions for permissions

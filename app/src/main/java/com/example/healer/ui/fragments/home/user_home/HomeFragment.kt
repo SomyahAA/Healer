@@ -1,6 +1,8 @@
 package com.example.healer.ui.fragments.home.user_home
 
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -74,6 +76,15 @@ class HomeFragment : Fragment() {
                    SettingsDialog.Builder(requireActivity()).build().show()
                 }
             }
+            binding.cardView.setOnClickListener {
+                if (binding.expandableLayout.visibility == View.GONE) {
+                    TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
+                    binding.expandableLayout.visibility = View.VISIBLE
+                } else {
+                    TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
+                    binding.expandableLayout.visibility = View.GONE
+                }
+            }
         }
         fun bind(psychologist: Psychologist) {
             if (!homeViewModel.userTypeIsUser()) {
@@ -82,6 +93,8 @@ class HomeFragment : Fragment() {
                     binding.sycSpecialty.text = psychologist.specialty
                     binding.psyExpYears.text = psychologist.experienceYears
                     binding.profileImage.load(psychologist.profileImage)
+                    binding.psyBio.text = psychologist.bio
+
                 }
             }
         }

@@ -150,15 +150,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-//ffffm fz,g,kz dm,k m z,.mgk,n,nfd,mdn ,mn k.fd,m ,mmf,,z km zkm d.kf mz.mfg.kmf, nb,jx,jgx,n≈n
 }
-
-/*
-
-<dependency>
-	<groupId>com.michalsvec</groupId>
-	<artifactId>single-row-calednar</artifactId>
-	<version>1.0.0</version>
-	<type>pom</type>
-</dependency>
- */

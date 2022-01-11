@@ -312,11 +312,11 @@ class Repository {
         return headerNameLiveData
     }
 
-    fun updatePsyId(uid :String){
-        fireStore.collection("PsyUsers")
-            .document(auth.currentUser!!.uid)
-            .update("id",uid)
-    }
+//    fun updatePsyId(uid :String){
+//        fireStore.collection("PsyUsers")
+//            .document(auth.currentUser!!.uid)
+//            .update("id",uid)
+//    }
 
     fun isOnline(context: Context): Boolean {
         val connectivityManager =

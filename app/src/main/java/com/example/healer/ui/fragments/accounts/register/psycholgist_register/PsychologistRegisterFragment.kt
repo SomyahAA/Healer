@@ -63,7 +63,7 @@ class PsychologistRegisterFragment : Fragment() {
                     requireContext()
                 )
                 if (auth.currentUser != null) {
-                    psyRegisterVM.updatePsyId(auth.currentUser!!.uid)
+//                    psyRegisterVM.updatePsyId(auth.currentUser!!.uid)
                     findNavController().navigate(R.id.action_psychologistRegisterFragment_to_psyHomeFragment)
                 }
             }

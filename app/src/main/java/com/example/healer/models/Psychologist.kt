@@ -9,6 +9,6 @@ data class Psychologist(
     var experienceYears: String ="",
     var bio: String ="",
     var availableDates : Map<Long,Array<Long>> = mapOf(),
-    var profileImage: String ="",
-    var id :String =""
+    var profileImage: String ="@drawable/",
+//    var id :String =""
 )

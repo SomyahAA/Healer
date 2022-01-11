@@ -33,5 +33,6 @@ class PsyHomeFragment : Fragment() {
         binding.setMyAppsBTN.setOnClickListener {
             findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
         }
+
     }
 }
