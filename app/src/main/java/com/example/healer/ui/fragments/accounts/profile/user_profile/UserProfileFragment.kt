@@ -40,9 +40,7 @@ class UserProfileFragment : Fragment() {
             binding.userName.setText(user.name)
             binding.userPhoneNumber.setText(user.phoneNumber)
             binding.userGender.setText(user.gender)
-        }
-        userProfileVM.getPhotoFromStorage().observe(viewLifecycleOwner){
-            binding.profileImage.load(it)
+            binding.profileImage.load(user.profileImage)
         }
 
         binding.profileImage.setOnClickListener {
@@ -51,7 +49,6 @@ class UserProfileFragment : Fragment() {
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PHOTO)
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_PHOTO && resultCode == RESULT_OK) {

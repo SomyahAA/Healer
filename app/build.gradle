@@ -89,4 +89,6 @@ dependencies {
     implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
     implementation 'com.michalsvec:single-row-calednar:1.0.0'
 
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+
 }

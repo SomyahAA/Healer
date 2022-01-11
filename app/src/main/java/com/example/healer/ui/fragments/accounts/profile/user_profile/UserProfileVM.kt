@@ -4,9 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.healer.models.User
 import com.example.healer.repository.Repository
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.launch
 
 class UserProfileVM : ViewModel() {
 
@@ -17,10 +19,13 @@ class UserProfileVM : ViewModel() {
     }
 
     fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
-        repo.uploadPhotoToFirebaseStorage(imageUri)
+        viewModelScope.launch {
+            repo.uploadPhotoToFirebaseStorage(imageUri)
+        }
+
     }
 
-    fun getPhotoFromStorage() : LiveData<Uri> {
-        return repo.getPhotoFromStorage()
-    }
+//    fun getPhotoFromStorage() : LiveData<Uri> {
+//        return repo.getPhotoFromStorage()
+//    }
 }

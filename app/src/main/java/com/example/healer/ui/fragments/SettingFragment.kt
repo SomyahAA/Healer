@@ -2,7 +2,6 @@ package com.example.healer.ui.fragments
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment

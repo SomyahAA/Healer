@@ -17,7 +17,6 @@ import com.example.healer.R
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.videoCall.VideoCallFragment
 
-
 class PsyCardFragment : Fragment() {
     private lateinit var binding: FragmentPsyCardBinding
     private val psyCardVM: PsyCardVM by lazy { ViewModelProvider(this)[PsyCardVM::class.java] }
@@ -29,20 +28,5 @@ class PsyCardFragment : Fragment() {
         binding = FragmentPsyCardBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        psyCardVM.readPsyDataFromFirestore().observe(viewLifecycleOwner) { psy ->
-                binding.sycName.text = psy.name
-                binding.sycSpecialty.text = psy.specialty
-                binding.psyExpYears.text = psy.experienceYears
-            psyCardVM.getPhotoFromStorage(psy.id).observe(viewLifecycleOwner){
-                binding.profileImage.load(it)
-            }
-
-        }
-
     }
 }

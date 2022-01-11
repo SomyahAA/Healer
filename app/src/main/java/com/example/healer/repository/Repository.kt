@@ -2,7 +2,6 @@ package com.example.healer.repository
 
 import android.Manifest.permission.CALL_PHONE
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.Uri
@@ -25,18 +24,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
-import com.example.healer.R
 import com.example.healer.utils.Constants.LOGIN_TAG
 import com.example.healer.utils.Constants.REQUEST_CALL
-import com.example.healer.agora.media.RtcTokenBuilder
-import io.agora.rtc.IRtcEngineEventHandler
-import io.agora.rtc.RtcEngine
-import io.agora.rtc.video.VideoCanvas
-import android.content.DialogInterface
 
-import android.net.NetworkInfo
-
-import androidx.core.content.ContextCompat.getSystemService
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -244,33 +234,34 @@ class Repository {
         return psyList
     }
 
-    fun uploadPhotoToFirebaseStorage(imageURI: Uri) {
+    suspend fun uploadPhotoToFirebaseStorage(imageURI: Uri) {
         val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
 
-        imageRef.putFile(imageURI)
-            .addOnSuccessListener {
-                //Log.d(repository,"Successfully uploaded the selected image into the firebase storage:${it.metadata?.path}")
-                imageRef.downloadUrl.addOnSuccessListener {
-                    saveImageToFireStore(it.toString())
-                }
-            }
-            .addOnFailureListener {
-                Log.d(REPOSITORY_TAG, "error occur uploading the image to firebase storage")
-            }
-    }
+        val o =imageRef.putFile(imageURI).await()
 
-    private fun saveImageToFireStore(profileImageUrl: String) {
-        fireStore.collection("users")
-            .document(auth.currentUser!!.uid)
-            .update("profileImage", profileImageUrl)
+        if (o.task.isComplete){
+            val j= o.storage.downloadUrl.await()
+
+            if (userTypeIsUser()) {
+                fireStore.collection("users")
+                    .document(auth.currentUser!!.uid)
+                    .update("profileImage", j.toString())
+            } else {
+                fireStore.collection("PsyUsers")
+                    .document(auth.currentUser!!.uid)
+                    .update("profileImage", j.toString())
+            }
+        }
     }
 
     fun getPhotoFromStorage(userUrl: String? = auth.currentUser?.uid): LiveData<Uri> {
         val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
-
+        fireStore.collection("users")
         val uriLiveData: MutableLiveData<Uri> = MutableLiveData()
         imageUrl.addOnSuccessListener {
             uriLiveData.value = it
+        }.addOnFailureListener{
+                Log.e(REPOSITORY_TAG," fail",it)
         }
         return uriLiveData
     }

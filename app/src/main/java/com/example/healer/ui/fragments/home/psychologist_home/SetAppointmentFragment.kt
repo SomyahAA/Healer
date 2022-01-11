@@ -56,8 +56,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
     ): View {
         binding = SetAppointmentFragmentBinding.inflate(layoutInflater)
         binding.appRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        calendarItemBinding =
-            DataBindingUtil.inflate(inflater, R.layout.calendar_item, container, false)
+        calendarItemBinding = DataBindingUtil.inflate(inflater, R.layout.calendar_item, container, false)
 
 
         // set current date to calendar and current month to currentMonth variable

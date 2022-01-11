@@ -43,10 +43,9 @@ class PsychologistProfileFragment : Fragment() {
             binding.psyExperienceYears.setText(psy.experienceYears)
             binding.psySpecialty.setText(psy.specialty)
             binding.psyBio.setText(psy.bio)
+            binding.profileImage.load(psy.profileImage)
         }
-        psychologistProfileVM.getPhotoFromStorage().observe(viewLifecycleOwner){
-            binding.profileImage.load(it)
-        }
+
         binding.profileImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "*/*"

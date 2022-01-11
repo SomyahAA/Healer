@@ -81,7 +81,7 @@ class VideoCallFragment : Fragment() {
             setMessage(" permission to access your $name is required to use this app")
             setTitle("Permission required ")
             setPositiveButton("Ok"){ dialog ,which ->
-                ActivityCompat.requestPermissions(requireActivity(),arrayOf(permission),requestCode)
+                requestPermissions(requireActivity(),arrayOf(permission),requestCode)
             }
         }
         val dialog :AlertDialog =builder.create()

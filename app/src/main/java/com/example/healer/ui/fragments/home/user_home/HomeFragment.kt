@@ -23,7 +23,7 @@ import com.example.healer.utils.Constants.HOME_FRAGMENT_TAG
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 
-// use HOME_FRAGMENT_TAG
+
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -85,7 +85,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private inner class PsyAdapter(val psychologists: List<Psychologist>) :
@@ -103,7 +102,6 @@ class HomeFragment : Fragment() {
             val psy = psychologists[position]
             holder.bind(psy)
         }
-
         override fun getItemCount(): Int = psychologists.size
     }
 }
