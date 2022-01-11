@@ -2,6 +2,4 @@ package com.example.healer.ui.fragments.home.psychologist_home
 
 import androidx.lifecycle.ViewModel
 
-class SetAppointmentViewModel : ViewModel() {
-
-}
+class SetAppointmentViewModel : ViewModel() {}

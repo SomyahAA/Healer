@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Healer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">البروفايل</string>
+    <string name="login">الدخول</string>
+    <string name="logout">خروج</string>
+    <string name="setting">الاعدادات</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="appointments">المواعيد</string>
+    <string name="chats">المحادثات</string>
+    <string name="home">Home</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+    <string name="work_with_us">Work with Us</string>
+    <string name="password">كلمة السر</string>
+    <string name="language">عربي</string>
+</resources>

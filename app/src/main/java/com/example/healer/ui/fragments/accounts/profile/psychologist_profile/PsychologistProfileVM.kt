@@ -20,8 +20,8 @@ class PsychologistProfileVM : ViewModel() {
         repo.uploadPhotoToFirebaseStorage(imageUri)
     }
 
-    fun getPhotoFromStorage(imageView: CircleImageView) {
-        repo.getPhotoFromStorage(imageView)
+    fun getPhotoFromStorage() :LiveData<Uri> {
+        return repo.getPhotoFromStorage()
     }
 
 }

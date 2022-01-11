@@ -1,5 +1,7 @@
 package com.example.healer.ui.fragments.home.user_home
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -30,7 +32,8 @@ class HomeViewModel : ViewModel() {
         return false
     }
 
-    //val token = repo.startVideoCall()
-
+    fun isOnline(context: Context): Boolean{
+        return repo.isOnline(context)
+    }
 
 }

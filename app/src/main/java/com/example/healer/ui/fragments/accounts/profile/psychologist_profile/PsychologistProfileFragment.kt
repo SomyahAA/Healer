@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.example.healer.databinding.FragmentPsychologistProfileBinding
 import com.example.healer.utils.Constants
 import java.lang.Exception
@@ -42,7 +43,9 @@ class PsychologistProfileFragment : Fragment() {
             binding.psyExperienceYears.setText(psy.experienceYears)
             binding.psySpecialty.setText(psy.specialty)
             binding.psyBio.setText(psy.bio)
-            psychologistProfileVM.getPhotoFromStorage(binding.profileImage)
+        }
+        psychologistProfileVM.getPhotoFromStorage().observe(viewLifecycleOwner){
+            binding.profileImage.load(it)
         }
         binding.profileImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)

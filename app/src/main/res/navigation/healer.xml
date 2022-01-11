@@ -74,4 +74,16 @@
         android:id="@+id/setAppointmentFragment"
         android:name="com.example.healer.ui.fragments.home.psychologist_home.SetAppointmentFragment"
         android:label="SetAppointmentFragment" />
+    <fragment
+        android:id="@+id/videoCallFragment"
+        android:name="com.example.healer.videoCall.VideoCallFragment"
+        android:label="VideoCallFragment" />
+    <fragment
+        android:id="@+id/psyCardFragment2"
+        android:name="com.example.healer.ui.fragments.home.user_home.PsyCardFragment"
+        android:label="PsyCardFragment" >
+        <action
+            android:id="@+id/action_psyCardFragment2_to_videoCallFragment"
+            app:destination="@id/videoCallFragment" />
+    </fragment>
 </navigation>

@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
             )
 
             if (auth.currentUser != null) {
-                if (!loginVM.userTypeIsUser()) {
+                if (loginVM.userTypeIsUser()) {
                     findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)

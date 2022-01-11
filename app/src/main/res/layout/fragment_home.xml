@@ -25,26 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck">
 
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-
-<!--                &lt;!&ndash;                <TextView&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:layout_width="411dp"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:layout_height="734dp"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:background="#591C4E34"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:text="@string/home"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:textAlignment="center"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:textColor="#701313"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    android:textSize="96sp"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-<!--                &lt;!&ndash;                    app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
-
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

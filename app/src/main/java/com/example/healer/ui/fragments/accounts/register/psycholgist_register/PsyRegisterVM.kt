@@ -22,4 +22,8 @@ class PsyRegisterVM : ViewModel() {
         return repo.registerPsychologist(email, password, psychologistModel, requiredContext)
     }
 
+    fun updatePsyId(uid :String){
+        repo.updatePsyId(uid)
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.healer.ui.fragments.accounts.profile.user_profile
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.healer.models.User
 import com.example.healer.repository.Repository
@@ -19,7 +20,7 @@ class UserProfileVM : ViewModel() {
         repo.uploadPhotoToFirebaseStorage(imageUri)
     }
 
-    fun getPhotoFromStorage(imageView: CircleImageView) {
-        repo.getPhotoFromStorage(imageView)
+    fun getPhotoFromStorage() : LiveData<Uri> {
+        return repo.getPhotoFromStorage()
     }
 }

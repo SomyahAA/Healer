@@ -18,11 +18,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                     android:layout_width="82dp"
                     android:layout_height="17dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="64dp"
+                    android:layout_marginEnd="80dp"
                     android:text="experienceYears"
                     android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -75,25 +75,24 @@
 
                 <TextView
                     android:id="@+id/psyPrice"
-                    android:layout_width="87dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="176dp"
+                    android:layout_width="88dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="180dp"
                     android:layout_marginTop="131dp"
                     android:layout_marginBottom="11dp"
                     android:text=" 100 $$"
                     android:textAlignment="textStart"
-                    app:layout_constraintBottom_toTopOf="@+id/bookBTN"
+                    app:layout_constraintBottom_toTopOf="@+id/ConsultBTN"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/bookBTN"
+                    android:id="@+id/ConsultBTN"
                     android:layout_width="186dp"
                     android:layout_height="48dp"
                     android:text="Consult now"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.495"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/psyPrice"
                     app:layout_constraintVertical_bias="1.0" />

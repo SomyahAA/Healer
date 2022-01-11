@@ -12,70 +12,114 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.home.psychologist_home.SetAppointmentFragment">
 
+        <com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
+            android:id="@+id/main_single_row_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:deselection="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDay"
+            app:longPress="false"
+            app:multiSelection="false" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="52dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="SELECT A DATE"
+            android:textColor="@color/grey"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/lightGrey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            app:layout_constraintStart_toEndOf="@+id/tvDate"
+            app:layout_constraintTop_toTopOf="@+id/tvDate" />
+
+        <Button
+            android:id="@+id/btnRight"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_arrow_right_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvDate" />
+
+        <Button
+            android:id="@+id/btnLeft"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_arrow_left_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRight"
+            app:layout_constraintEnd_toStartOf="@+id/btnRight"
+            app:layout_constraintTop_toTopOf="@+id/btnRight"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appRecyclerView"
+            android:layout_width="406dp"
+            android:layout_height="336dp"
+            android:layout_marginTop="160dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <Button
             android:id="@+id/btn_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/in_date"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="328dp"
             android:layout_toEndOf="@+id/in_date"
             android:text="SELECT DATE"
+            app:layout_constraintBaseline_toBaselineOf="@+id/in_date"
             app:layout_constraintEnd_toStartOf="@+id/in_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_date"
-            android:layout_alignStart="@+id/btn_date"
-            android:layout_alignLeft="@+id/btn_date"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="392dp"
-            android:text="SELECT TIME"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/in_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="28dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="..."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/in_date" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/in_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="139dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="..."
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_date"
-            app:layout_constraintTop_toTopOf="@+id/btn_date" />
+            app:layout_constraintStart_toEndOf="@+id/btn_date" />
 
         <Button
             android:id="@+id/setAppointment"
             android:layout_width="254dp"
             android:layout_height="63dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="64dp"
             android:text="Set Appointments"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintHorizontal_bias="0.649"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/in_time" />
+            app:layout_constraintTop_toBottomOf="@+id/in_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

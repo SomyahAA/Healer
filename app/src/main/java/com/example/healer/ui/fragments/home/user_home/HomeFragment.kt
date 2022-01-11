@@ -6,22 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
 import com.example.healer.utils.Constants.HOME_FRAGMENT_TAG
+import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 
-
-private const val TAG = "HomeFragment"
+// use HOME_FRAGMENT_TAG
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -49,13 +51,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        //Log.d(TAG, "onViewCreated999:${ homeViewModel.token} ")
-
         homeViewModel.psyLiveData().observe(
             viewLifecycleOwner, Observer {
-                Log.d(HOME_FRAGMENT_TAG, "onViewCreated: $it ")
                 updateUI(it)
             }
         )
@@ -69,16 +66,26 @@ class HomeFragment : Fragment() {
     private inner class PsyHolder(val binding: FragmentPsyCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(psychologist: Psychologist) {
-            if (!homeViewModel.userTypeIsUser()) {
-                homeViewModel.psyLiveData().observe(viewLifecycleOwner) {
-                    Log.d("Home", "and the result is .... $psychologist.name")
-                    binding.sycName.text = psychologist.name
-                    binding.sycSpecialty.text = psychologist.specialty
-                    binding.psyExpYears.text = psychologist.experienceYears
+        init {
+            binding.ConsultBTN.setOnClickListener {
+                if (homeViewModel.isOnline(requireContext())){
+                    findNavController().navigate(R.id.videoCallFragment)
+                }else {
+                   SettingsDialog.Builder(requireActivity()).build().show()
                 }
             }
         }
+        fun bind(psychologist: Psychologist) {
+            if (!homeViewModel.userTypeIsUser()) {
+                homeViewModel.psyLiveData().observe(viewLifecycleOwner) {
+                    binding.sycName.text = psychologist.name
+                    binding.sycSpecialty.text = psychologist.specialty
+                    binding.psyExpYears.text = psychologist.experienceYears
+                    binding.profileImage.load(psychologist.profileImage)
+                }
+            }
+        }
+
     }
 
     private inner class PsyAdapter(val psychologists: List<Psychologist>) :

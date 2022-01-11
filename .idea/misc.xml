@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/btn_endcall.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/drawable-v24/btn_startcall.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/drawable-v24/btn_switch_camera.xml" value="0.14629629629629629" />
+        <entry key="app/src/main/res/drawable-v24/btn_unmute.xml" value="0.2609375" />
+        <entry key="app/src/main/res/drawable-v24/button_background_selected.xml" value="0.2609375" />
+        <entry key="app/src/main/res/drawable-v24/calendar_item_background.xml" value="0.2609375" />
+        <entry key="app/src/main/res/drawable-v24/ic_arrow_left_24dp.xml" value="0.2609375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/drawable-v24/selected_calendar_item_background.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/drawable/button_background.xml" value="0.10833333333333334" />
         <entry key="app/src/main/res/drawable/dialog.xml" value="0.16296296296296298" />
         <entry key="app/src/main/res/drawable/dialog_border.xml" value="0.2569230769230769" />
         <entry key="app/src/main/res/drawable/dialogborder.xml" value="0.2609375" />
@@ -24,6 +33,7 @@
         <entry key="app/src/main/res/drawable/ic_video.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/calendar_item.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/dialog.xml" value="0.23863636363636365" />
         <entry key="app/src/main/res/layout/fragment_appointments.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.17647058823529413" />
@@ -31,16 +41,19 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17123287671232876" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2520833333333333" />
-        <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.34635353544440367" />
+        <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_psychologist_profile.xml" value="0.2848288544266322" />
-        <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.23762919578271524" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.2405857740585774" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_user_login.xml" value="0.2296875" />
         <entry key="app/src/main/res/layout/fragment_user_or_psy.xml" value="0.36155726392354354" />
         <entry key="app/src/main/res/layout/fragment_user_register.xml" value="0.2296875" />
-        <entry key="app/src/main/res/layout/header.xml" value="0.1305694580078125" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.2412449879563835" />
         <entry key="app/src/main/res/layout/psy_home_fragment.xml" value="0.24479166666666666" />
-        <entry key="app/src/main/res/layout/set_appointment_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/selected_calendar_item.xml" value="0.24479166666666666" />
+        <entry key="app/src/main/res/layout/set_appointment_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/third_special_selected_calendar_item.xml" value="0.24479166666666666" />
+        <entry key="app/src/main/res/layout/video_call_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2609375" />
       </map>

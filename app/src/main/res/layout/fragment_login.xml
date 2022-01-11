@@ -12,37 +12,56 @@
         android:layout_height="match_parent"
         tools:context=".LoginFragment">
 
+        <!--android:drawableStart="@android:drawable/sym_action_email"-->
+
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="268dp"
+            android:text="Email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.218"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/loginEmail"
-            android:layout_width="272dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="239dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="269dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="308dp"
             android:ems="10"
-            app:boxBackgroundMode="outline"
-            android:hint="Email"
             android:inputType="textEmailAddress"
+            app:boxBackgroundMode="outline"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!--android:drawableStart="@android:drawable/sym_action_email"-->
+        <TextView
+            android:layout_width="95dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="376dp"
+            android:text="Password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.218"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/loginPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="272dp"
             android:layout_height="51dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="64dp"
             android:drawableStart="@android:drawable/ic_lock_lock"
             android:ems="10"
-            android:hint="@string/password"
             android:inputType="textPassword"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
         <Button
             android:id="@+id/login"

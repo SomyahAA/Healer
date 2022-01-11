@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.FragmentProfileBinding
 import com.example.healer.utils.Constants.PICK_PHOTO
@@ -39,7 +40,9 @@ class UserProfileFragment : Fragment() {
             binding.userName.setText(user.name)
             binding.userPhoneNumber.setText(user.phoneNumber)
             binding.userGender.setText(user.gender)
-            userProfileVM.getPhotoFromStorage(binding.profileImage)
+        }
+        userProfileVM.getPhotoFromStorage().observe(viewLifecycleOwner){
+            binding.profileImage.load(it)
         }
 
         binding.profileImage.setOnClickListener {

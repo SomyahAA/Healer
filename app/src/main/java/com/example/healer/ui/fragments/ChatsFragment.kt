@@ -28,10 +28,6 @@ class ChatsFragment : Fragment() {
         binding.phoneCallBTN.setOnClickListener {
             repo.makePhoneCall(requireContext(), t, Bundle())
         }
-//        val view = inflater.inflate(R.layout.ChatsFragment, container,false)
-//        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-
         return binding.root
     }
 }

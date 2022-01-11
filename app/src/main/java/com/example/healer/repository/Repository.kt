@@ -2,7 +2,9 @@ package com.example.healer.repository
 
 import android.Manifest.permission.CALL_PHONE
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -15,15 +17,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
-import coil.load
 import com.example.healer.utils.Constants.REPOSITORY_TAG
-import de.hdodenhof.circleimageview.CircleImageView
 import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.UserDictionary.Words.APP_ID
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
@@ -34,7 +32,14 @@ import com.example.healer.agora.media.RtcTokenBuilder
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
+import android.content.DialogInterface
 
+import android.net.NetworkInfo
+
+import androidx.core.content.ContextCompat.getSystemService
+
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 
 
 class Repository {
@@ -42,7 +47,6 @@ class Repository {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val fireStore = Firebase.firestore
     private val currentUser = auth.currentUser?.uid
-
 
     companion object {
         fun getInstance(): Repository = Repository()
@@ -174,6 +178,7 @@ class Repository {
                         "email" -> psychologist.email = it.value as String
                         "specialty" -> psychologist.specialty = it.value as String
                         "experienceYears" -> psychologist.experienceYears = it.value as String
+                        "profileImage" -> psychologist.profileImage = it.value as String
                     }
                 }
                 psychologistLiveData.value = psychologist
@@ -260,11 +265,14 @@ class Repository {
             .update("profileImage", profileImageUrl)
     }
 
-    fun getPhotoFromStorage(image: CircleImageView, userUrl: String? = auth.currentUser?.uid) {
+    fun getPhotoFromStorage(userUrl: String? = auth.currentUser?.uid): LiveData<Uri> {
         val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
+
+        val uriLiveData: MutableLiveData<Uri> = MutableLiveData()
         imageUrl.addOnSuccessListener {
-            image.load(it)
+            uriLiveData.value = it
         }
+        return uriLiveData
     }
 
     fun makePhoneCall(requiredContext: Context, number: String, bundle: Bundle) {
@@ -282,6 +290,107 @@ class Repository {
                 bundle
             )
         }
+    }
+
+    suspend fun getHeaderNameFromFirebase(): LiveData<String> {
+        val headerNameLiveData: MutableLiveData<String> = MutableLiveData()
+
+        if (userTypeIsUser()) {
+            fireStore.collection("Users")
+                .document(auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { it ->
+                    it.data?.forEach {
+                        when (it.key) {
+                            "name" -> headerNameLiveData.value = it.value.toString()
+                        }
+                    }
+                }
+        } else {
+            fireStore.collection("PsyUsers")
+                .document(auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { it ->
+                    it.data?.forEach {
+                        when (it.key) {
+                            "name" -> headerNameLiveData.value = it.value.toString()
+                        }
+                    }
+                }
+        }
+        return headerNameLiveData
+    }
+
+    fun updatePsyId(uid :String){
+        fireStore.collection("PsyUsers")
+            .document(auth.currentUser!!.uid)
+            .update("id",uid)
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                }
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    fun updateUserProfile(
+        profileImageUrl: String = "",
+        name: String = "",
+        email: String = "",
+        gender: String = ""
+    ) {
+
+        val userFieldMap = mutableMapOf<String, Any>()
+        if (profileImageUrl.isNotBlank()) userFieldMap["profileImage"] = profileImageUrl
+        if (name.isNotBlank()) userFieldMap["name"] = name
+        if (email.isNotBlank()) userFieldMap["email"] = email
+        if (gender.isNotBlank()) userFieldMap["gender"] = gender
+
+        fireStore.collection("users")
+            .document(auth.currentUser!!.uid)
+            .update(userFieldMap)
+    }
+
+    fun updatePsyProfile(
+        profileImageUrl: String = "",
+        name: String = "",
+        email: String = "",
+        gender: String = "",
+        specialty: String = "",
+        bio: String = "",
+        experienceYears: String = ""
+    ) {
+
+        val userFieldMap = mutableMapOf<String, Any>()
+        if (profileImageUrl.isNotBlank()) userFieldMap["profileImage"] = profileImageUrl
+        if (name.isNotBlank()) userFieldMap["name"] = name
+        if (email.isNotBlank()) userFieldMap["email"] = email
+        if (gender.isNotBlank()) userFieldMap["gender"] = gender
+        if (specialty.isNotBlank()) userFieldMap["specialty"] = specialty
+        if (bio.isNotBlank()) userFieldMap["bio"] = bio
+        if (experienceYears.isNotBlank()) userFieldMap["experienceYears"] = experienceYears
+
+        fireStore.collection("PsyUsers")
+            .document(auth.currentUser!!.uid)
+            .update(userFieldMap)
     }
 
 }

@@ -1,16 +1,21 @@
 package com.example.healer.ui.fragments.home.user_home
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.FragmentPsyCardBinding
+import com.example.healer.videoCall.VideoCallFragment
 
 
 class PsyCardFragment : Fragment() {
@@ -29,24 +34,15 @@ class PsyCardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            psyCardVM.readPsyDataFromFirestore().observe(viewLifecycleOwner) { psy ->
+        psyCardVM.readPsyDataFromFirestore().observe(viewLifecycleOwner) { psy ->
                 binding.sycName.text = psy.name
                 binding.sycSpecialty.text = psy.specialty
                 binding.psyExpYears.text = psy.experienceYears
-                psyCardVM.getPhotoFromStorage(binding.profileImage, )
+            psyCardVM.getPhotoFromStorage(psy.id).observe(viewLifecycleOwner){
+                binding.profileImage.load(it)
             }
 
-        //val dialog = Dialog(requireContext())
-
-        binding.bookBTN.setOnClickListener {
-
-//            dialog.setContentView(R.layout.dialog)
-//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
         }
 
-
     }
-
-
 }

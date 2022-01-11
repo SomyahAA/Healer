@@ -7,11 +7,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
 import com.example.healer.repository.Repository
@@ -28,7 +30,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var navigationView: NavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var menu: Menu
-    private lateinit var hederPhoto :CircleImageView
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val repo = Repository.getInstance()
@@ -38,11 +39,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         // to find the nav controller from the nav host fragment
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.side_navigation)
         toolbar = findViewById(R.id.tool_bar)
+
 
         navController = findNavController(R.id.fragmentContainerView)
 
@@ -63,7 +66,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_logout).isVisible = false
         menu.findItem(R.id.nav_profile).isVisible = false
 
-        //repo.getPhotoFromStorage(findViewById(R.id.headerPhoto))
+        if (auth.currentUser != null) {
+
+            repo.getPhotoFromStorage().observe(this) {
+                val v: CircleImageView = findViewById(R.id.headerPhoto)
+                v.load(it)
+            }
+
+            lifecycleScope.launch {
+
+                repo.getHeaderNameFromFirebase().observe(this@MainActivity) {
+
+                    val headerName = findViewById<TextView>(R.id.headerName)
+                    headerName.text = it
+                }
+
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -80,12 +100,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
+
             R.id.nav_home -> {
                 var state = false
+
                 lifecycleScope.launch {
-
                     state = repo.userTypeIsUser()
-
                 }.invokeOnCompletion {
                     if (state) {
                         navController.navigate(R.id.homeFragment)
@@ -93,7 +113,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         navController.navigate(R.id.psyHomeFragment)
                     }
                 }
-
             }
             R.id.nav_login -> {
                 navController.navigate(R.id.loginFragment)
@@ -114,7 +133,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_profile -> {
                 var state = false
                 lifecycleScope.launch {
-
                     state = repo.userTypeIsUser()
 
                 }.invokeOnCompletion {
@@ -127,9 +145,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_setting -> navController.navigate(R.id.settingFragment)
             R.id.nav_workWithUs -> navController.navigate(R.id.psychologistRegisterFragment)
+
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
+//ffffm fz,g,kz dm,k m z,.mgk,n,nfd,mdn ,mn k.fd,m ,mmf,,z km zkm d.kf mz.mfg.kmf, nb,jx,jgx,n≈n
 }
+
+/*
+
+<dependency>
+	<groupId>com.michalsvec</groupId>
+	<artifactId>single-row-calednar</artifactId>
+	<version>1.0.0</version>
+	<type>pom</type>
+</dependency>
+ */

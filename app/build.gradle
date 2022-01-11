@@ -69,21 +69,24 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.0'
     implementation 'com.google.firebase:firebase-core:20.0.2'
 
-
     //coroutines and lifecycle
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
-    //photo loader
+
+    //coil photo loader
     implementation("io.coil-kt:coil:1.4.0")
-    //agora
+    //agora video call
     implementation 'io.agora.uikit:agorauikit:2.0.1'
     implementation 'io.agora.rtc:full-sdk:x.y.z'
-    //implementation 'com.github.agorabuilder:native-full-sdk:3.4.5'
     implementation fileTree (dir:'libs',includes: ['*.jar'])
     androidTestImplementation 'androidx.test.rules:1.2.0'
-
     implementation 'commons-codec:commons-codec:1.15'
+    //easy permissions for permissions
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+    //single date and time picker
+    implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
+    implementation 'com.michalsvec:single-row-calednar:1.0.0'
 
 }
