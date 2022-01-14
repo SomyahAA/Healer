@@ -24,8 +24,14 @@ class PsychologistProfileVM : ViewModel() {
         }
     }
 
-//    fun getPhotoFromStorage() :LiveData<Uri> {
-//        return repo.getPhotoFromStorage()
-//    }
+    fun updatePsyProfile(
+        profileImageUrl: String = "",
+        name: String = "",
+        specialty: String = "",
+        bio: String = "",
+        experienceYears: String = ""
+    ){
+        return repo.updatePsyProfile(profileImageUrl, name, specialty, bio, experienceYears)
+    }
 
 }

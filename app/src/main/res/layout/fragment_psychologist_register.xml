@@ -11,7 +11,7 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.accounts.register.psycholgist_register.PsychologistRegisterFragment">
+        tools:context=".ui.fragments.accounts.register.psychologist_register.PsychologistRegisterFragment">
 
         <EditText
             android:id="@+id/psyPhoneNumber"
@@ -21,13 +21,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="101dp"
             android:ems="10"
-            android:hint="Your Phone Number"
+            android:hint="@string/your_phone_number"
             android:inputType="phone"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/psyEmail"
+            android:autofillHints="@string/your_phone_number"/>
 
         <EditText
             android:id="@+id/psyName"
@@ -37,13 +38,14 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="101dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="@string/name" />
 
         <EditText
             android:id="@+id/psyEmail"
@@ -53,13 +55,14 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="101dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyName" />
+            app:layout_constraintTop_toBottomOf="@+id/psyName"
+            android:autofillHints="@string/email" />
 
         <Button
             android:id="@+id/registerPsy"
@@ -68,7 +71,7 @@
             android:layout_marginStart="143dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="143dp"
-            android:text="Register"
+            android:text="@string/register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +85,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="91dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumber"
+            android:autofillHints="@string/password" />
 
         <EditText
             android:id="@+id/psyGender"
@@ -98,13 +102,14 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="98dp"
             android:ems="10"
-            android:hint="gender"
+            android:hint="@string/gender"
             android:inputType="text"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/psyPassword"
+            android:autofillHints="@string/gender" />
 
         <EditText
             android:id="@+id/psySpeciality"
@@ -114,13 +119,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="98dp"
             android:ems="10"
-            android:hint="Speciality"
+            android:hint="@string/speciality"
             android:inputType="text"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyGender" />
+            app:layout_constraintTop_toBottomOf="@+id/psyGender"
+            android:autofillHints="@string/speciality" />
 
         <EditText
             android:id="@+id/psyExperienceYears"
@@ -129,13 +135,14 @@
             android:layout_marginStart="104dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="98dp"
-            android:hint="Experience Years"
+            android:hint="@string/experience_years"
             android:inputType="number"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psySpeciality" />
+            app:layout_constraintTop_toBottomOf="@+id/psySpeciality"
+            android:autofillHints="@string/experience_years"/>
 
         <EditText
             android:id="@+id/psyBio"
@@ -144,13 +151,14 @@
             android:layout_marginStart="104dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="98dp"
-            android:hint="your bio .I'm ..."
+            android:hint="@string/your_bio_i_m"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyExperienceYears" />
+            app:layout_constraintTop_toBottomOf="@+id/psyExperienceYears"
+            android:autofillHints="@string/your_bio_i_m" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

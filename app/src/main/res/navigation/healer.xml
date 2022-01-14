@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/psychologistRegisterFragment"
-        android:name="com.example.healer.ui.fragments.accounts.register.psycholgist_register.PsychologistRegisterFragment"
+        android:name="com.example.healer.ui.fragments.accounts.register.psychologist_register.PsychologistRegisterFragment"
         android:label="PsychologistRegisterFragment" >
         <action
             android:id="@+id/action_psychologistRegisterFragment_to_psyHomeFragment"

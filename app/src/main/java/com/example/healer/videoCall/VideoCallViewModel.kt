@@ -35,8 +35,6 @@ class VideoCallViewModel(application: Application) : AndroidViewModel(applicatio
         videoRepo.onSwitchCameraClicked(view)
     }
 
-    var mRtcEngine = videoRepo.mRtcEngine
-
     fun onCallClicked(
         view: View?,
         mCallBtn: ImageView?,

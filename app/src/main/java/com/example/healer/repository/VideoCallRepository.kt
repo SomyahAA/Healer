@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.*
 import com.example.healer.R
 import com.example.healer.agora.media.RtcTokenBuilder
-import com.example.healer.utils.Constants
 import com.example.healer.utils.Constants.APP_ID
 import com.example.healer.utils.Constants.CHANNEL
 import com.example.healer.utils.Constants.appCertificate
@@ -129,22 +128,32 @@ class VideoCallRepository {
         showButtons(!mCallEnd, mMuteBtn, mSwitchCameraBtn)
     }
 
-    fun initializeAndJoinChannel(context: Context, localContainer: FrameLayout?,remoteContainer :FrameLayout) {
+    fun initializeAndJoinChannel(
+        context: Context,
+        localContainer: FrameLayout?,
+        remoteContainer: FrameLayout
+    ) {
 
-         fun setupRemoteVideo(uid: Int) {
+        fun setupRemoteVideo(uid: Int) {
 
             val remoteFrame = RtcEngine.CreateRendererView(context)
             remoteFrame.setZOrderMediaOverlay(true)
             remoteContainer.addView(remoteFrame)
-            mRtcEngine!!.setupRemoteVideo(VideoCanvas(remoteFrame, VideoCanvas.RENDER_MODE_FIT, uid))
+            mRtcEngine!!.setupRemoteVideo(
+                VideoCanvas(
+                    remoteFrame,
+                    VideoCanvas.RENDER_MODE_FIT,
+                    uid
+                )
+            )
         }
 
         val mRtcEventHandler = object : IRtcEngineEventHandler() {
             // Listen for the remote user joining the channel to get the uid of the user.
             override fun onUserJoined(uid: Int, elapsed: Int) {
                 //runOnUIThread{}
-                CoroutineScope(Dispatchers.Main).launch{
-                setupRemoteVideo(uid)
+                CoroutineScope(Dispatchers.Main).launch {
+                    setupRemoteVideo(uid)
                 }
                 // Call setupRemoteVideo to set the remote video view after getting uid from the onUserJoined callback.
             }
@@ -169,5 +178,7 @@ class VideoCallRepository {
         //the uid it must match the id used to generate the token
         mRtcEngine!!.joinChannel(generateTokenForCall(), CHANNEL, "", 0)
     }
+
+
 
 }

@@ -54,6 +54,10 @@ class PsychologistProfileFragment : Fragment() {
                 Constants.PICK_PHOTO
             )
         }
+        binding.updateBTN.setOnClickListener {
+            psychologistProfileVM.updatePsyProfile(binding.psyName.toString(),
+            binding.psySpecialty.toString(),binding.psySpecialty.toString(),binding.psyBio.toString(),binding.psyExperienceYears.toString())
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -25,9 +25,9 @@
                 android:layout_width="218dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="42dp"
+                android:layout_marginBottom="292dp"
                 android:src="@drawable/default_profile_picture"
-                app:layout_constraintBottom_toTopOf="@+id/userName"
+                app:layout_constraintBottom_toTopOf="@+id/updateBTN"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,9 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:autofillHints="name"
                 android:ems="10"
-                android:hint="Name"
-
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toTopOf="@+id/userGender"
@@ -52,8 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="131dp"
+                android:autofillHints="phone number"
                 android:ems="10"
-                android:hint="Your Phone Number"
+                android:hint="@string/your_phone_number"
                 android:inputType="phone"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -65,14 +66,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="27dp"
+                android:autofillHints="gender"
                 android:ems="10"
-                android:hint="Gender"
+                android:hint="@string/gender"
                 android:inputType="text"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toTopOf="@+id/userPhoneNumber"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+            <Button
+                android:id="@+id/updateBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="44dp"
+                android:text="@string/update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

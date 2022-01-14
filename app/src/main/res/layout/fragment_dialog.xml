@@ -1,6 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+>
 
     <data>
 
@@ -31,7 +31,7 @@
             android:layout_width="296dp"
             android:layout_height="59dp"
             android:layout_marginBottom="100dp"
-            android:text="Dr.Somyah Alsayed"
+            android:text="@string/dr_somyah_alsayed"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/imageButton2"
@@ -45,7 +45,7 @@
             android:layout_width="309dp"
             android:layout_height="58dp"
             android:layout_marginTop="24dp"
-            android:text="fgbsfgshgfhnthsthnthnh"
+            android:text="@string/your_bio_i_m"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="56dp"
             android:background="@drawable/ic_call_24"
-            android:contentDescription="make call Button"
+            android:contentDescription="@string/make_call_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton3"
             app:layout_constraintHorizontal_bias="1.0"
@@ -74,7 +74,7 @@
             android:layout_marginEnd="56dp"
             android:layout_marginBottom="56dp"
             android:background="@drawable/ic_chat_24"
-            android:contentDescription="Make a Chat Button"
+            android:contentDescription="@string/make_a_chat_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -85,7 +85,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="56dp"
             android:background="@drawable/ic_video"
-            android:contentDescription="Maje a video call Button"
+            android:contentDescription="@string/make_a_video_call_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton2" />
 

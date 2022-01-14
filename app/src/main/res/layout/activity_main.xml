@@ -18,7 +18,7 @@
             android:paddingTop="30sp"
             android:paddingBottom="30sp"
             app:headerLayout="@layout/header"
-            app:menu="@menu/main_menu">
+            app:menu="@menu/side_navigation_menu">
         </com.google.android.material.navigation.NavigationView>
 
         <androidx.constraintlayout.widget.ConstraintLayout

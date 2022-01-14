@@ -22,10 +22,13 @@ class UserProfileVM : ViewModel() {
         viewModelScope.launch {
             repo.uploadPhotoToFirebaseStorage(imageUri)
         }
-
     }
 
-//    fun getPhotoFromStorage() : LiveData<Uri> {
-//        return repo.getPhotoFromStorage()
-//    }
+    fun updateUserProfile(
+        profileImageUrl: String = "",
+        name: String = "",
+        gender: String = ""
+    ) {
+        return repo.updateUserProfile(profileImageUrl, name, gender)
+    }
 }

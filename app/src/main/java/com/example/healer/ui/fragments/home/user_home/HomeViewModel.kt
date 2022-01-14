@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
@@ -35,5 +36,7 @@ class HomeViewModel : ViewModel() {
     fun isOnline(context: Context): Boolean{
         return repo.isOnline(context)
     }
+
+
 
 }

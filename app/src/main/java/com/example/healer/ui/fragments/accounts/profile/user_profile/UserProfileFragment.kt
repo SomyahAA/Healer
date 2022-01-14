@@ -48,6 +48,9 @@ class UserProfileFragment : Fragment() {
             intent.type = "*/*"
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PHOTO)
         }
+        binding.updateBTN.setOnClickListener {
+            userProfileVM.updateUserProfile(binding.profileImage.toString(),binding.userName.toString(),binding.userGender.toString())
+        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

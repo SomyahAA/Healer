@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Healer</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">البروفايل</string>
     <string name="login">الدخول</string>
     <string name="logout">خروج</string>
@@ -9,10 +8,40 @@
     <string name="change_language">تغيير اللغة</string>
     <string name="appointments">المواعيد</string>
     <string name="chats">المحادثات</string>
-    <string name="home">Home</string>
-    <string name="navigation_drawer_open">open navigation drawer</string>
-    <string name="navigation_drawer_close">close navigation drawer</string>
-    <string name="work_with_us">Work with Us</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="work_with_us">اعمل معنا</string>
     <string name="password">كلمة السر</string>
     <string name="language">عربي</string>
+    <string name="your_phone_number">رقم الجوال</string>
+    <string name="register">سجل</string>
+    <string name="gender">الجنس</string>
+    <string name="speciality">التخصص</string>
+    <string name="experience_years">سنوات الخبرة</string>
+    <string name="your_bio_i_m">سيرتك أنا …</string>
+    <string name="phoneCallBTN">زر المكالمة</string>
+    <string name="dr_somyah_alsayed">د.سميه السيد</string>
+    <string name="make_call_button">زر المكالمة</string>
+    <string name="make_a_chat_button">زر المحادثة</string>
+    <string name="make_a_video_call_button">زر مكالمة الفيديو</string>
+    <string name="register_now">سجل الآن</string>
+    <string name="email">البريد الاكتروني</string>
+    <string name="_7_30pm">٧:٣٠ صباحا</string>
+    <string name="_5_30pm">٥:٣٠ مساء</string>
+    <string name="available_appointment">المواعيد المتاحة</string>
+    <string name="bio">السيرة</string>
+    <string name="years">سنوات</string>
+    <string name="consult_now">استشير الآن</string>
+    <string name="_100">100 $$</string>
+    <string name="specialty">التخصص</string>
+    <string name="name">الاسم</string>
+    <string name="delete_my_account">حذف الحساب</string>
+    <string name="set_my_appointments">اضافة مواعيدي</string>
+    <string name="set_appointment"> حط موعد</string>
+    <string name="selected_date_is">الموعد المحدد هو:</string>
+    <string name="update">تحديث</string>
+    <string name="appointment">موعد</string>
+    <string name="added_appointments">المواعيد المضافة</string>
+    <string name="set_session"> اضف موعد</string>
+
+
 </resources>

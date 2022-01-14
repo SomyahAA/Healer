@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.healer.R
+import com.example.healer.databinding.AppointmentItemBinding
 import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
+import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
 import com.example.healer.utils.Constants.HOME_FRAGMENT_TAG
@@ -54,10 +56,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.psyLiveData().observe(
-            viewLifecycleOwner, Observer {
+            viewLifecycleOwner, {
                 updateUI(it)
             }
         )
+
     }
 
     private fun updateUI(psychologists: List<Psychologist>) {
@@ -93,8 +96,7 @@ class HomeFragment : Fragment() {
                     binding.sycSpecialty.text = psychologist.specialty
                     binding.psyExpYears.text = psychologist.experienceYears
                     binding.profileImage.load(psychologist.profileImage)
-                    binding.psyBio.text = psychologist.bio
-
+                    binding.bio.text = psychologist.bio
                 }
             }
         }
@@ -117,4 +119,7 @@ class HomeFragment : Fragment() {
         }
         override fun getItemCount(): Int = psychologists.size
     }
+
+
+
 }

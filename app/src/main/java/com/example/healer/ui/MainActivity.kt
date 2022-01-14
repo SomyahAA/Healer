@@ -84,6 +84,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+        repo.setUpRecurringWork(baseContext)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

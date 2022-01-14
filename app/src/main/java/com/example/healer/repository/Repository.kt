@@ -30,6 +30,16 @@ import com.example.healer.utils.Constants.REQUEST_CALL
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import androidx.work.*
+import com.example.healer.models.Appointment
+import com.example.healer.utils.Constants.psychologistCollection
+import com.example.healer.utils.Constants.usersCollection
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.tasks.asDeferred
+import java.io.ObjectOutput
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class Repository {
@@ -138,7 +148,7 @@ class Repository {
 
     suspend fun userTypeIsUser(): Boolean {
         var state = false
-        val documents = Firebase.firestore.collection("users")
+        val documents = Firebase.firestore.collection(usersCollection)
             .get().await()
         for (document in documents) {
             if (auth.currentUser != null) {
@@ -154,7 +164,7 @@ class Repository {
 
         val psychologistLiveData: MutableLiveData<Psychologist> = MutableLiveData()
 
-        fireStore.collection("PsyUsers")
+        fireStore.collection(psychologistCollection)
             .document(auth.currentUser!!.uid)
             .get()
             .addOnSuccessListener { it ->
@@ -163,7 +173,7 @@ class Repository {
                 dataList?.forEach {
                     when (it.key) {
                         "name" -> psychologist.name = it.value as String
-                        "phone Number" -> psychologist.phoneNumber = it.value as String
+                        "phoneNumber" -> psychologist.phoneNumber = it.value as String
                         "bio" -> psychologist.bio = it.value as String
                         "email" -> psychologist.email = it.value as String
                         "specialty" -> psychologist.specialty = it.value as String
@@ -184,7 +194,7 @@ class Repository {
 
         val userLiveData: MutableLiveData<User> = MutableLiveData()
 
-        fireStore.collection("users")
+        fireStore.collection(usersCollection)
             .document(auth.currentUser!!.uid)
             .get()
             .addOnSuccessListener { it ->
@@ -214,7 +224,7 @@ class Repository {
         val dataList = mutableMapOf<String, Any>()
         val psyList = mutableListOf<Psychologist>()
 
-        fireStore.collection("PsyUsers")
+        fireStore.collection(psychologistCollection)
             .get()
             .addOnSuccessListener { result ->
 
@@ -225,8 +235,8 @@ class Repository {
                     psychologist.specialty = document.getString("specialty").toString()
                     psychologist.experienceYears = document.getString("experience Years").toString()
                     psychologist.profileImage = document.getString("profileImage").toString()
+                    psychologist.bio = document.getString("bio").toString()
                     psyList.add(psychologist)
-
                     //Log.d( repository," adding${document.data} in ${document.id} is done successfully")
                     //Log.d(repository, " we are getting all the $psyList")
                 }
@@ -234,20 +244,83 @@ class Repository {
         return psyList
     }
 
+    suspend fun getPsychologistAppointments():MutableList<Appointment> {
+
+        val appointment = fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .get()
+            .await()
+            .toObject(Psychologist::class.java)
+
+        val appointmentList = mutableListOf<Appointment>()
+
+        appointment?.availableDates?.forEach {
+            appointmentList += it
+        }
+
+        return appointmentList
+    }
+
+    suspend fun deleteAppointment(canceledAppointment:Int){
+        val appointment = fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .get()
+            .await()
+            .toObject(Psychologist::class.java)
+
+        val appointmentList = mutableListOf<Appointment>()
+
+        appointment?.availableDates?.forEach {
+            appointmentList += it
+        }
+
+        appointmentList.remove(appointmentList[canceledAppointment])
+
+        fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .update("availableDates",appointmentList)
+            .await()
+    }
+
+    suspend fun addAppointment(newAppointment: Appointment){
+
+        val appointment =fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .get()
+            .await()
+            .toObject(Psychologist::class.java)
+
+        val appointmentList = mutableListOf<Appointment>()
+
+        appointment?.availableDates?.forEach { it ->
+            appointmentList += it
+        }
+        appointmentList.add(newAppointment)
+
+
+        //appointmentList[appointmentList.lastIndex+1] = newAppointment
+
+        fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .update("availableDates",appointmentList)
+            .await()
+    }
+
     suspend fun uploadPhotoToFirebaseStorage(imageURI: Uri) {
         val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
 
-        val o =imageRef.putFile(imageURI).await()
+        val o = imageRef.putFile(imageURI).await()
 
-        if (o.task.isComplete){
-            val j= o.storage.downloadUrl.await()
+        if (o.task.isComplete) {
+
+            val j = o.storage.downloadUrl.await()
 
             if (userTypeIsUser()) {
-                fireStore.collection("users")
+                fireStore.collection(usersCollection)
                     .document(auth.currentUser!!.uid)
                     .update("profileImage", j.toString())
             } else {
-                fireStore.collection("PsyUsers")
+                fireStore.collection(psychologistCollection)
                     .document(auth.currentUser!!.uid)
                     .update("profileImage", j.toString())
             }
@@ -255,13 +328,14 @@ class Repository {
     }
 
     fun getPhotoFromStorage(userUrl: String? = auth.currentUser?.uid): LiveData<Uri> {
+
         val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
-        fireStore.collection("users")
+        fireStore.collection(usersCollection)
         val uriLiveData: MutableLiveData<Uri> = MutableLiveData()
         imageUrl.addOnSuccessListener {
             uriLiveData.value = it
-        }.addOnFailureListener{
-                Log.e(REPOSITORY_TAG," fail",it)
+        }.addOnFailureListener {
+            Log.e(REPOSITORY_TAG, " fail", it)
         }
         return uriLiveData
     }
@@ -287,7 +361,7 @@ class Repository {
         val headerNameLiveData: MutableLiveData<String> = MutableLiveData()
 
         if (userTypeIsUser()) {
-            fireStore.collection("Users")
+            fireStore.collection(usersCollection)
                 .document(auth.currentUser!!.uid)
                 .get()
                 .addOnSuccessListener { it ->
@@ -298,7 +372,7 @@ class Repository {
                     }
                 }
         } else {
-            fireStore.collection("PsyUsers")
+            fireStore.collection(psychologistCollection)
                 .document(auth.currentUser!!.uid)
                 .get()
                 .addOnSuccessListener { it ->
@@ -312,11 +386,11 @@ class Repository {
         return headerNameLiveData
     }
 
-//    fun updatePsyId(uid :String){
-//        fireStore.collection("PsyUsers")
-//            .document(auth.currentUser!!.uid)
-//            .update("id",uid)
-//    }
+    fun updatePsyId(uid: String) {
+        fireStore.collection(psychologistCollection)
+            .document(auth.currentUser!!.uid)
+            .update("id", uid)
+    }
 
     fun isOnline(context: Context): Boolean {
         val connectivityManager =
@@ -345,14 +419,12 @@ class Repository {
     fun updateUserProfile(
         profileImageUrl: String = "",
         name: String = "",
-        email: String = "",
         gender: String = ""
     ) {
 
         val userFieldMap = mutableMapOf<String, Any>()
         if (profileImageUrl.isNotBlank()) userFieldMap["profileImage"] = profileImageUrl
         if (name.isNotBlank()) userFieldMap["name"] = name
-        if (email.isNotBlank()) userFieldMap["email"] = email
         if (gender.isNotBlank()) userFieldMap["gender"] = gender
 
         fireStore.collection("users")
@@ -363,8 +435,6 @@ class Repository {
     fun updatePsyProfile(
         profileImageUrl: String = "",
         name: String = "",
-        email: String = "",
-        gender: String = "",
         specialty: String = "",
         bio: String = "",
         experienceYears: String = ""
@@ -373,8 +443,6 @@ class Repository {
         val userFieldMap = mutableMapOf<String, Any>()
         if (profileImageUrl.isNotBlank()) userFieldMap["profileImage"] = profileImageUrl
         if (name.isNotBlank()) userFieldMap["name"] = name
-        if (email.isNotBlank()) userFieldMap["email"] = email
-        if (gender.isNotBlank()) userFieldMap["gender"] = gender
         if (specialty.isNotBlank()) userFieldMap["specialty"] = specialty
         if (bio.isNotBlank()) userFieldMap["bio"] = bio
         if (experienceYears.isNotBlank()) userFieldMap["experienceYears"] = experienceYears
@@ -383,6 +451,22 @@ class Repository {
             .document(auth.currentUser!!.uid)
             .update(userFieldMap)
     }
+
+    fun setUpRecurringWork(context: Context) {
+
+        val constraint = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED).build()
+
+        val workRequest = PeriodicWorkRequestBuilder<Worker>(2, TimeUnit.DAYS)
+            .setConstraints(constraint).build()
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            "WORK_ID", ExistingPeriodicWorkPolicy.KEEP, workRequest
+        )
+    }
+
+
+
 
 }
 

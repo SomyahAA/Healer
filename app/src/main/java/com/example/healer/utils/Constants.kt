@@ -18,5 +18,7 @@ object Constants {
     const val uid = 0
     const val expirationTimeInSeconds = 3600
     const val APPOINTMENTS_FRAGMENT_TAG = "SetAppointmentFragment"
+    const val psychologistCollection ="PsyUsers"
+    const val usersCollection = "users"
 
 }
