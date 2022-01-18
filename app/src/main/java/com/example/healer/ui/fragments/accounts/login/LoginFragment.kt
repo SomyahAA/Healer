@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.FragmentLoginBinding
+import com.example.healer.utils.HideKeyboard
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -18,12 +19,14 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val loginVM: LoginVM by lazy { ViewModelProvider(this)[LoginVM::class.java] }
+    val hideKeyboard = HideKeyboard()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentLoginBinding.inflate(layoutInflater)
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -39,7 +42,7 @@ class LoginFragment : Fragment() {
             )
 
             if (auth.currentUser != null) {
-                if (loginVM.userTypeIsUser()) {
+                if (! loginVM.userTypeIsUser()) {
                     findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
@@ -49,6 +52,10 @@ class LoginFragment : Fragment() {
 
         binding.goToRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
+        }
+
+        binding.lololish.setOnClickListener {
+            hideKeyboard.setupUI(it,requireContext())
         }
 
         return binding.root

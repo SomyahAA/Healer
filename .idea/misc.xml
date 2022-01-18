@@ -42,7 +42,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31463729523335965" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/appointment_item.xml" value="0.23541666666666666" />
-        <entry key="app/src/main/res/layout/available_appointment_item.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/available_appointment_item.xml" value="0.2627257799671593" />
         <entry key="app/src/main/res/layout/calendar_item.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/dialog.xml" value="0.23863636363636365" />
         <entry key="app/src/main/res/layout/fragment_appointments.xml" value="0.23802083333333332" />
@@ -51,20 +51,24 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17123287671232876" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2520833333333333" />
-        <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.3407523377478252" />
+        <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.30594746378293836" />
         <entry key="app/src/main/res/layout/fragment_psychologist_profile.xml" value="0.2848288544266322" />
-        <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.32840058088742424" />
+        <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.35674157303370785" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2991250904530998" />
         <entry key="app/src/main/res/layout/fragment_user_login.xml" value="0.2296875" />
         <entry key="app/src/main/res/layout/fragment_user_or_psy.xml" value="0.36155726392354354" />
-        <entry key="app/src/main/res/layout/fragment_user_register.xml" value="0.2296875" />
+        <entry key="app/src/main/res/layout/fragment_user_register.xml" value="0.3154099233356946" />
+        <entry key="app/src/main/res/layout/gender_item.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2412449879563835" />
+        <entry key="app/src/main/res/layout/otp.xml" value="0.25" />
         <entry key="app/src/main/res/layout/psy_home_fragment.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/selected_calendar_item.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/set_appointment_fragment.xml" value="0.24466813611923416" />
         <entry key="app/src/main/res/layout/third_special_selected_calendar_item.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/video_call_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/language_menu.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/side_navigation_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2609375" />
       </map>
     </option>
@@ -78,7 +82,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.34635353544440367" />
+        <option name="scale" value="0.3684717422559057" />
       </ProjectState>
     </option>
   </component>

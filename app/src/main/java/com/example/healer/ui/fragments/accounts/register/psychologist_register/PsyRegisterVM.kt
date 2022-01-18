@@ -17,8 +17,7 @@ class PsyRegisterVM : ViewModel() {
         email: String,
         password: String,
         psychologistModel: Psychologist,
-        requiredContext: Context
-    ) {
+        requiredContext: Context) {
         return repo.registerPsychologist(email, password, psychologistModel, requiredContext)
     }
 

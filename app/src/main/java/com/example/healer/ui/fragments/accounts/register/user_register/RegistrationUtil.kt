@@ -15,11 +15,11 @@ object RegistrationUtil {
         gender:String,
         password:String
     ):Boolean{
-        if (Name.isEmpty() || PhoneNumber.isEmpty() ||email.isEmpty() ||gender.isEmpty() || password.isEmpty()){
-            return false
+        if (Name.isNotEmpty() || PhoneNumber.isNotEmpty()  ||email.isNotEmpty()  ||gender.isNotEmpty()  || password.isNotEmpty() ){
+            return true
         }
-        if (password.count{it.isDigit()} < 6 ){
-            return false
+        if (password.count{it.isDigit()} > 6 ){
+            return true
         }
         return true
     }

@@ -11,7 +11,7 @@ class SetAppointmentViewModel : ViewModel() {
 
      fun getPsychologistAppointments() : LiveData<MutableList<Appointment>>{
          val liveDataList = liveData {
-             emit(repo.getPsychologistAppointments())
+             emit(repo.getAppointments())
          }
          return liveDataList
     }

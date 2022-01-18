@@ -14,7 +14,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="324dp"
+            android:layout_width="322dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -26,30 +26,35 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="331dp"
                 android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/sycName"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="176dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="41dp"
                     android:text="@string/name"
                     android:textAlignment="textStart"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profileImage"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/sycSpecialty"
-                    android:layout_width="144dp"
-                    android:layout_height="33dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="127dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="44dp"
                     android:text="@string/specialty"
                     android:textAlignment="textStart"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.977"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profileImage"
                     app:layout_constraintTop_toBottomOf="@+id/sycName" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -68,48 +73,39 @@
                     android:layout_width="88dp"
                     android:layout_height="21dp"
                     android:layout_marginStart="176dp"
-                    android:layout_marginTop="131dp"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginEnd="83dp"
                     android:text="@string/_100"
                     android:textAlignment="textStart"
-                    app:layout_constraintBottom_toTopOf="@+id/ConsultBTN"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/psyExpYears" />
 
                 <Button
                     android:id="@+id/ConsultBTN"
                     android:layout_width="186dp"
                     android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="97dp"
                     android:text="@string/consult_now"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/psyPrice" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="55dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginEnd="4dp"
-                    android:text="@string/years"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/psyExpYears"
-                    app:layout_constraintTop_toBottomOf="@+id/sycSpecialty" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/expandableLayout"
-                    android:layout_width="305dp"
-                    android:layout_height="219dp"
+                    android:layout_width="302dp"
+                    android:layout_height="335dp"
                     android:layout_marginTop="52dp"
-                    android:layout_marginBottom="77dp"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ConsultBTN">
+                    app:layout_constraintTop_toBottomOf="@+id/ConsultBTN"
+                    app:layout_constraintVertical_bias="1.0">
 
                     <View
                         android:id="@+id/view2"
@@ -126,26 +122,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="10dp"
                         android:text="@string/bio"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="@color/primaryTextColor"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/bio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_width="301dp"
+                        android:layout_height="72dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="31dp"
                         android:text="@string/this_is_a_bio_example_just_to_fill_bio_space_and_see_how_it_will_look_like_if_user_added_bio"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@+id/textView8"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -160,36 +158,81 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/bio" />
 
+
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="125dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="116dp"
                         android:text="@string/available_appointment"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/primaryTextColor"
+                        android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view3" />
+                        app:layout_constraintTop_toBottomOf="@+id/bio" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/AvailableAppointmentRV"
-                        android:layout_width="300dp"
-                        android:layout_height="80dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal"
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/videoBTN"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/AvailableAppointmentRV"
+                                android:layout_width="295dp"
+                                android:layout_height="83dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.363"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                                app:layout_constraintVertical_bias="0.0"
+                                tools:ignore="SpeakableTextPresentCheck" />
+
+                        </LinearLayout>
+
+
+                    </androidx.core.widget.NestedScrollView>
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/videoBTN"
+                        android:layout_width="55dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="86dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/vc"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView8"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:layout_constraintHorizontal_bias="0.222"
+                        app:layout_constraintStart_toEndOf="@+id/callBTN"
+                        app:layout_constraintVertical_bias="1.0" />
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/callBTN"
+                        android:layout_width="59dp"
+                        android:layout_height="49dp"
+                        android:layout_marginStart="65dp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/svfr"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/videoBTN"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -197,15 +240,14 @@
                     android:id="@+id/psyExpYears"
                     android:layout_width="82dp"
                     android:layout_height="17dp"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="89dp"
                     android:text="@string/experience_years"
                     android:textAlignment="viewStart"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profileImage"
                     app:layout_constraintTop_toBottomOf="@+id/sycSpecialty" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

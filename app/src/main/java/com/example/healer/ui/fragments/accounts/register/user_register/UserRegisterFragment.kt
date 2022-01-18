@@ -35,10 +35,11 @@ class UserRegisterFragment : Fragment() {
         binding.userRegister.setOnClickListener {
 
 
-
-            if (RegistrationUtil.validateRegistrationInput(binding.userName.text.toString(),binding.userPhoneNumber.text.toString()
-                ,binding.userEmail.text.toString(),binding.userGender.text.toString(),binding.userPassword.text.toString()))
-           {
+            if (binding.userName.text.toString()
+                    .isEmpty() || binding.userPhoneNumber.text.isEmpty() ||
+                binding.userEmail.text.toString().isEmpty() || binding.userGender.text.toString()
+                    .isEmpty() || binding.userPassword.text.toString().isEmpty()
+            ) {
                 Toast.makeText(requireContext(), "You must fill all fields", Toast.LENGTH_SHORT)
                     .show()
             } else {

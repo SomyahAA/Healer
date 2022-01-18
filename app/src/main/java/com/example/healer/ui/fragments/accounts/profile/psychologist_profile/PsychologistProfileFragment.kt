@@ -23,6 +23,7 @@ class PsychologistProfileFragment : Fragment() {
     private lateinit var imageUri: Uri
 
 
+
     private val psychologistProfileVM: PsychologistProfileVM by lazy { ViewModelProvider(this)[PsychologistProfileVM::class.java] }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,6 @@ class PsychologistProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         psychologistProfileVM.readPsyDataFromFirestore().observe(viewLifecycleOwner) { psy ->
-
             binding.psyName.setText(psy.name)
             binding.psyPhoneNumber.setText(psy.phoneNumber)
             binding.psyExperienceYears.setText(psy.experienceYears)
@@ -55,8 +55,8 @@ class PsychologistProfileFragment : Fragment() {
             )
         }
         binding.updateBTN.setOnClickListener {
-            psychologistProfileVM.updatePsyProfile(binding.psyName.toString(),
-            binding.psySpecialty.toString(),binding.psySpecialty.toString(),binding.psyBio.toString(),binding.psyExperienceYears.toString())
+            psychologistProfileVM.updatePsyProfile(binding.psyName.text.toString(),
+            binding.psySpecialty.text.toString(),binding.psyBio.text.toString(),binding.psyExperienceYears.text.toString())
         }
     }
 

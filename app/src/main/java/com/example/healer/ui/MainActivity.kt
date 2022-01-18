@@ -18,6 +18,8 @@ import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
 import com.example.healer.repository.Repository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -58,9 +61,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.bringToFront()
         drawerLayout.addDrawerListener(toggle)
 
+
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
+
         navigationView.setCheckedItem(R.id.nav_home)
+
 
         menu = navigationView.menu
         menu.findItem(R.id.nav_logout).isVisible = false
@@ -72,20 +78,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val v: CircleImageView = findViewById(R.id.headerPhoto)
                 v.load(it)
             }
-
             lifecycleScope.launch {
-
                 repo.getHeaderNameFromFirebase().observe(this@MainActivity) {
-
                     val headerName = findViewById<TextView>(R.id.headerName)
                     headerName.text = it
                 }
-
             }
         }
-
         repo.setUpRecurringWork(baseContext)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -104,12 +104,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (menuItem.itemId) {
 
             R.id.nav_home -> {
-                var state = false
-
                 lifecycleScope.launch {
-                    state = repo.userTypeIsUser()
-                }.invokeOnCompletion {
-                    if (state) {
+                    if (repo.userTypeIsUser()) {
                         navController.navigate(R.id.homeFragment)
                     } else {
                         navController.navigate(R.id.psyHomeFragment)
@@ -130,15 +126,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 menu.findItem(R.id.nav_profile).isVisible = false
                 menu.findItem(R.id.nav_login).isVisible = true
             }
-            R.id.nav_chats -> navController.navigate(R.id.chatsFragment)
+            //R.id.nav_chats -> navController.navigate(R.id.chatsFragment)
             R.id.nav_appointments -> navController.navigate(R.id.appointmentsFragment)
             R.id.nav_profile -> {
-                var state = false
                 lifecycleScope.launch {
-                    state = repo.userTypeIsUser()
-
-                }.invokeOnCompletion {
-                    if (state) {
+                    if (repo.userTypeIsUser()) {
                         navController.navigate(R.id.userProfileFragment)
                     } else {
                         navController.navigate(R.id.psychologistProfileFragment)

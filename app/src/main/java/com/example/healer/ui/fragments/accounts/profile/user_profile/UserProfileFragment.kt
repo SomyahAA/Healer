@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.example.healer.R
 import com.example.healer.databinding.FragmentProfileBinding
 import com.example.healer.utils.Constants.PICK_PHOTO
 import java.lang.Exception
@@ -48,10 +47,13 @@ class UserProfileFragment : Fragment() {
             intent.type = "*/*"
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PHOTO)
         }
+
         binding.updateBTN.setOnClickListener {
-            userProfileVM.updateUserProfile(binding.profileImage.toString(),binding.userName.toString(),binding.userGender.toString())
+            userProfileVM.updateUserProfile(binding.userName.text.toString()
+                ,binding.userGender.text.toString())
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_PHOTO && resultCode == RESULT_OK) {

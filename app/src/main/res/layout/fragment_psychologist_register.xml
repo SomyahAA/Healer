@@ -2,163 +2,259 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
 
     </data>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragments.accounts.register.psychologist_register.PsychologistRegisterFragment">
+        android:layout_height="wrap_content"
+        tools:context=".ui.fragments.accounts.register.psychologist_register.PsychologistRegisterFragment"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="41dp">
 
-        <EditText
-            android:id="@+id/psyPhoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="101dp"
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="178dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/register"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyNameLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psyName"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyEmailLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyNameLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psyEmail"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:autofillHints="@string/email"
+                    android:gravity="center"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/psyPhoneNumberLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="75dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="101dp"
-            android:ems="10"
-            android:hint="@string/your_phone_number"
-            android:inputType="phone"
-            android:minHeight="48dp"
+            android:gravity="fill_horizontal"
+            android:hint="@string/phone_number"
+            app:counterMaxLength="10"
+            app:helperText="          Number format  +966 000 00 0000"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/design_default_color_error"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyEmail"
-            android:autofillHints="@string/your_phone_number"/>
+            app:layout_constraintTop_toBottomOf="@+id/psyEmailLayout">
 
-        <EditText
-            android:id="@+id/psyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="101dp"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:autofillHints="@string/name" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/psyPhoneNumber1"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="@string/your_phone_number"
+                android:gravity="center"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                tools:layout_editor_absoluteX="42dp"
+                tools:layout_editor_absoluteY="237dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/psyEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="101dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="101dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyName"
-            android:autofillHints="@string/email" />
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyPasswordLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/password"
+                app:counterEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumberLayout"
+                app:passwordToggleEnabled="true">
 
-        <Button
-            android:id="@+id/registerPsy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="143dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="143dp"
-            android:text="@string/register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyBio" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psyPassword"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:autofillHints="@string/password"
+                    android:gravity="center"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/psyPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="91dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="91dp"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumber"
-            android:autofillHints="@string/password" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/psyGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="98dp"
-            android:ems="10"
-            android:hint="@string/gender"
-            android:inputType="text"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyPassword"
-            android:autofillHints="@string/gender" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyGenderLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyPasswordLayout">
 
-        <EditText
-            android:id="@+id/psySpeciality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="98dp"
-            android:ems="10"
-            android:hint="@string/speciality"
-            android:inputType="text"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyGender"
-            android:autofillHints="@string/speciality" />
+                <AutoCompleteTextView
+                    android:id="@+id/psyGender"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/gender"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/psyExperienceYears"
-            android:layout_width="210dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="98dp"
-            android:hint="@string/experience_years"
-            android:inputType="number"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psySpeciality"
-            android:autofillHints="@string/experience_years"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/psyBio"
-            android:layout_width="206dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="98dp"
-            android:hint="@string/your_bio_i_m"
-            android:inputType="textMultiLine"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/psyExperienceYears"
-            android:autofillHints="@string/your_bio_i_m" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psySpecialityLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/speciality"
 
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyGenderLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psySpeciality"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:autofillHints="@string/speciality"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:minHeight="48dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyExperienceYearsLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/experience_years"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psySpecialityLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psyExperienceYears"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psyBioLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="409dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/bio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyExperienceYearsLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psyBio"
+                    android:layout_width="320dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:autofillHints="@string/your_bio_i_m"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/registerPsy"
+                android:layout_width="206dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="143dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="143dp"
+                android:minHeight="48dp"
+                android:text="@string/register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.473"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/psyBioLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -10,13 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.healer.databinding.VideoCallFragmentBinding
-import com.example.healer.utils.Constants.PERMISSION_REQ_ID_CAMERA
-import com.example.healer.utils.Constants.PERMISSION_REQ_ID_RECORD_AUDIO
 import android.content.pm.PackageManager
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.requestPermissions
-
+import com.example.healer.utils.Constants.PERMISSION_REQ_ID_CAMERA
+import com.example.healer.utils.Constants.PERMISSION_REQ_ID_RECORD_AUDIO
 
 
 class VideoCallFragment : Fragment() {
@@ -33,9 +32,7 @@ class VideoCallFragment : Fragment() {
         makeVideoCall()
 
         videoCallViewModel.initializeAndJoinChannel(
-            requireContext(),
-            binding.localVideoViewContainer, binding.remoteVideoViewContainer
-        )
+            requireContext() , binding.localVideoViewContainer, binding.remoteVideoViewContainer )
         binding.btnCall.setOnClickListener {
             //videoCallViewModel.endCall(binding.localVideoViewContainer, mLocalView = binding., mRemoteContainer = binding.remoteVideoViewContainer, mRemoteView = binding.videoCallRL)
         }
@@ -112,4 +109,3 @@ class VideoCallFragment : Fragment() {
 
 
 }
-

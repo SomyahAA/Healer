@@ -179,6 +179,4 @@ class VideoCallRepository {
         mRtcEngine!!.joinChannel(generateTokenForCall(), CHANNEL, "", 0)
     }
 
-
-
 }

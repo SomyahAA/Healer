@@ -28,6 +28,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginTop="88dp"
             android:layout_marginBottom="409dp"
             android:src="@drawable/default_profile_picture"
+            app:civ_border_color="@color/grey"
+            app:civ_border_width="2dp"
             app:layout_constraintBottom_toTopOf="@+id/updateBTN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.477"
@@ -51,11 +53,10 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <EditText
             android:id="@+id/psyPhoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="204dp"
+            android:layout_height="52dp"
             android:layout_marginBottom="131dp"
             android:autofillHints="phone number"
-            android:ems="10"
             android:hint="@string/your_phone_number"
             android:inputType="phone"
             android:minHeight="48dp"
@@ -81,11 +82,10 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <EditText
             android:id="@+id/psySpecialty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="219dp"
+            android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:autofillHints="Specialty"
-            android:ems="10"
             android:hint="@string/speciality"
             android:inputType="textPersonName"
             android:minHeight="48dp"
@@ -99,7 +99,6 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_height="84dp"
             android:layout_marginTop="20dp"
             android:autofillHints="bio"
-            android:ems="10"
             android:gravity="start|top"
             android:hint="@string/your_bio_i_m"
             android:inputType="textMultiLine"
@@ -113,12 +112,13 @@ xmlns:tools="http://schemas.android.com/tools">
             android:id="@+id/updateBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="38dp"
             android:text="@string/update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+            app:layout_constraintTop_toBottomOf="@+id/psyBio" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

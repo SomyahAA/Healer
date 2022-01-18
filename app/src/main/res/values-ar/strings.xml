@@ -42,6 +42,26 @@
     <string name="appointment">موعد</string>
     <string name="added_appointments">المواعيد المضافة</string>
     <string name="set_session"> اضف موعد</string>
+    <string name="otp_message">الرجاء ادخال رمز التحقق المرسل لهاتفك للتحقق من رقم الهاتف </string>
+    <string name="verification_code">رمز التحقق</string>
+    <string name="continue1">الاستمرار </string>
+    <string name="verification_lable">لقد ارسلنا لك رمز تحقق</string>
+    <string name="code_resend"> لم تحصل على الكود <b> ارسل مجددا </b></string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="arabic">العربية</string>
+    <string name="english">English</string>
+    <string name="language_setting">اعدادات اللغة :</string>
+    <string name="delete_user_message">حذف هذا الحساب سيؤدي إلى حذف حسابك من النظام تماما ولن تكون قادر على الوصول إليه لاحقًا</string>
+    <string name="delete_user_title">هل أنت متأكد ؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="cancel">إلغاء</string>
+    <string name="dismiss">تجاهل</string>
+    <string name="delete">حذف</string>
+    <string name="deleted_successfully">تم حذف الحساب بنجاح</string>
+    <string name="Error_deleting">حدث خطأ أثناء حذف الحساب</string>
+    <string name="Female">انثى</string>
+    <string name="male">ذكر</string>
 
 
 </resources>

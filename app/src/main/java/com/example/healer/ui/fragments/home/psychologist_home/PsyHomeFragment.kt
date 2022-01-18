@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.PsyHomeFragmentBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PsyHomeFragment : Fragment() {
 
@@ -17,6 +20,8 @@ class PsyHomeFragment : Fragment() {
 
 
     private lateinit var viewModel: PsyHomeViewModel
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +36,10 @@ class PsyHomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this)[PsyHomeViewModel::class.java]
         binding.setMyAppsBTN.setOnClickListener {
-            findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
+            if (auth.currentUser!=null){
+                if (!viewModel.userTypeIsUser()) {
+                findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
+            }}
         }
-
     }
 }

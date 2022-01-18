@@ -1,10 +1,7 @@
 package com.example.healer.ui.fragments.accounts.profile.user_profile
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.healer.models.User
 import com.example.healer.repository.Repository
 import de.hdodenhof.circleimageview.CircleImageView
@@ -15,7 +12,9 @@ class UserProfileVM : ViewModel() {
     private val repo: Repository = Repository.getInstance()
 
     fun readUserDataFromFirestore(): LiveData<User> {
-        return repo.readUserDataFromFireStore()
+        return liveData {
+           emit(repo.readUserDataFromFireStore())
+        }
     }
 
     fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
@@ -24,11 +23,8 @@ class UserProfileVM : ViewModel() {
         }
     }
 
-    fun updateUserProfile(
-        profileImageUrl: String = "",
-        name: String = "",
-        gender: String = ""
-    ) {
-        return repo.updateUserProfile(profileImageUrl, name, gender)
+    fun updateUserProfile(name: String , gender: String) {
+        return repo.updateUserProfile(name, gender)
     }
+
 }

@@ -3,8 +3,10 @@ package com.example.healer.ui.fragments.accounts.profile.psychologist_profile
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.healer.models.Psychologist
+import com.example.healer.models.User
 import com.example.healer.repository.Repository
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
@@ -15,7 +17,9 @@ class PsychologistProfileVM : ViewModel() {
 
 
     fun readPsyDataFromFirestore(): LiveData<Psychologist> {
-        return repo.readPsychologistDataFromFirestore()
+        return liveData {
+            emit(repo.readPsychologistDataFromFirestore())
+        }
     }
 
      fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
@@ -25,13 +29,12 @@ class PsychologistProfileVM : ViewModel() {
     }
 
     fun updatePsyProfile(
-        profileImageUrl: String = "",
-        name: String = "",
-        specialty: String = "",
-        bio: String = "",
-        experienceYears: String = ""
+        name: String ,
+        specialty: String ,
+        bio: String ,
+        experienceYears: String
     ){
-        return repo.updatePsyProfile(profileImageUrl, name, specialty, bio, experienceYears)
+        return repo.updatePsyProfile( name, specialty, bio, experienceYears)
     }
 
 }

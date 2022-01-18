@@ -9,16 +9,18 @@ object Constants {
     const val PICK_PHOTO = 1
     const val REPOSITORY_TAG = "Repository"
     const val REQUEST_CALL = 2
-    const val HOME_FRAGMENT_TAG = "HomeFragment"
-    const val PERMISSION_REQ_ID_RECORD_AUDIO = 22
-    const val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
+    const val PERMISSION_REQ = 22
     const val APP_ID = "abcbccc386c6473c9455f897b2bd2555"
     const val CHANNEL = "a"
     const val appCertificate = "b6ae56a99aa440f3a71291f046254aca"
     const val uid = 0
     const val expirationTimeInSeconds = 3600
-    const val APPOINTMENTS_FRAGMENT_TAG = "SetAppointmentFragment"
+    const val PSYCHOLOGISTREREGESTERTAG="PsychologistRegisterFragment"
     const val psychologistCollection ="PsyUsers"
     const val usersCollection = "users"
+    const val Setting_Fragment_TAG="com.example.healer.ui.fragments.setting.SettingFragment"
+    const val MY_SHARED_PREF ="MySharedPref"
+    const val PERMISSION_REQ_ID_RECORD_AUDIO= 1
+    const val PERMISSION_REQ_ID_CAMERA = 2
 
 }

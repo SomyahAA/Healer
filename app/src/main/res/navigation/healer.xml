@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.healer.ui.fragments.SettingFragment"
+        android:name="com.example.healer.ui.fragments.Setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
@@ -40,6 +40,9 @@
         android:id="@+id/psychologistRegisterFragment"
         android:name="com.example.healer.ui.fragments.accounts.register.psychologist_register.PsychologistRegisterFragment"
         android:label="PsychologistRegisterFragment" >
+        <action
+            android:id="@+id/action_psychologistRegisterFragment_to_OTPFragment"
+            app:destination="@id/OTPFragment" />
         <action
             android:id="@+id/action_psychologistRegisterFragment_to_psyHomeFragment"
             app:destination="@id/psyHomeFragment" />
@@ -85,5 +88,16 @@
         <action
             android:id="@+id/action_psyCardFragment2_to_videoCallFragment"
             app:destination="@id/videoCallFragment" />
+        <argument
+            android:name="PsychologistId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/OTPFragment"
+        android:name="com.example.healer.utils.OTPFragment"
+        android:label="OTPFragment" >
+        <action
+            android:id="@+id/action_OTPFragment_to_psyHomeFragment"
+            app:destination="@id/psyHomeFragment" />
     </fragment>
 </navigation>
