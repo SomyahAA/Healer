@@ -8,7 +8,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.healer.R
 
- class Work(val context: Context, workerParameters: WorkerParameters): Worker(context, workerParameters){
+ open class Work(val context: Context, workerParameters: WorkerParameters): Worker(context, workerParameters){
 
     override fun doWork(): Result {
         val message = inputData.getString("A")
@@ -31,6 +31,4 @@ import com.example.healer.R
 
         notificationManager.notify(1,notificationBuilder.build())
     }
-
-
 }

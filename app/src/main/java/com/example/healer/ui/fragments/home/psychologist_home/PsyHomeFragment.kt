@@ -41,5 +41,6 @@ class PsyHomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
             }}
         }
+
     }
 }

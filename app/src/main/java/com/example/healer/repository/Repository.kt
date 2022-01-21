@@ -96,7 +96,7 @@ class Repository {
                 if (task.isSuccessful) {
                     Log.d(Constants.PSYCHOLOGIST_REGISTER, "createPsyWithEmail:success")
 
-                    fireStore.collection("PsyUsers")
+                    fireStore.collection(psychologistCollection)
                         .document(auth.currentUser?.uid!!)
                         .set(psychologistModel)
                         .addOnSuccessListener {
@@ -185,21 +185,18 @@ class Repository {
         return appointmentList
     }
 
-    suspend fun deleteAppointment(deletedAppointment:Int){
-        val appointment = fireStore.collection(psychologistCollection)
-            .document(auth.currentUser!!.uid)
-            .get()
-            .await()
-            .toObject(Psychologist::class.java)
+    //getting deleted appointment Position form recyclerview to delete it
 
+    suspend fun deleteAppointment(deletedAppointment:Int){
+
+        val appointment = readPsychologistDataFromFirestore()
         val appointmentList = mutableListOf<Appointment>()
 
-        appointment?.availableDates?.forEach {
+        appointment.availableDates.forEach {
             appointmentList += it
         }
 
         appointmentList.remove(appointmentList[deletedAppointment])
-
         fireStore.collection(psychologistCollection)
             .document(auth.currentUser!!.uid)
             .update("availableDates",appointmentList)
@@ -208,15 +205,10 @@ class Repository {
 
     suspend fun addAppointment(newAppointment: Appointment){
 
-        val appointment =fireStore.collection(psychologistCollection)
-            .document(auth.currentUser!!.uid)
-            .get()
-            .await()
-            .toObject(Psychologist::class.java)
-
+        val psychologist = readPsychologistDataFromFirestore()
         val appointmentList = mutableListOf<Appointment>()
 
-        appointment?.availableDates?.forEach { it ->
+        psychologist.availableDates.forEach {
             appointmentList += it
         }
         appointmentList.add(newAppointment)
@@ -231,7 +223,6 @@ class Repository {
         val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
 
         val uploadPhoto = imageRef.putFile(imageURI).await()
-
         if (uploadPhoto.task.isComplete) {
 
             val j = uploadPhoto.storage.downloadUrl.await()
@@ -321,11 +312,12 @@ class Repository {
         return false
     }
 
-    fun updateUserProfile(name: String , gender: String ) {
+    fun updateUserProfile(name: String , gender: String ,phoneNumber:String) {
 
         val userFieldMap = mutableMapOf<String, Any>()
         if (name.isNotBlank()) userFieldMap["name"] = name
         if (gender.isNotBlank()) userFieldMap["gender"] = gender
+        if (phoneNumber.isNotBlank()) userFieldMap["phoneNumber"] = phoneNumber
 
         fireStore.collection(usersCollection)
             .document(auth.currentUser!!.uid)
@@ -333,11 +325,12 @@ class Repository {
     }
 
     fun updatePsyProfile(name: String , specialty: String , bio: String , experienceYears: String) {
+
         val userFieldMap = mutableMapOf<String, Any>()
         if (name.isNotBlank()) userFieldMap["name"] = name
         if (specialty.isNotBlank()) userFieldMap["specialty"] = specialty
         if (bio.isNotBlank()) userFieldMap["bio"] = bio
-        if (experienceYears.isNotBlank()) userFieldMap["experience Years"] = experienceYears
+        if (experienceYears.isNotBlank()) userFieldMap["experienceYears"] = experienceYears
 
         fireStore.collection(psychologistCollection)
             .document(auth.currentUser!!.uid)

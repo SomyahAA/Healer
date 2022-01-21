@@ -23,8 +23,8 @@ class PsychologistProfileFragment : Fragment() {
     private lateinit var imageUri: Uri
 
 
-
     private val psychologistProfileVM: PsychologistProfileVM by lazy { ViewModelProvider(this)[PsychologistProfileVM::class.java] }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

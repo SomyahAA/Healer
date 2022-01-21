@@ -1,5 +1,6 @@
 package com.example.healer.ui.fragments.home.user_home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.transition.AutoTransition
@@ -23,6 +24,7 @@ import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
+import com.google.firebase.auth.FirebaseAuth
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 import javax.security.auth.callback.Callback
@@ -32,6 +34,7 @@ private const val TAG = "HomeFragment"
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val homeViewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 
@@ -91,7 +94,6 @@ class HomeFragment : Fragment() {
                     binding.expandableLayout.visibility = View.GONE
                 }
             }
-
         }
 
         fun bind(psychologist: Psychologist) {
@@ -103,7 +105,9 @@ class HomeFragment : Fragment() {
             binding.profileImage.load(psychologist.profileImage)
             binding.bio.text = psychologist.bio
             binding.callBTN.setOnClickListener {
-                homeViewModel.makePhoneCall(requireContext(), psychologist.phoneNumber, Bundle())
+                if (auth.currentUser?.uid != null){
+                    homeViewModel.makePhoneCall(requireContext(), psychologist.phoneNumber, Bundle())
+                }
             }
         }
     }
@@ -137,7 +141,11 @@ class HomeFragment : Fragment() {
         fun bind(appointment: Appointment) {
             Log.e(TAG, "bind: $appointment")
             binding.AvailableAppointmentTV.text = appointment.dateTime
-
+            binding.AvailableAppointmentTV.setOnClickListener {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Confirm Booking")
+                    .setMessage(" Are you sure you want to book appointment on ${appointment.dateTime} ")
+            }
         }
     }
 

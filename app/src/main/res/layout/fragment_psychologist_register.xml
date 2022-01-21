@@ -32,55 +32,59 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/psyNameLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="409dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/psyNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="9dp"
+            app:layout_constraintBottom_toTopOf="@+id/psyEmailLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/psyName"
-                    android:layout_width="320dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:gravity="center"
-                    android:hint="@string/name"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/psyName"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/psyEmailLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="409dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="10dp"
-                android:hint="@string/email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/psyNameLayout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/psyEmailLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/email"
+            app:layout_constraintBottom_toTopOf="@+id/psyPhoneNumberLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/psyNameLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/psyEmail"
-                    android:layout_width="320dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:autofillHints="@string/email"
-                    android:gravity="center"
-                    android:inputType="textEmailAddress"
-                    android:minHeight="48dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/psyEmail"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="@string/email"
+                android:gravity="center"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/psyPhoneNumberLayout"
@@ -88,12 +92,14 @@
             android:layout_width="409dp"
             android:layout_height="75dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
             android:gravity="fill_horizontal"
             android:hint="@string/phone_number"
             app:counterMaxLength="10"
             app:helperText="          Number format  +966 000 00 0000"
             app:helperTextEnabled="true"
             app:helperTextTextColor="@color/design_default_color_error"
+            app:layout_constraintBottom_toTopOf="@+id/psyPasswordLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/psyEmailLayout">
@@ -114,32 +120,34 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/psyPasswordLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="409dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="10dp"
-                android:hint="@string/password"
-                app:counterEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumberLayout"
-                app:passwordToggleEnabled="true">
+            android:id="@+id/psyPasswordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="409dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/password"
+            app:counterEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/psyGenderLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/psyPhoneNumberLayout"
+            app:passwordToggleEnabled="true">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/psyPassword"
-                    android:layout_width="320dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:autofillHints="@string/password"
-                    android:gravity="center"
-                    android:inputType="textPassword"
-                    android:minHeight="48dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/psyPassword"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="@string/password"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/psyGenderLayout"

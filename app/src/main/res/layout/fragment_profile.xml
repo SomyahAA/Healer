@@ -44,6 +44,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toTopOf="@+id/userGender"
                 app:layout_constraintEnd_toEndOf="@+id/userGender"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/userGender"
                 app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 

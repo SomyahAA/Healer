@@ -15,6 +15,6 @@ class AppointmentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_appointments, container, false)
+        return inflater.inflate(R.layout.set_appointment_fragment, container, false)
     }
 }

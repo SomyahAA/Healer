@@ -1,8 +1,8 @@
 package com.example.healer.ui.fragments.accounts.register
 
 
-import com.example.healer.ui.fragments.accounts.register.user_register.RegistrationUtil
-import com.google.common.truth.Truth.assertThat
+import com.example.healer.ui.fragments.accounts.register.psychologist_register.RegistrationUtil
+import junit.framework.Assert.assertFalse
 import org.junit.Test
 
 class RegistrationUtilTest{
@@ -12,11 +12,11 @@ class RegistrationUtilTest{
         val result = RegistrationUtil.validateRegistrationInput(
             "somyah",
             "0565656543",
-            "",
+            "s@gmail.com",
             "female",
             "1"
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
     @Test
     fun `empty password return false`(){
@@ -27,19 +27,19 @@ class RegistrationUtilTest{
             "male",
             ""
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
     @Test
-    fun `password has less than six digits`(){
+    fun `password has less than five digits`(){
         val result = RegistrationUtil.validateRegistrationInput(
-            "sss@gmail.com",
+            "sss",
             "0565656543",
             "sss@gmail.com",
             "male",
-            "15656588"
+            "12"
         )
-        assertThat(result).isFalse()
+        assertFalse(result)
     }
 
 }

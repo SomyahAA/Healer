@@ -86,11 +86,11 @@
                     android:layout_width="186dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="64dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="97dp"
                     android:text="@string/consult_now"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/psyPrice" />
 
@@ -100,7 +100,7 @@
                     android:layout_height="335dp"
                     android:layout_marginTop="52dp"
                     android:orientation="vertical"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +139,7 @@
                         android:layout_marginTop="11dp"
                         android:layout_marginBottom="31dp"
                         android:text="@string/this_is_a_bio_example_just_to_fill_bio_space_and_see_how_it_will_look_like_if_user_added_bio"
+                        android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textColor="@color/colorPrimary"
                         app:layout_constraintBottom_toTopOf="@+id/textView8"
@@ -224,8 +225,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/callBTN"
-                        android:layout_width="59dp"
-                        android:layout_height="49dp"
+                        android:layout_width="49dp"
+                        android:layout_height="45dp"
                         android:layout_marginStart="65dp"
                         android:layout_marginEnd="48dp"
                         android:layout_marginBottom="10dp"

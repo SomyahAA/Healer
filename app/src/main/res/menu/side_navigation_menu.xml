@@ -6,12 +6,6 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_24"
             android:title="@string/home" />
-
-        <item
-            android:id="@+id/nav_appointments"
-            android:icon="@drawable/ic_appointments_24"
-            android:title="@string/appointments" />
-
     </group>
 
     <item android:title="@string/profile">
@@ -20,7 +14,7 @@
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/ic_person_24"
-                    android:title="@string/profile" />
+                    android:title="@string/account" />
                 <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/ic_login_24"

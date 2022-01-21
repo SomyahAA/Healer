@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.FragmentUserRegisterBinding
 import com.example.healer.models.User
+import com.example.healer.ui.fragments.accounts.register.psychologist_register.RegistrationUtil
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -35,11 +36,8 @@ class UserRegisterFragment : Fragment() {
         binding.userRegister.setOnClickListener {
 
 
-            if (binding.userName.text.toString()
-                    .isEmpty() || binding.userPhoneNumber.text.isEmpty() ||
-                binding.userEmail.text.toString().isEmpty() || binding.userGender.text.toString()
-                    .isEmpty() || binding.userPassword.text.toString().isEmpty()
-            ) {
+            if (RegistrationUtil.validateRegistrationInput(binding.userName.text.toString(),binding.userPhoneNumber.text.toString(),
+                    binding.userEmail.text.toString(),binding.userGender.text.toString(), binding.userPassword.text.toString())) {
                 Toast.makeText(requireContext(), "You must fill all fields", Toast.LENGTH_SHORT)
                     .show()
             } else {

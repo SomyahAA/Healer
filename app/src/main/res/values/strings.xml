@@ -64,6 +64,7 @@
     <string name="Error_deleting">Error while deleting account</string>
     <string name="Female">Female</string>
     <string name="male">male</string>
+    <string name="account">Account</string>
 
 
 </resources>

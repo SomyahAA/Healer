@@ -23,10 +23,13 @@
                 android:id="@+id/AppointmentTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/appointment"
-                android:textAlignment="center"
+                android:drawableEnd="@drawable/ic_baseline_delete_24"
                 android:paddingTop="20dp"
-                android:paddingBottom="20dp" />
+                android:paddingBottom="20dp"
+                android:text="@string/appointment"
+                android:textAlignment="center" >
+
+           </TextView>
 
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

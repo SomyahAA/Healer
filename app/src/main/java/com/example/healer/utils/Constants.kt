@@ -22,5 +22,9 @@ object Constants {
     const val MY_SHARED_PREF ="MySharedPref"
     const val PERMISSION_REQ_ID_RECORD_AUDIO= 1
     const val PERMISSION_REQ_ID_CAMERA = 2
+    const val notificationId = 1
+    const val channelID ="notificationChannel1"
+    const val titleExtra ="titleExtra"
+    const val messageExtra ="messageExtra"
 
 }

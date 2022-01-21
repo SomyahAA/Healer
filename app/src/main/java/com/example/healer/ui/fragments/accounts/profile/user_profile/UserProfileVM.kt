@@ -23,8 +23,8 @@ class UserProfileVM : ViewModel() {
         }
     }
 
-    fun updateUserProfile(name: String , gender: String) {
-        return repo.updateUserProfile(name, gender)
+    fun updateUserProfile(name: String , gender: String,phoneNumber: String) {
+        return repo.updateUserProfile(name, gender,phoneNumber)
     }
 
 }

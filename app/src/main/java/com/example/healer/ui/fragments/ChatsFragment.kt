@@ -24,6 +24,7 @@ class ChatsFragment : Fragment() {
         binding = FragmentChatsBinding.inflate(layoutInflater)
 
 
+        //Trying and testing phone calls
         val t = "0545454545"
         binding.phoneCallBTN.setOnClickListener {
             repo.makePhoneCall(requireContext(), t, Bundle())

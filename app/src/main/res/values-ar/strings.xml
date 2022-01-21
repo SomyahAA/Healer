@@ -62,6 +62,7 @@
     <string name="Error_deleting">حدث خطأ أثناء حذف الحساب</string>
     <string name="Female">انثى</string>
     <string name="male">ذكر</string>
+    <string name="account">الحساب</string>
 
 
 </resources>

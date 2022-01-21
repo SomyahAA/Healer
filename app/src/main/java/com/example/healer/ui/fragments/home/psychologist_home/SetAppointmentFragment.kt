@@ -1,8 +1,10 @@
 package com.example.healer.ui.fragments.home.psychologist_home
 
-//import android.icu.text.DateFormat
+import android.app.*
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.LayoutInflater
@@ -14,6 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.healer.databinding.AppointmentItemBinding
 import com.example.healer.databinding.SetAppointmentFragmentBinding
 import com.example.healer.models.Appointment
+import com.example.healer.notification.*
+import com.example.healer.notification.Notification
+import com.example.healer.utils.Constants.channelID
+import com.example.healer.utils.Constants.messageExtra
+import com.example.healer.utils.Constants.notificationId
+import com.example.healer.utils.Constants.titleExtra
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
@@ -43,6 +51,51 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         binding.btnDate.setOnClickListener(this)
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        createNotificationChannel()
+
+    }
+
+    private fun scheduleNotification() {
+        val intent = Intent(requireContext(),Notification::class.java)
+        val title = "This is the title "
+        val message = "Your appointment is set Successfully"
+        intent.putExtra(titleExtra,title)
+        intent.putExtra(messageExtra,message)
+
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), notificationId,intent,
+            PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val time = getTim()
+        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent)
+         showAlert(time,title,message)
+    }
+
+    private fun getTim(): Long {
+        return calendar.timeInMillis
+    }
+
+    private fun showAlert(time: Long, title: String, message: String) {
+
+        val dateFormat = android.text.format.DateFormat.getLongDateFormat(requireContext())
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(" booking is confirmed")
+            .setMessage("title" +title +"message"+message +"\n At:" +dateFormat+" ")
+    }
+
+    private fun createNotificationChannel() {
+        val name = "Notif Channel"
+        val desc = "A Description of the channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID ,name, importance)
+        channel.description =desc
+        val notificationManager  = requireActivity().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,7 +146,6 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         override fun getItemCount(): Int = Appointments.size
     }
 
-    val j="EEE,MMM DD"
     override fun onClick(v: View?) {
         when (v) {
             binding.btnDate -> {
@@ -104,8 +156,11 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
                     .listener { date ->
                         val appointment = Appointment(date.toString(), auth.currentUser?.uid.toString())
                         setAppointmentViewModel.addAppointment(appointment)
+                            calendar.set(date.year, date.month, date.day, date.hours, date.minutes)
                     }.display()
+                scheduleNotification()
             }
         }
     }
+
 }

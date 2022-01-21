@@ -112,8 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 }
             }
-            R.id.nav_login -> {
-                navController.navigate(R.id.loginFragment)
+            R.id.nav_login -> { navController.navigate(R.id.loginFragment)
                 if (auth.currentUser != null) {
                     menu.findItem(R.id.nav_logout).isVisible = true
                     menu.findItem(R.id.nav_profile).isVisible = true
@@ -127,7 +126,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 menu.findItem(R.id.nav_login).isVisible = true
             }
             //R.id.nav_chats -> navController.navigate(R.id.chatsFragment)
-            R.id.nav_appointments -> navController.navigate(R.id.appointmentsFragment)
             R.id.nav_profile -> {
                 lifecycleScope.launch {
                     if (repo.userTypeIsUser()) {
@@ -144,4 +142,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+
 }

@@ -54,9 +54,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
         }
 
-        binding.lololish.setOnClickListener {
-            hideKeyboard.setupUI(it,requireContext())
-        }
+        hideKeyboard.setupUI(binding.lololish,requireContext())
 
         return binding.root
     }

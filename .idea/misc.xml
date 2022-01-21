@@ -50,14 +50,14 @@
         <entry key="app/src/main/res/layout/fragment_dialog.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17123287671232876" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.14411764705882352" />
         <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.30594746378293836" />
         <entry key="app/src/main/res/layout/fragment_psychologist_profile.xml" value="0.2848288544266322" />
         <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.35674157303370785" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2991250904530998" />
         <entry key="app/src/main/res/layout/fragment_user_login.xml" value="0.2296875" />
         <entry key="app/src/main/res/layout/fragment_user_or_psy.xml" value="0.36155726392354354" />
-        <entry key="app/src/main/res/layout/fragment_user_register.xml" value="0.3154099233356946" />
+        <entry key="app/src/main/res/layout/fragment_user_register.xml" value="0.2904009677481196" />
         <entry key="app/src/main/res/layout/gender_item.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2412449879563835" />
         <entry key="app/src/main/res/layout/otp.xml" value="0.25" />

@@ -76,7 +76,7 @@ open class OTPFragment : Fragment() {
         return binding.root
     }
 
-    fun startPhoneNumberVerification(number:String,context: Context,activity: Activity) {
+    private fun startPhoneNumberVerification(number:String,context: Context,activity: Activity) {
         Log.d(Constants.PSYCHOLOGISTREREGESTERTAG,"startPhoneNumberVerification :$number")
         progressDialog = ProgressDialog(context)
         progressDialog.setTitle("Please wait")
