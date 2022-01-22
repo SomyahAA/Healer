@@ -5,18 +5,13 @@
     android:id="@+id/healer"
     app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/chatsFragment"
-        android:name="com.example.healer.ui.fragments.ChatsFragment"
-        android:label="fragment_chats"
-        tools:layout="@layout/fragment_chats" />
-    <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.healer.ui.fragments.Setting.SettingFragment"
+        android:name="com.example.healer.ui.fragments.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/appointmentsFragment"
-        android:name="com.example.healer.ui.fragments.AppointmentsFragment"
+        android:name="com.example.healer.ui.fragments.appointment.AppointmentsFragment"
         android:label="fragment_appointments"
         tools:layout="@layout/fragment_appointments" />
     <fragment
@@ -106,6 +101,6 @@
     </fragment>
     <fragment
         android:id="@+id/toAppointment"
-        android:name="com.example.healer.ui.fragments.ToAppointment"
+        android:name="com.example.healer.ui.fragments.appointment.ToAppointment"
         android:label="ToAppointment" />
 </navigation>

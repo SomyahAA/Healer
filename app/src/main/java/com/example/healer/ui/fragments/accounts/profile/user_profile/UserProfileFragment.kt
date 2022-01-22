@@ -16,13 +16,12 @@ import com.example.healer.databinding.FragmentProfileBinding
 import com.example.healer.utils.Constants.PICK_PHOTO
 import java.lang.Exception
 
-private lateinit var imageUri: Uri
-
 
 class UserProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private val userProfileVM: UserProfileVM by lazy { ViewModelProvider(this)[UserProfileVM::class.java] }
+    private lateinit var imageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

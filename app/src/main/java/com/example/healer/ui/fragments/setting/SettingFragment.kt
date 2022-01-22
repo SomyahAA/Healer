@@ -1,4 +1,4 @@
-package com.example.healer.ui.fragments.Setting
+package com.example.healer.ui.fragments.setting
 
 import android.app.AlertDialog
 import android.content.Context
@@ -44,6 +44,9 @@ class SettingFragment : Fragment() {
         }
         binding.changeLanguageBTN.setOnClickListener {
             showPopupMenu()
+        }
+        binding.getSupport.setOnClickListener {
+            settingVM.sendEmail(requireContext(),Bundle())
         }
         return binding.root
     }

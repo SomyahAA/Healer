@@ -1,4 +1,4 @@
-package com.example.healer.ui.fragments
+package com.example.healer.ui.fragments.appointment
 
 import android.os.Bundle
 import android.view.LayoutInflater

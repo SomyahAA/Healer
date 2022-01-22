@@ -56,11 +56,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="190dp"
+            android:layout_marginBottom="378dp"
             android:text="@string/language_setting"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/changeLanguageBTN"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/getSupport"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView13"
@@ -84,6 +86,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/changeLanguageBTN"
             app:layout_constraintVertical_bias="0.676" />
+
+        <Button
+            android:id="@+id/getSupport"
+            android:layout_width="206dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginBottom="93dp"
+            android:text="get Support"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

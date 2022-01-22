@@ -7,7 +7,6 @@
     <string name="setting">الاعدادات</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="appointments">المواعيد</string>
-    <string name="chats">المحادثات</string>
     <string name="home">الصفحة الرئيسية</string>
     <string name="work_with_us">اعمل معنا</string>
     <string name="password">كلمة السر</string>
@@ -18,30 +17,23 @@
     <string name="speciality">التخصص</string>
     <string name="experience_years">سنوات الخبرة</string>
     <string name="your_bio_i_m">سيرتك أنا …</string>
-    <string name="phoneCallBTN">زر المكالمة</string>
     <string name="dr_somyah_alsayed">د.سميه السيد</string>
     <string name="make_call_button">زر المكالمة</string>
     <string name="make_a_chat_button">زر المحادثة</string>
     <string name="make_a_video_call_button">زر مكالمة الفيديو</string>
     <string name="register_now">سجل الآن</string>
     <string name="email">البريد الاكتروني</string>
-    <string name="_7_30pm">٧:٣٠ صباحا</string>
-    <string name="_5_30pm">٥:٣٠ مساء</string>
     <string name="available_appointment">المواعيد المتاحة</string>
     <string name="bio">السيرة</string>
-    <string name="years">سنوات</string>
     <string name="consult_now">استشير الآن</string>
     <string name="_100">100 $$</string>
     <string name="specialty">التخصص</string>
     <string name="name">الاسم</string>
     <string name="delete_my_account">حذف الحساب</string>
     <string name="set_my_appointments">اضافة مواعيدي</string>
-    <string name="set_appointment"> حط موعد</string>
-    <string name="selected_date_is">الموعد المحدد هو:</string>
     <string name="update">تحديث</string>
     <string name="appointment">موعد</string>
     <string name="added_appointments">المواعيد المضافة</string>
-    <string name="set_session"> اضف موعد</string>
     <string name="otp_message">الرجاء ادخال رمز التحقق المرسل لهاتفك للتحقق من رقم الهاتف </string>
     <string name="verification_code">رمز التحقق</string>
     <string name="continue1">الاستمرار </string>
@@ -53,8 +45,6 @@
     <string name="language_setting">اعدادات اللغة :</string>
     <string name="delete_user_message">حذف هذا الحساب سيؤدي إلى حذف حسابك من النظام تماما ولن تكون قادر على الوصول إليه لاحقًا</string>
     <string name="delete_user_title">هل أنت متأكد ؟</string>
-    <string name="yes">نعم</string>
-    <string name="no">لا</string>
     <string name="cancel">إلغاء</string>
     <string name="dismiss">تجاهل</string>
     <string name="delete">حذف</string>
@@ -63,6 +53,5 @@
     <string name="Female">انثى</string>
     <string name="male">ذكر</string>
     <string name="account">الحساب</string>
-
 
 </resources>

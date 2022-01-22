@@ -7,6 +7,13 @@
 
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
@@ -32,6 +39,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 android:hint="@string/email"
+                android:gravity="center"
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.489"
@@ -68,6 +76,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 android:autofillHints="password"
+                android:gravity="center"
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
@@ -93,6 +102,7 @@
                 android:layout_marginEnd="20dp"
                 android:autofillHints="name"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -118,6 +128,7 @@
                 android:layout_marginEnd="20dp"
                 android:autofillHints="phone"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/your_phone_number"
                 android:inputType="phone"
                 android:minHeight="48dp" />
@@ -143,6 +154,7 @@
                 android:layout_marginEnd="20dp"
                 android:autofillHints="gender"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/gender"
                 android:inputType="text"
                 android:minHeight="48dp" />
@@ -163,4 +175,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

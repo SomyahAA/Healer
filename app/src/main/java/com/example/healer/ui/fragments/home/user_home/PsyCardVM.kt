@@ -10,9 +10,9 @@ class PsyCardVM : ViewModel() {
 
     private val repo = Repository.getInstance()
 
-    fun getAppointments(psychologistId: String): LiveData<MutableList<Appointment>>{
+    fun getAppointments(): LiveData<MutableList<Appointment>>{
         val liveDataList = liveData {
-            emit(repo.getAppointments(psychologistId))
+            emit(repo.getAppointments())
         }
         return liveDataList
     }

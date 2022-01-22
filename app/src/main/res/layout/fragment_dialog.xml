@@ -87,7 +87,7 @@
             android:background="@drawable/ic_video"
             android:contentDescription="@string/make_a_video_call_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

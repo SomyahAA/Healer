@@ -6,7 +6,6 @@
     <string name="setting">Setting</string>
     <string name="change_language">Change Language</string>
     <string name="appointments">Appointments</string>
-    <string name="chats">Chats</string>
     <string name="home">Home</string>
     <string name="navigation_drawer_open" translatable="false">open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">close navigation drawer</string>
@@ -19,31 +18,24 @@
     <string name="speciality">Speciality</string>
     <string name="experience_years">Experience Years</string>
     <string name="your_bio_i_m">your bio .I\'m …</string>
-    <string name="phoneCallBTN">phone Call Button</string>
     <string name="dr_somyah_alsayed">Dr.Somyah Alsayed</string>
     <string name="make_call_button">make call Button</string>
     <string name="make_a_chat_button">Make a Chat Button</string>
     <string name="make_a_video_call_button">Make a video call Button</string>
     <string name="register_now">Register now</string>
     <string name="email">  Email</string>
-    <string name="_7_30pm">7:30PM</string>
-    <string name="_5_30pm">5:30PM</string>
     <string name="available_appointment">Available Appointment</string>
     <string name="this_is_a_bio_example_just_to_fill_bio_space_and_see_how_it_will_look_like_if_user_added_bio" translatable="false">This is a bio example just to fill bio space and see how it will look like if user added bio</string>
     <string name="bio">Bio</string>
-    <string name="years">years</string>
     <string name="consult_now">Consult now</string>
     <string name="_100">100 $$</string>
     <string name="specialty">specialty</string>
     <string name="name">Name</string>
     <string name="delete_my_account"> Delete my account</string>
     <string name="set_my_appointments">Set my Appointments</string>
-    <string name="set_appointment">Set an Appointment</string>
-    <string name="selected_date_is">Selected date is :</string>
     <string name="update">Update</string>
     <string name="appointment">appointment</string>
     <string name="added_appointments">Added Appointments</string>
-    <string name="set_session">Set a session</string>
     <string name="otp_message">Please enter the Pin we sent to you to verify your number</string>
     <string name="verification_code">Verification code</string>
     <string name="continue1">Continue</string>
@@ -55,8 +47,6 @@
     <string name="language_setting">Language Setting :</string>
     <string name="delete_user_message">Deleting this account will result in completely removing your account from the system and you won\'t be able to access it</string>
     <string name="delete_user_title">Are You Sure ?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="cancel">Cancel</string>
     <string name="dismiss">Dismiss</string>
     <string name="delete">Delete</string>

@@ -32,6 +32,13 @@ class HomeViewModel : ViewModel() {
         return repo.makePhoneCall(requiredContext,number,bundle)
     }
 
+    fun bookTheAppointment(appointment: Appointment){
+        return repo.bookTheAppointment(appointment)
+    }
+    suspend fun makeBookedAppointmentUnAvailable(appointment: Appointment){
+            return repo.makeBookedAppointmentUnAvailable(appointment)
+    }
+
 
 
 }

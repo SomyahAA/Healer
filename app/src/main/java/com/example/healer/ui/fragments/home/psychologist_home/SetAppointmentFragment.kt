@@ -84,12 +84,12 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(requireContext())
 
         AlertDialog.Builder(requireContext())
-            .setTitle(" booking is confirmed")
+            .setTitle("booking is confirmed")
             .setMessage("title" +title +"message"+message +"\n At:" +dateFormat+" ")
     }
 
     private fun createNotificationChannel() {
-        val name = "Notif Channel"
+        val name = "Notify Channel"
         val desc = "A Description of the channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID ,name, importance)
