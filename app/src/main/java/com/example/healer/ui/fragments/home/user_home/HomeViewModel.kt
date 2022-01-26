@@ -43,5 +43,8 @@ class HomeViewModel : ViewModel() {
     suspend fun checkBookedAppointments(appointment: Appointment): Boolean {
         return repo.checkBookedAppointments(appointment)
     }
+    fun currentUserExist():Boolean {
+        return repo.currentUserExist()
+    }
 
 }

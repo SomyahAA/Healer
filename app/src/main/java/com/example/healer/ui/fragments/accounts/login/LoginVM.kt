@@ -24,4 +24,8 @@ class LoginVM : ViewModel() {
         return repo.login(loginEmail, loginPassword, requiredContext)
     }
 
+    fun currentUserExist():Boolean {
+        return repo.currentUserExist()
+    }
+
 }

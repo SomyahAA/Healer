@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 class PsychologistRegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentPsychologistRegisterBinding
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val psyRegisterVM: PsyRegisterVM by lazy { ViewModelProvider(this)[PsyRegisterVM::class.java] }
     private lateinit var gender: String
 
@@ -45,7 +44,7 @@ class PsychologistRegisterFragment : Fragment() {
         val genderItemsAdapter = ArrayAdapter(requireContext(), R.layout.gender_item, genderItems)
         binding.psyGender.setAdapter(genderItemsAdapter)
         binding.psyGender.setOnClickListener {
-            AdapterView.OnItemClickListener { parent, view, position, id ->
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
                 gender = parent.getItemAtPosition(position).toString()
             }
         }
@@ -79,8 +78,8 @@ class PsychologistRegisterFragment : Fragment() {
                     psychologistModel,
                     requireContext()
                 )
-                if (auth.currentUser != null) {
-                    psyRegisterVM.updatePsyId(auth.currentUser!!.uid)
+                if (psyRegisterVM.currentUserExist()) {
+                    psyRegisterVM.updatePsyId(psyRegisterVM.getCurrentUserId())
                     findNavController().navigate(R.id.action_psychologistRegisterFragment_to_psyHomeFragment)
                 }
             }

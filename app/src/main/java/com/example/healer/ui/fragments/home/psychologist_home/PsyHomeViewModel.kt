@@ -18,4 +18,8 @@ class PsyHomeViewModel : ViewModel() {
         }
         return false
     }
+
+    fun currentUserExist():Boolean {
+        return repo.currentUserExist()
+    }
 }

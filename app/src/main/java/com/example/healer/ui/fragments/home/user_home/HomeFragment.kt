@@ -29,8 +29,6 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
     private val homeViewModel: HomeViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 
     override fun onCreateView(
@@ -100,7 +98,7 @@ class HomeFragment : Fragment() {
             binding.profileImage.load(psychologist.profileImage)
             binding.bio.text = psychologist.bio
             binding.callBTN.setOnClickListener {
-                if (auth.currentUser?.uid != null) {
+                if (homeViewModel.currentUserExist()) {
                     homeViewModel.makePhoneCall(
                         requireContext(),
                         psychologist.phoneNumber,
@@ -144,7 +142,7 @@ class HomeFragment : Fragment() {
             binding.AvailableAppointmentTV.text = appointment.dateTime
             binding.AvailableAppointmentTV.setOnClickListener {
                 if (homeViewModel.isOnline(requireContext())) {
-                    if (auth.currentUser != null) {
+                    if (homeViewModel.currentUserExist()) {
                         val alert = AlertDialog.Builder(context)
                         alert.setTitle(getString(R.string.confirm_booking))
                         alert.setMessage(getString(R.string.booking_msg)+" ${appointment.dateTime}")

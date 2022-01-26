@@ -78,9 +78,6 @@ class SettingFragment : Fragment() {
                 it.show()
             }
         }
-        builder.setNegativeButton(getString(R.string.dismiss)) { dialog, _ ->
-            dialog.dismiss()
-        }
 
         builder.setNeutralButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.cancel()
@@ -120,8 +117,8 @@ class SettingFragment : Fragment() {
                     }
                     R.id.english -> {
                         setApplicationLanguage("en")
-                        val res = context?.resources;
-                        val config = res?.configuration;
+                        val res = context?.resources
+                        val config = res?.configuration
                         config?.locale = Locale("en")
                         config?.setLayoutDirection(Locale("en"))
                     }

@@ -160,7 +160,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
                     .mustBeOnFuture()
                     .listener { date ->
                         val appointment =
-                            Appointment(date.toString(),setAppointmentViewModel.getCurrentUser())
+                            Appointment(date.toString(),setAppointmentViewModel.getCurrentUserId())
 
                         lifecycleScope.launch {
                             if (setAppointmentViewModel.appointmentAlreadyExist(appointment)) {

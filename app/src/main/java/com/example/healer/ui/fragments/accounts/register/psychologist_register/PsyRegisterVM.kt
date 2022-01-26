@@ -23,4 +23,12 @@ class PsyRegisterVM : ViewModel() {
         repo.updatePsyId(uid)
     }
 
+    fun currentUserExist():Boolean {
+        return repo.currentUserExist()
+    }
+
+    fun getCurrentUserId(): String {
+        return repo.getCurrentUserId()
+    }
+
 }
