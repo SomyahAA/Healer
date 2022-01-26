@@ -22,7 +22,7 @@
     <string name="make_a_chat_button">زر المحادثة</string>
     <string name="make_a_video_call_button">زر مكالمة الفيديو</string>
     <string name="register_now">سجل الآن</string>
-    <string name="email">البريد الاكتروني</string>
+    <string name="email">البريد الإكتروني</string>
     <string name="available_appointment">المواعيد المتاحة</string>
     <string name="bio">السيرة</string>
     <string name="consult_now">استشير الآن</string>
@@ -64,7 +64,11 @@
     <string name="yes">نعم</string>
     <string name="already_booked">لقد حجزت هذا الموعد من قبل</string>
     <string name="login_to_book">الرجاء تسجيل الدخول قبل حجز الموعد</string>
-    <string name="login_to_call">سجل دخول قبل ماتسوي المكالمة لو سمحت يعني</string>
+    <string name="login_to_call">الرجاء تسجيل الدخول قبل اجراء المكالمة </string>
+    <string name="appointment_set"> تم اضافة الموعد بنجاح</string>
+    <string name="booking_confirmed">الحجز مؤكد </string>
+
+
 
 
 

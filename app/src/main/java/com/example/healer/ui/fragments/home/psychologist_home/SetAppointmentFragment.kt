@@ -64,7 +64,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
     private fun scheduleNotification() {
         val intent = Intent(requireContext(), Notification::class.java)
         val title = "This is the title "
-        val message = "Your appointment is set Successfully"
+        val message = getString(R.string.appointment_set)
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
@@ -88,7 +88,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(requireContext())
 
         AlertDialog.Builder(requireContext())
-            .setTitle("booking is confirmed")
+            .setTitle(getString(R.string.booking_confirmed))
             .setMessage("title" + title + "message" + message + "\n At:" + dateFormat + " ")
     }
 

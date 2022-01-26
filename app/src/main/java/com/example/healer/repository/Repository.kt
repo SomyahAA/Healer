@@ -458,4 +458,15 @@ class Repository {
         }
         return bookedAppointmentList
     }
+
+    fun currentUserExist():Boolean {
+
+        if (auth.currentUser != null){
+            return true
+        }
+        return false
+    }
+    fun signOut(){
+        auth.signOut()
+    }
 }

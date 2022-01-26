@@ -1,17 +1,14 @@
 package com.example.healer.ui.fragments.home.user_home
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
-import kotlinx.coroutines.launch
 
 private const val TAG = "HomeViewModel"
 
@@ -22,7 +19,7 @@ class HomeViewModel : ViewModel() {
     fun psyLiveData(): LiveData<List<Psychologist>> {
         val liveDataList = liveData {
             emit(repo.getAllPsychologist())
-            Log.d(TAG, "from repo wwwww${repo.getAllPsychologist()}")
+            Log.d(TAG, "from repo ${repo.getAllPsychologist()}")
         }
         return liveDataList
     }

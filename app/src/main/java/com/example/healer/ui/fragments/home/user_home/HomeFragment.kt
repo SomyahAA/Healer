@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 
-private const val TAG = "HomeFragment"
 
 class HomeFragment : Fragment() {
 
@@ -83,7 +81,7 @@ class HomeFragment : Fragment() {
                 if (binding.expandableLayout.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
                     binding.expandableLayout.visibility = View.VISIBLE
-                    Log.e(TAG, "dates: $psychologist")
+                    //Log.e(TAG, "dates: $psychologist")
                     updateAppointmentUI(psychologist.availableDates)
 
                 } else {
@@ -142,7 +140,7 @@ class HomeFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(appointment: Appointment) {
-            Log.e(TAG, "bind:hguykliio'/ $appointment")
+            //Log.e(TAG, "bind:'/ $appointment")
             binding.AvailableAppointmentTV.text = appointment.dateTime
             binding.AvailableAppointmentTV.setOnClickListener {
                 if (homeViewModel.isOnline(requireContext())) {

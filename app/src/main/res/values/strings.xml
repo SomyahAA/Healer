@@ -68,8 +68,8 @@
     <string name="already_booked">You\'ve already booked this appointment</string>
     <string name="login_to_book"> You must Login before Booking</string>
     <string name="login_to_call">You must login to make call</string>
-
-
+    <string name="appointment_set"> Your appointment is set Successfully </string>
+    <string name="booking_confirmed">booking is confirmed</string>
 
 
 </resources>

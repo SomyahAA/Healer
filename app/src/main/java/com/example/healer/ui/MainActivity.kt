@@ -11,13 +11,12 @@ import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
-import com.example.healer.repository.Repository
-import com.google.firebase.auth.FirebaseAuth
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
@@ -31,8 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var toolbar: Toolbar
     private lateinit var menu: Menu
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val repo = Repository.getInstance()
+    private val mainVM: MainVM by lazy { ViewModelProvider(this)[MainVM::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,20 +68,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_logout).isVisible = false
         menu.findItem(R.id.nav_profile).isVisible = false
 
-        if (auth.currentUser != null) {
+        if (mainVM.currentUserExist()) {
 
-            repo.getPhotoFromStorage().observe(this) {
+            mainVM.getPhotoFromStorage().observe(this) {
                 val v: CircleImageView = findViewById(R.id.headerPhoto)
                 v.load(it)
             }
             lifecycleScope.launch {
-                repo.getHeaderNameFromFirebase().observe(this@MainActivity) {
+                mainVM.getHeaderNameFromFirebase().observe(this@MainActivity) {
                     val headerName = findViewById<TextView>(R.id.headerName)
                     headerName.text = it
                 }
             }
         }
-        repo.setUpRecurringWork(baseContext)
+        mainVM.setUpRecurringWork(baseContext)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -103,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.nav_home -> {
                 lifecycleScope.launch {
-                    if (repo.userTypeIsUser()) {
+                    if (mainVM.userTypeIsUser()) {
                         navController.navigate(R.id.homeFragment)
                     } else {
                         navController.navigate(R.id.psyHomeFragment)
@@ -111,14 +109,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             R.id.nav_login -> { navController.navigate(R.id.loginFragment)
-                if (auth.currentUser != null) {
+                if (mainVM.currentUserExist()) {
                     menu.findItem(R.id.nav_logout).isVisible = true
                     menu.findItem(R.id.nav_profile).isVisible = true
                     menu.findItem(R.id.nav_login).isVisible = false
                 }
             }
             R.id.nav_logout -> {
-                auth.signOut()
+                mainVM.signOut()
                 menu.findItem(R.id.nav_logout).isVisible = false
                 menu.findItem(R.id.nav_profile).isVisible = false
                 menu.findItem(R.id.nav_login).isVisible = true
@@ -126,7 +124,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //R.id.nav_chats -> navController.navigate(R.id.chatsFragment)
             R.id.nav_profile -> {
                 lifecycleScope.launch {
-                    if (repo.userTypeIsUser()) {
+                    if (mainVM.userTypeIsUser()) {
                         navController.navigate(R.id.userProfileFragment)
                     } else {
                         navController.navigate(R.id.psychologistProfileFragment)
@@ -136,9 +134,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_setting -> navController.navigate(R.id.settingFragment)
             R.id.nav_workWithUs -> navController.navigate(R.id.psychologistRegisterFragment)
             R.id.nav_appointments ->
-                if (auth.currentUser!= null) {
+                if (mainVM.currentUserExist()) {
                     lifecycleScope.launch {
-                    if (repo.userTypeIsUser()) {
+                    if (mainVM.userTypeIsUser()) {
                         navController.navigate(R.id.appointmentsFragment)
                     }else{
                         navController.navigate(R.id.psyBookedAppointments)

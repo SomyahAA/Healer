@@ -1,5 +1,6 @@
 package com.example.healer.ui
 
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -31,12 +32,21 @@ class MainVM :ViewModel(){
     fun getPhotoFromStorage(userUrl: String = auth.currentUser!!.uid): LiveData<Uri>{
         return repo.getPhotoFromStorage(userUrl)
     }
-//    private val _isLoading = MutableStateFlow(true)
-//    val _isLoading = _isLoading.asSta
-//    init {
-//        viewModelScope.launch {
-//            delay(3000)
-//            _isLoading
-//        }
-//    }
+
+    suspend fun getHeaderNameFromFirebase(): LiveData<String> {
+       return repo.getHeaderNameFromFirebase()
+    }
+
+    fun setUpRecurringWork(context: Context){
+        return repo.setUpRecurringWork(context)
+    }
+
+    fun currentUserExist():Boolean {
+        return repo.currentUserExist()
+    }
+    fun signOut(){
+        repo.signOut()
+    }
+
+
 }
