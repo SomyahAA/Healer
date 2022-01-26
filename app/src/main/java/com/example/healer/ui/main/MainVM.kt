@@ -1,4 +1,4 @@
-package com.example.healer.ui
+package com.example.healer.ui.main
 
 import android.content.Context
 import android.net.Uri

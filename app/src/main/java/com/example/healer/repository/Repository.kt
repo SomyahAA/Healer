@@ -469,4 +469,10 @@ class Repository {
     fun signOut(){
         auth.signOut()
     }
+
+    fun getCurrentUser(): String {
+       return auth.currentUser?.uid!!
+    }
+
+
 }

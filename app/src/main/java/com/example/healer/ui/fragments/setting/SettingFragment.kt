@@ -18,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.healer.R
 import com.example.healer.databinding.FragmentSettingBinding
-import com.example.healer.ui.MainActivity
+import com.example.healer.ui.main.MainActivity
 import com.example.healer.utils.Constants.MY_SHARED_PREF
 import com.example.healer.utils.Constants.Setting_Fragment_TAG
 import com.google.firebase.auth.FirebaseAuth

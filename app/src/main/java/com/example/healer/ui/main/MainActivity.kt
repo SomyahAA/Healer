@@ -1,4 +1,4 @@
-package com.example.healer.ui
+package com.example.healer.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -31,4 +31,7 @@ class SetAppointmentViewModel : ViewModel() {
         return repo.deleteAppointment(deletedAppointment)
     }
 
+    fun getCurrentUser(): String {
+        return repo.getCurrentUser()
+    }
 }

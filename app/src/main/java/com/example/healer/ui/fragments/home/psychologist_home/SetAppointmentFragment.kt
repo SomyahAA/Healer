@@ -34,7 +34,6 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: SetAppointmentFragmentBinding
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val calendar = Calendar.getInstance()
     private var currentMonth = 0
     private val setAppointmentViewModel: SetAppointmentViewModel by lazy { ViewModelProvider(this)[SetAppointmentViewModel::class.java] }
@@ -161,7 +160,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
                     .mustBeOnFuture()
                     .listener { date ->
                         val appointment =
-                            Appointment(date.toString(), auth.currentUser?.uid.toString())
+                            Appointment(date.toString(),setAppointmentViewModel.getCurrentUser())
 
                         lifecycleScope.launch {
                             if (setAppointmentViewModel.appointmentAlreadyExist(appointment)) {
