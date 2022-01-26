@@ -47,10 +47,11 @@
         <entry key="app/src/main/res/layout/dialog.xml" value="0.23863636363636365" />
         <entry key="app/src/main/res/layout/fragment_appointments.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.17647058823529413" />
-        <entry key="app/src/main/res/layout/fragment_dialog.xml" value="0.24479166666666666" />
+        <entry key="app/src/main/res/layout/fragment_dialog.xml" value="0.19478560177075308" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17123287671232876" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.14411764705882352" />
+        <entry key="app/src/main/res/layout/fragment_no_appointments.xml" value="0.2858306769068014" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25153072034804913" />
         <entry key="app/src/main/res/layout/fragment_psy_card.xml" value="0.30594746378293836" />
         <entry key="app/src/main/res/layout/fragment_psychologist_profile.xml" value="0.2848288544266322" />
         <entry key="app/src/main/res/layout/fragment_psychologist_register.xml" value="0.35674157303370785" />
@@ -61,6 +62,7 @@
         <entry key="app/src/main/res/layout/gender_item.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2412449879563835" />
         <entry key="app/src/main/res/layout/otp.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/psy_booked_appointments.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/psy_home_fragment.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/selected_calendar_item.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/set_appointment_fragment.xml" value="0.24466813611923416" />
@@ -68,7 +70,7 @@
         <entry key="app/src/main/res/layout/video_call_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/menu/language_menu.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/side_navigation_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/side_navigation_menu.xml" value="0.25176938452805137" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2609375" />
       </map>
     </option>

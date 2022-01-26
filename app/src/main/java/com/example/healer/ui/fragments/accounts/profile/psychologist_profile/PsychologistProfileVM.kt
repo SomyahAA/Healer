@@ -22,19 +22,19 @@ class PsychologistProfileVM : ViewModel() {
         }
     }
 
-     fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
-        viewModelScope.launch{
+    fun uploadPhotoToFirebaseStorage(imageUri: Uri) {
+        viewModelScope.launch {
             repo.uploadPhotoToFirebaseStorage(imageUri)
         }
     }
 
     fun updatePsyProfile(
-        name: String ,
-        specialty: String ,
-        bio: String ,
+        name: String,
+        specialty: String,
+        bio: String,
         experienceYears: String
-    ){
-        return repo.updatePsyProfile( name, specialty, bio, experienceYears)
+    ) {
+        return repo.updatePsyProfile(name, specialty, bio, experienceYears)
     }
 
 }

@@ -53,5 +53,25 @@
     <string name="Female">انثى</string>
     <string name="male">ذكر</string>
     <string name="account">الحساب</string>
+    <string name="soon">قريبا</string>
+    <string name="get_support"> احصل على المساعدة </string>
+    <string name="technical_support">الدعم الفني :</string>
+    <string name="booked_appointments">المواعيد المحجوزة</string>
+    <string name="app_Already_set"> لقد قمت بإضافة هذا الموعد من قبل</string>
+    <string name="no_internet_msg">اوبس انت غير متصل بالانترنت حاول الاتصال وحاول مره اخرى</string>
+    <string name="confirm_booking">"تأكيد الحجز"</string>
+    <string name="booking_msg">هل انت متأكد من حجز الموعد في :</string>
+    <string name="yes">نعم</string>
+    <string name="already_booked">لقد حجزت هذا الموعد من قبل</string>
+    <string name="login_to_book">الرجاء تسجيل الدخول قبل حجز الموعد</string>
+    <string name="login_to_call">سجل دخول قبل ماتسوي المكالمة لو سمحت يعني</string>
+
+
+
+
+
+
+
+
 
 </resources>

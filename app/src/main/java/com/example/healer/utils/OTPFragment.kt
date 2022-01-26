@@ -158,6 +158,7 @@ open class OTPFragment : Fragment() {
         }
     }
 
+    //to save the number
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_VERIFICATION_ID, verificationId)

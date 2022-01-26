@@ -26,7 +26,6 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/btn_date"
             android:layout_width="70dp"
@@ -51,6 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

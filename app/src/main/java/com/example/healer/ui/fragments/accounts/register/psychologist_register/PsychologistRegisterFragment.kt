@@ -22,9 +22,9 @@ class PsychologistRegisterFragment : Fragment() {
     private lateinit var binding: FragmentPsychologistRegisterBinding
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val psyRegisterVM: PsyRegisterVM by lazy { ViewModelProvider(this)[PsyRegisterVM::class.java] }
-    private lateinit var gender :String
+    private lateinit var gender: String
 
-    val opt= OTPFragment()
+    val opt = OTPFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,16 +40,23 @@ class PsychologistRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val genderItems = arrayOf(getString(R.string.Female),getString(R.string.male))
+        val genderItems = arrayOf(getString(R.string.Female), getString(R.string.male))
 
-        val genderItemsAdapter = ArrayAdapter(requireContext(),R.layout.gender_item,genderItems)
+        val genderItemsAdapter = ArrayAdapter(requireContext(), R.layout.gender_item, genderItems)
         binding.psyGender.setAdapter(genderItemsAdapter)
-        binding.psyGender.setOnClickListener { AdapterView.OnItemClickListener{ parent, view, position, id ->
-        gender =parent.getItemAtPosition(position).toString() } }
+        binding.psyGender.setOnClickListener {
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                gender = parent.getItemAtPosition(position).toString()
+            }
+        }
         binding.registerPsy.setOnClickListener {
 
-            if (binding.psyName.text.toString().isEmpty() || binding.psyPhoneNumber1.text.toString().isEmpty() || binding.psyEmail.text.toString().isEmpty() || binding.psyPassword.text.toString().isEmpty()
-                || binding.psySpeciality.text.toString().isEmpty() || binding.psyExperienceYears.text.toString().isEmpty() || binding.psyBio.text.toString().isEmpty()
+            if (binding.psyName.text.toString().isEmpty() || binding.psyPhoneNumber1.text.toString()
+                    .isEmpty() || binding.psyEmail.text.toString()
+                    .isEmpty() || binding.psyPassword.text.toString().isEmpty()
+                || binding.psySpeciality.text.toString()
+                    .isEmpty() || binding.psyExperienceYears.text.toString()
+                    .isEmpty() || binding.psyBio.text.toString().isEmpty()
             ) {
                 Toast.makeText(requireContext(), "You must fill all fields", Toast.LENGTH_SHORT)
                     .show()

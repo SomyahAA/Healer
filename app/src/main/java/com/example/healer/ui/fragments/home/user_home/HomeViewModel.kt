@@ -3,6 +3,7 @@ package com.example.healer.ui.fragments.home.user_home
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -12,6 +13,7 @@ import com.example.healer.models.Psychologist
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
 
+private const val TAG = "HomeViewModel"
 
 class HomeViewModel : ViewModel() {
 
@@ -20,25 +22,29 @@ class HomeViewModel : ViewModel() {
     fun psyLiveData(): LiveData<List<Psychologist>> {
         val liveDataList = liveData {
             emit(repo.getAllPsychologist())
+            Log.d(TAG, "from repo wwwww${repo.getAllPsychologist()}")
         }
         return liveDataList
     }
 
-    fun isOnline(context: Context): Boolean{
+    fun isOnline(context: Context): Boolean {
         return repo.isOnline(context)
     }
 
-    fun makePhoneCall(requiredContext: Context, number: String, bundle: Bundle){
-        return repo.makePhoneCall(requiredContext,number,bundle)
+    fun makePhoneCall(requiredContext: Context, number: String, bundle: Bundle) {
+        return repo.makePhoneCall(requiredContext, number, bundle)
     }
 
-    fun bookTheAppointment(appointment: Appointment){
+    suspend fun bookTheAppointment(appointment: Appointment) {
         return repo.bookTheAppointment(appointment)
     }
-    suspend fun makeBookedAppointmentUnAvailable(appointment: Appointment){
-            return repo.makeBookedAppointmentUnAvailable(appointment)
+
+    suspend fun makeBookedAppointmentUnAvailable(appointment: Appointment) {
+        return repo.makeBookedAppointmentUnAvailable(appointment)
     }
 
-
+    suspend fun checkBookedAppointments(appointment: Appointment): Boolean {
+        return repo.checkBookedAppointments(appointment)
+    }
 
 }

@@ -55,8 +55,12 @@ class PsychologistProfileFragment : Fragment() {
             )
         }
         binding.updateBTN.setOnClickListener {
-            psychologistProfileVM.updatePsyProfile(binding.psyName.text.toString(),
-            binding.psySpecialty.text.toString(),binding.psyBio.text.toString(),binding.psyExperienceYears.text.toString())
+            psychologistProfileVM.updatePsyProfile(
+                binding.psyName.text.toString(),
+                binding.psySpecialty.text.toString(),
+                binding.psyBio.text.toString(),
+                binding.psyExperienceYears.text.toString()
+            )
         }
     }
 

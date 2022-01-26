@@ -2,7 +2,6 @@ package com.example.healer.repository
 
 import android.Manifest.permission.CALL_PHONE
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.Uri
@@ -36,10 +35,6 @@ import com.example.healer.utils.Constants.PSYCHOLOGIST_REGISTER
 import com.example.healer.utils.Constants.psychologistCollection
 import com.example.healer.utils.Constants.usersCollection
 import java.util.concurrent.TimeUnit
-import androidx.core.content.ContextCompat.startActivity
-import org.w3c.dom.Text
-import javax.security.auth.Subject
-
 
 class Repository {
 
@@ -52,7 +47,7 @@ class Repository {
     }
 
     fun login(loginEmail: String, loginPassword: String, requiredContext: Context) {
-        
+
         if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
             Toast.makeText(requiredContext, "You must add email and password", Toast.LENGTH_SHORT)
                 .show()
@@ -151,7 +146,7 @@ class Repository {
         return state
     }
 
-    suspend fun readPsychologistDataFromFirestore(psychologistId: String = auth.currentUser!!.uid) :Psychologist {
+    suspend fun readPsychologistDataFromFirestore(psychologistId: String = auth.currentUser!!.uid): Psychologist {
         return fireStore.collection(psychologistCollection)
             .document(psychologistId)
             .get()
@@ -180,7 +175,7 @@ class Repository {
         return psyList
     }
 
-    suspend fun getAppointments(): MutableList<Appointment> {
+    suspend fun getPsychologistAppointments(): MutableList<Appointment> {
         val appointment = fireStore.collection(psychologistCollection)
             .document(auth.currentUser!!.uid)
             .get()
@@ -188,20 +183,18 @@ class Repository {
             .toObject(Psychologist::class.java)
 
         val appointmentList = mutableListOf<Appointment>()
-        appointment?.availableAppointments?.forEach {
+        appointment?.availableDates?.forEach {
             appointmentList += it
         }
         return appointmentList
     }
-
-    //getting deleted appointment Position form recyclerview to delete it
 
     suspend fun deleteAppointment(deletedAppointment: Int) {
 
         val psychologist = readPsychologistDataFromFirestore()
         val appointmentList = mutableListOf<Appointment>()
 
-        psychologist.availableAppointments.forEach {
+        psychologist.availableDates.forEach {
             appointmentList += it
         }
 
@@ -217,7 +210,7 @@ class Repository {
         val psychologist = readPsychologistDataFromFirestore()
         val appointmentList = mutableListOf<Appointment>()
 
-        psychologist.availableAppointments.forEach {
+        psychologist.availableDates.forEach {
             appointmentList += it
         }
         appointmentList.add(newAppointment)
@@ -248,7 +241,7 @@ class Repository {
         }
     }
 
-    fun getPhotoFromStorage(userUrl : String = auth.currentUser!!.uid ): LiveData<Uri> {
+    fun getPhotoFromStorage(userUrl: String = auth.currentUser!!.uid): LiveData<Uri> {
 
         val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
         fireStore.collection(usersCollection)
@@ -373,23 +366,30 @@ class Repository {
         )
     }
 
-    //add the appointment to the user booked appointment and create a new doc list that contain all booked appointment }.
+    suspend fun bookTheAppointment(appointment: Appointment) {
 
-    fun bookTheAppointment(appointment: Appointment){
-        //before adding the appointment check the exist booked appointment list and then add the new one
+        val user = readUserDataFromFireStore()
+        val appointmentList = mutableListOf<Appointment>()
+
+        user.myBookedAppointments.forEach {
+            appointmentList += it
+        }
+        appointmentList.add(appointment)
+
         fireStore.collection(usersCollection)
             .document(auth.currentUser!!.uid)
-            .update("myBookedAppointments",appointment)
+            .update("myBookedAppointments", appointmentList)
+            .await()
     }
 
-    suspend fun makeBookedAppointmentUnAvailable(appointment: Appointment){
+    suspend fun makeBookedAppointmentUnAvailable(appointment: Appointment) {
 
         val psychologist = readPsychologistDataFromFirestore(appointment.psychologistId)
 
         val availableAppointmentList = mutableListOf<Appointment>()
         val bookedAppointmentList = mutableListOf<Appointment>()
 
-        psychologist.availableAppointments.forEach {
+        psychologist.availableDates.forEach {
             availableAppointmentList += it
         }
         psychologist.bookedAppointments.forEach {
@@ -409,13 +409,53 @@ class Repository {
             .update(psychologistFieldMap)
             .await()
     }
-    fun sendEmail(context: Context,bundle: Bundle) {
-        val intent = Intent(Intent.ACTION_SENDTO,Uri.fromParts("mailto","healersupport@gmail.com",null))
-        startActivity(context,Intent.createChooser(intent,"healer app : issue"),bundle)
+
+    suspend fun appointmentAlreadyExist(appointment: Appointment): Boolean {
+
+        val psychologist = readPsychologistDataFromFirestore()
+        val availableAppointmentList = mutableListOf<Appointment>()
+
+        psychologist.availableDates.forEach {
+            availableAppointmentList += it
+        }
+        return (availableAppointmentList.contains(appointment))
     }
 
+    fun sendEmail(context: Context, bundle: Bundle) {
+        val intent =
+            Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "healersupport@gmail.com", null))
+        startActivity(context, Intent.createChooser(intent, "healer app : issue"), bundle)
+    }
 
+    suspend fun checkBookedAppointments(appointment: Appointment): Boolean {
 
+        val user = readUserDataFromFireStore()
+        val bookedAppointments = mutableListOf<Appointment>()
 
+        user.myBookedAppointments.forEach {
+            bookedAppointments += it
+        }
+        return bookedAppointments.contains(appointment)
+    }
+
+    suspend fun getUserBookAppointmentsList(): List<Appointment> {
+        val user = readUserDataFromFireStore()
+
+        val appointmentList = mutableListOf<Appointment>()
+        user.myBookedAppointments.forEach {
+            appointmentList += it
+        }
+        return appointmentList
+    }
+
+    suspend fun getPsyBookedAppList(): List<Appointment> {
+
+        val psychologist = readPsychologistDataFromFirestore()
+
+        val bookedAppointmentList = mutableListOf<Appointment>()
+        psychologist.bookedAppointments.forEach {
+            bookedAppointmentList += it
+        }
+        return bookedAppointmentList
+    }
 }
-

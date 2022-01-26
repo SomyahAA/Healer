@@ -36,10 +36,11 @@ class PsyHomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this)[PsyHomeViewModel::class.java]
         binding.setMyAppsBTN.setOnClickListener {
-            if (auth.currentUser!=null){
+            if (auth.currentUser != null) {
                 if (!viewModel.userTypeIsUser()) {
-                findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
-            }}
+                    findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
+                }
+            }
         }
 
     }

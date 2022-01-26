@@ -18,8 +18,6 @@ import com.example.healer.R
 import com.example.healer.databinding.ActivityMainBinding
 import com.example.healer.repository.Repository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 
@@ -137,6 +135,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_setting -> navController.navigate(R.id.settingFragment)
             R.id.nav_workWithUs -> navController.navigate(R.id.psychologistRegisterFragment)
+            R.id.nav_appointments ->
+                if (auth.currentUser!= null) {
+                    lifecycleScope.launch {
+                    if (repo.userTypeIsUser()) {
+                        navController.navigate(R.id.appointmentsFragment)
+                    }else{
+                        navController.navigate(R.id.psyBookedAppointments)
+                    }
+                    }
+                } else {
+                    navController.navigate(R.id.noAppointmentsFragment)
+                }
 
         }
         drawerLayout.closeDrawer(GravityCompat.START)

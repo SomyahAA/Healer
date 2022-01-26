@@ -19,7 +19,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val loginVM: LoginVM by lazy { ViewModelProvider(this)[LoginVM::class.java] }
-    val hideKeyboard = HideKeyboard()
+    private val hideKeyboard = HideKeyboard()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
             )
 
             if (auth.currentUser != null) {
-                if (! loginVM.userTypeIsUser()) {
+                if (!loginVM.userTypeIsUser()) {
                     findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
@@ -54,7 +54,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_userRegisterFragment)
         }
 
-        hideKeyboard.setupUI(binding.lololish,requireContext())
+        hideKeyboard.setupUI(binding.lololish, requireContext())
 
         return binding.root
     }

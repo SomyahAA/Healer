@@ -1,8 +1,9 @@
 package com.example.healer.ui.fragments.accounts.register
 
 
-import com.example.healer.ui.fragments.accounts.register.psychologist_register.RegistrationUtil
+import com.example.healer.ui.fragments.accounts.register.user_register.RegistrationUtil
 import junit.framework.Assert.assertFalse
+import junit.framework.Assert.assertTrue
 import org.junit.Test
 
 class RegistrationUtilTest{
@@ -12,11 +13,11 @@ class RegistrationUtilTest{
         val result = RegistrationUtil.validateRegistrationInput(
             "somyah",
             "0565656543",
-            "s@gmail.com",
+            "",
             "female",
             "1"
         )
-        assertFalse(result)
+        assertTrue(result)
     }
     @Test
     fun `empty password return false`(){
@@ -27,7 +28,7 @@ class RegistrationUtilTest{
             "male",
             ""
         )
-        assertFalse(result)
+        assertTrue(result)
     }
 
     @Test
@@ -39,7 +40,7 @@ class RegistrationUtilTest{
             "male",
             "12"
         )
-        assertFalse(result)
+        assertTrue(result)
     }
 
 }

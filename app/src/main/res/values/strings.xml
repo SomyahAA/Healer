@@ -18,7 +18,7 @@
     <string name="speciality">Speciality</string>
     <string name="experience_years">Experience Years</string>
     <string name="your_bio_i_m">your bio .I\'m …</string>
-    <string name="dr_somyah_alsayed">Dr.Somyah Alsayed</string>
+    <string name="dr_somyah_alsayed">Dr.Name Title</string>
     <string name="make_call_button">make call Button</string>
     <string name="make_a_chat_button">Make a Chat Button</string>
     <string name="make_a_video_call_button">Make a video call Button</string>
@@ -55,6 +55,21 @@
     <string name="Female">Female</string>
     <string name="male">male</string>
     <string name="account">Account</string>
+    <string name="date" translatable="false">  12   mon   2022   7   AM</string>
+    <string name="soon">Soon</string>
+    <string name="get_support">get Support</string>
+    <string name="technical_support">Technical support :</string>
+    <string name="booked_appointments">Booked Appointments</string>
+    <string name="app_Already_set">You\'ve Already set this appointment</string>
+    <string name="no_internet_msg">oops you\'re not connected to the internet connect and try again</string>
+    <string name="confirm_booking">"Confirm Booking"</string>
+    <string name="booking_msg">Are you sure you want to book this appointment on</string>>
+    <string name="yes">Yes</string>
+    <string name="already_booked">You\'ve already booked this appointment</string>
+    <string name="login_to_book"> You must Login before Booking</string>
+    <string name="login_to_call">You must login to make call</string>
+
+
 
 
 </resources>

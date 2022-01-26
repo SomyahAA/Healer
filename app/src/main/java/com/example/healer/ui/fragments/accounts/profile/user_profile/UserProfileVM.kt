@@ -13,7 +13,7 @@ class UserProfileVM : ViewModel() {
 
     fun readUserDataFromFirestore(): LiveData<User> {
         return liveData {
-           emit(repo.readUserDataFromFireStore())
+            emit(repo.readUserDataFromFireStore())
         }
     }
 
@@ -23,8 +23,8 @@ class UserProfileVM : ViewModel() {
         }
     }
 
-    fun updateUserProfile(name: String , gender: String,phoneNumber: String) {
-        return repo.updateUserProfile(name, gender,phoneNumber)
+    fun updateUserProfile(name: String, gender: String, phoneNumber: String) {
+        return repo.updateUserProfile(name, gender, phoneNumber)
     }
 
 }

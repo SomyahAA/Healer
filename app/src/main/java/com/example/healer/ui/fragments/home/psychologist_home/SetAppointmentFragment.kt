@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healer.R
 import com.example.healer.databinding.AppointmentItemBinding
 import com.example.healer.databinding.SetAppointmentFragmentBinding
 import com.example.healer.models.Appointment
@@ -25,6 +26,7 @@ import com.example.healer.utils.Constants.titleExtra
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
+import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import kotlinx.coroutines.launch
 
 
@@ -60,19 +62,21 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
     }
 
     private fun scheduleNotification() {
-        val intent = Intent(requireContext(),Notification::class.java)
+        val intent = Intent(requireContext(), Notification::class.java)
         val title = "This is the title "
         val message = "Your appointment is set Successfully"
-        intent.putExtra(titleExtra,title)
-        intent.putExtra(messageExtra,message)
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
 
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), notificationId,intent,
-            PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireContext(), notificationId, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         val time = getTim()
         val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent)
-         showAlert(time,title,message)
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent)
+        showAlert(time, title, message)
     }
 
     private fun getTim(): Long {
@@ -85,16 +89,17 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
 
         AlertDialog.Builder(requireContext())
             .setTitle("booking is confirmed")
-            .setMessage("title" +title +"message"+message +"\n At:" +dateFormat+" ")
+            .setMessage("title" + title + "message" + message + "\n At:" + dateFormat + " ")
     }
 
     private fun createNotificationChannel() {
         val name = "Notify Channel"
         val desc = "A Description of the channel"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID ,name, importance)
-        channel.description =desc
-        val notificationManager  = requireActivity().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager =
+            requireActivity().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
 
@@ -102,7 +107,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             setAppointmentViewModel.getPsychologistAppointments().observe(
-                viewLifecycleOwner,{
+                viewLifecycleOwner, {
                     updateUI(it)
                 }
 
@@ -115,16 +120,16 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         binding.appointmentRV.adapter = appAdapter
     }
 
-    private inner class AppHolder(val binding:  AppointmentItemBinding) :
+    private inner class AppHolder(val binding: AppointmentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
 
-         fun bind(appointment: Appointment) {
-              lifecycleScope.launch {
-                  setAppointmentViewModel.getPsychologistAppointments().observe(viewLifecycleOwner) {
-                      binding.AppointmentTV.text = appointment.dateTime
-                  }
-              }
+        fun bind(appointment: Appointment) {
+            lifecycleScope.launch {
+                setAppointmentViewModel.getPsychologistAppointments().observe(viewLifecycleOwner) {
+                    binding.AppointmentTV.text = appointment.dateTime
+                }
+            }
         }
     }
 
@@ -143,6 +148,7 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
             val appointment = Appointments[position]
             holder.bind(appointment)
         }
+
         override fun getItemCount(): Int = Appointments.size
     }
 
@@ -154,13 +160,29 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
                     .curved()
                     .mustBeOnFuture()
                     .listener { date ->
-                        val appointment = Appointment(date.toString(), auth.currentUser?.uid.toString())
-                        setAppointmentViewModel.addAppointment(appointment)
-                            calendar.set(date.year, date.month, date.day, date.hours, date.minutes)
+                        val appointment =
+                            Appointment(date.toString(), auth.currentUser?.uid.toString())
+
+                        lifecycleScope.launch {
+                            if (setAppointmentViewModel.appointmentAlreadyExist(appointment)) {
+                                DynamicToast.make(
+                                    requireContext(),
+                                    getString(R.string.app_Already_set)
+                                ).show()
+                            } else {
+                                setAppointmentViewModel.addAppointment(appointment)
+                                calendar.set(
+                                    date.year,
+                                    date.month,
+                                    date.day,
+                                    date.hours,
+                                    date.minutes
+                                )
+                            }
+                        }
                     }.display()
                 scheduleNotification()
             }
         }
     }
-
 }

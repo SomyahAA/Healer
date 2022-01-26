@@ -31,19 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="67dp"
+            android:layout_marginTop="112dp"
             android:layout_marginEnd="289dp"
             android:text="@string/setting"
             android:textAlignment="textEnd"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/changeLanguageBTN"
-            android:layout_width="228dp"
-            android:layout_height="50dp"
+            android:layout_width="223dp"
+            android:layout_height="48dp"
             android:layout_marginTop="244dp"
             android:text="@string/change_language"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,41 +63,72 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/getSupport"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.061" />
+
+        <Button
+            android:id="@+id/getSupport"
+            android:layout_width="236dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="162dp"
+            android:text="@string/get_support"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="263dp"
             android:text="@string/delete_my_account"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/deleteAcoBtn"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/getSupport" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="260dp"
+            android:text="@string/technical_support"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changeLanguageBTN" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="260dp"
+            android:text="@string/change_language"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <Button
             android:id="@+id/deleteAcoBtn"
-            android:layout_width="234dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="173dp"
+            android:layout_width="229dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="170dp"
             android:text="@string/delete_my_account"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changeLanguageBTN"
-            app:layout_constraintVertical_bias="0.676" />
-
-        <Button
-            android:id="@+id/getSupport"
-            android:layout_width="206dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginBottom="93dp"
-            android:text="get Support"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

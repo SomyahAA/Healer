@@ -9,19 +9,17 @@ class PsyRegisterVM : ViewModel() {
 
     private val repo = Repository.getInstance()
 
-//    fun addPsyToHomePage(){
-//        //repo.addPsyToHomePage()
-//    }
 
     fun registerPsychologist(
         email: String,
         password: String,
         psychologistModel: Psychologist,
-        requiredContext: Context) {
+        requiredContext: Context
+    ) {
         return repo.registerPsychologist(email, password, psychologistModel, requiredContext)
     }
 
-    fun updatePsyId(uid :String){
+    fun updatePsyId(uid: String) {
         repo.updatePsyId(uid)
     }
 

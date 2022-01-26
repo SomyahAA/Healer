@@ -1,25 +1,23 @@
 package com.example.healer.ui.fragments.appointment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.healer.databinding.FragmentDialogBinding
+import com.example.healer.R
 
 
-class ToAppointment : Fragment() {
+class NoAppointmentsFragment : Fragment() {
 
-
-    private lateinit var binding: FragmentDialogBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
 
-        binding = FragmentDialogBinding.inflate(layoutInflater)
-
-        return binding.root
+        return inflater.inflate(R.layout.fragment_no_appointments, container, false)
     }
+
+
 }

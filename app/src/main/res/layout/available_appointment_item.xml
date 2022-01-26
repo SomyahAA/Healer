@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/AvailableAppointmentTV"
                 android:layout_width="203dp"
-                android:layout_height="73dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/selected_calendar_item_background"
                 android:padding="20dp"

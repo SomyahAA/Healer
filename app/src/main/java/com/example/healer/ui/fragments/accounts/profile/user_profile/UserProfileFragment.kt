@@ -48,8 +48,11 @@ class UserProfileFragment : Fragment() {
         }
 
         binding.updateBTN.setOnClickListener {
-            userProfileVM.updateUserProfile(binding.userName.text.toString()
-                ,binding.userGender.text.toString(),binding.userPhoneNumber.text.toString())
+            userProfileVM.updateUserProfile(
+                binding.userName.text.toString(),
+                binding.userGender.text.toString(),
+                binding.userPhoneNumber.text.toString()
+            )
         }
     }
 

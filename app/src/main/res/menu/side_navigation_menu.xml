@@ -6,8 +6,13 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_24"
             android:title="@string/home" />
-    </group>
+        <item
+            android:id="@+id/nav_appointments"
+            android:icon="@drawable/ic_appointments_24"
+            android:title="@string/appointments" />
 
+
+    </group>
     <item android:title="@string/profile">
         <menu>
             <group android:checkableBehavior="single">
@@ -34,7 +39,6 @@
                 android:title="@string/setting"/>
         </menu>
     </item>
-
     <item android:title="@string/work_with_us">
         <menu>
             <item

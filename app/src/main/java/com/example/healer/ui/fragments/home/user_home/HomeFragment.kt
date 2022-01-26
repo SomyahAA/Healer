@@ -1,7 +1,6 @@
 package com.example.healer.ui.fragments.home.user_home
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -9,9 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,13 +21,9 @@ import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
-import com.example.healer.utils.Constants
-import com.example.healer.utils.MaterialAlertDialogExt
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
-import kotlinx.coroutines.NonCancellable.cancel
 import kotlinx.coroutines.launch
 
 private const val TAG = "HomeFragment"
@@ -48,7 +41,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         return binding.root
     }
 
@@ -91,8 +83,8 @@ class HomeFragment : Fragment() {
                 if (binding.expandableLayout.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
                     binding.expandableLayout.visibility = View.VISIBLE
-                    Log.d(TAG, "dates: ${psychologist.availableAppointments}")
-                    updateAppointmentUI(psychologist.availableAppointments)
+                    Log.e(TAG, "dates: $psychologist")
+                    updateAppointmentUI(psychologist.availableDates)
 
                 } else {
                     TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
@@ -116,6 +108,8 @@ class HomeFragment : Fragment() {
                         psychologist.phoneNumber,
                         Bundle()
                     )
+                } else {
+                    DynamicToast.make(requireContext(), getString(R.string.login_to_call))
                 }
             }
         }
@@ -148,27 +142,43 @@ class HomeFragment : Fragment() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(appointment: Appointment) {
-            Log.e(TAG, "bind: $appointment")
+            Log.e(TAG, "bind:hguykliio'/ $appointment")
             binding.AvailableAppointmentTV.text = appointment.dateTime
             binding.AvailableAppointmentTV.setOnClickListener {
-                if (auth.currentUser != null) {
-                    val alert = AlertDialog.Builder(context)
-                    alert.setTitle(" Confirm Booking")
-                    alert.setMessage("Are you sure you want to book this appointment on ${appointment.dateTime}")
-                    alert.setPositiveButton("Yes") { _, _ ->
-                        homeViewModel.bookTheAppointment(appointment)
-
-                        lifecycleScope.launch {
-                            homeViewModel.makeBookedAppointmentUnAvailable(appointment)
+                if (homeViewModel.isOnline(requireContext())) {
+                    if (auth.currentUser != null) {
+                        val alert = AlertDialog.Builder(context)
+                        alert.setTitle(getString(R.string.confirm_booking))
+                        alert.setMessage(getString(R.string.booking_msg)+" ${appointment.dateTime}")
+                        alert.setPositiveButton(getString(R.string.yes)) { _, _ ->
+                            lifecycleScope.launch {
+                                if (homeViewModel.checkBookedAppointments(appointment)) {
+                                    DynamicToast.make(
+                                        requireContext(),
+                                        getString(R.string.already_booked)
+                                    )
+                                } else {
+                                    lifecycleScope.launch {
+                                        homeViewModel.bookTheAppointment(appointment)
+                                        homeViewModel.makeBookedAppointmentUnAvailable(appointment)
+                                    }
+                                }
+                            }
                         }
+                        alert.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                            dialog.cancel()
+                        }
+                        alert.show()
+                    } else {
+                        DynamicToast.make(requireContext(), getString(R.string.login_to_book)).show()
                     }
-                    alert.setNegativeButton("Cancel") { dialog, _ ->
-                        dialog.cancel()
-                    }
-                    alert.show()
-                }
-                else {
-                    DynamicToast.make(requireContext(), " You must Login before Booking").show()
+
+                } else {
+                    //replace with fragment
+                    DynamicToast.make(
+                        requireContext(),
+                        getString(R.string.no_internet_msg)
+                    ).show()
                 }
             }
         }

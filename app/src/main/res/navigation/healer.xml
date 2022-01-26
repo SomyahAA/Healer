@@ -103,4 +103,14 @@
         android:id="@+id/toAppointment"
         android:name="com.example.healer.ui.fragments.appointment.ToAppointment"
         android:label="ToAppointment" />
+    <fragment
+        android:id="@+id/noAppointmentsFragment"
+        android:name="com.example.healer.ui.fragments.appointment.NoAppointmentsFragment"
+        android:label="fragment_no_appointments"
+        tools:layout="@layout/fragment_no_appointments" />
+    <fragment
+        android:id="@+id/psyBookedAppointments"
+        android:name="com.example.healer.ui.fragments.home.psychologist_home.PsyBookedAppointments"
+        android:label="psy_booked_appointments"
+        tools:layout="@layout/psy_booked_appointments" />
 </navigation>
