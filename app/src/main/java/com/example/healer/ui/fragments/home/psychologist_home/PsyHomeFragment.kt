@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.PsyHomeFragmentBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
+
 
 class PsyHomeFragment : Fragment() {
 
@@ -36,8 +36,11 @@ class PsyHomeFragment : Fragment() {
         viewModel = ViewModelProvider(this)[PsyHomeViewModel::class.java]
         binding.setMyAppsBTN.setOnClickListener {
             if (viewModel.currentUserExist()) {
+                lifecycleScope.launch {
+
                 if (!viewModel.userTypeIsUser()) {
                     findNavController().navigate(R.id.action_psyHomeFragment_to_setAppointmentFragment)
+                }
                 }
             }
         }

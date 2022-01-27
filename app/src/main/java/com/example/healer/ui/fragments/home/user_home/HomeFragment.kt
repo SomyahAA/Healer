@@ -20,7 +20,6 @@ import com.example.healer.databinding.FragmentHomeBinding
 import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Appointment
 import com.example.healer.models.Psychologist
-import com.google.firebase.auth.FirebaseAuth
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
@@ -43,10 +42,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.psyLiveData().observe(
-            viewLifecycleOwner, {
-                updateUI(it)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            updateUI(it)
+        }
     }
 
     private fun updateUI(psychologists: List<Psychologist>) {
@@ -65,6 +64,7 @@ class HomeFragment : Fragment() {
         private lateinit var psychologist: Psychologist
 
         init {
+
             binding.AvailableAppointmentRV.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
@@ -75,6 +75,7 @@ class HomeFragment : Fragment() {
                     SettingsDialog.Builder(requireActivity()).build().show()
                 }
             }
+
             binding.cardView.setOnClickListener {
                 if (binding.expandableLayout.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(binding.cardView, AutoTransition())
@@ -129,7 +130,6 @@ class HomeFragment : Fragment() {
 
         override fun getItemCount(): Int = psychologists.size
     }
-
     /*
     remove it from here
      */

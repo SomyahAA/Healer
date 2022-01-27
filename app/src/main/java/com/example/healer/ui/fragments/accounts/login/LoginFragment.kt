@@ -1,18 +1,16 @@
 package com.example.healer.ui.fragments.accounts.login
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.healer.R
 import com.example.healer.databinding.FragmentLoginBinding
-import com.example.healer.utils.HideKeyboard
-import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -40,11 +38,14 @@ class LoginFragment : Fragment() {
             )
 
             if (loginVM.currentUserExist()) {
+                lifecycleScope.launch {
+
                 if (!loginVM.userTypeIsUser()) {
                     findNavController().navigate(R.id.action_loginFragment_to_psyHomeFragment)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
+            }
             }
         }
 

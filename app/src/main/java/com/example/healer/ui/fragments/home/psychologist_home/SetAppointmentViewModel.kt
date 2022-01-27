@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.example.healer.models.Appointment
 import com.example.healer.repository.Repository
 import kotlinx.coroutines.launch
-import java.util.*
 
 class SetAppointmentViewModel : ViewModel() {
 

@@ -7,17 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.healer.R
-import com.example.healer.databinding.FragmentAppointmentsBinding
-import com.example.healer.databinding.FragmentDialogBinding
 import com.example.healer.databinding.PsyBookedAppointmentsBinding
 import com.example.healer.models.Appointment
-import com.example.healer.ui.fragments.appointment.UserAppointmentsVM
-import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 
 
@@ -32,7 +25,7 @@ class PsyBookedAppointments : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = PsyBookedAppointmentsBinding.inflate(layoutInflater)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -43,10 +36,10 @@ class PsyBookedAppointments : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             psyBookedAppVM.getPsyBookedAppList().observe(
-                viewLifecycleOwner, {
-                    updateUI(it)
-                }
-            )
+                viewLifecycleOwner
+            ) {
+                updateUI(it)
+            }
         }
     }
 
@@ -55,7 +48,7 @@ class PsyBookedAppointments : Fragment() {
         binding.recyclerView.adapter = appAdapter
     }
 
-    private inner class BAHolder(val binding: PsyBookedAppointmentsBinding) :
+    private inner class BAHolder( binding: PsyBookedAppointmentsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var appointment: Appointment
@@ -83,5 +76,4 @@ class PsyBookedAppointments : Fragment() {
 
         override fun getItemCount(): Int = appointments.size
     }
-
 }

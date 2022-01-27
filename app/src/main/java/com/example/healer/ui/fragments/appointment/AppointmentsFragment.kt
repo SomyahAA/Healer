@@ -14,9 +14,7 @@ import coil.load
 import com.example.healer.R
 import com.example.healer.databinding.FragmentAppointmentsBinding
 import com.example.healer.databinding.FragmentDialogBinding
-import com.example.healer.databinding.FragmentPsyCardBinding
 import com.example.healer.models.Appointment
-import com.google.firebase.auth.FirebaseAuth
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.launch
 
@@ -39,10 +37,10 @@ class AppointmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userAppointmentsVM.getUserAppointmentsList().observe(
-            viewLifecycleOwner, {
-                updateUI(it)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            updateUI(it)
+        }
     }
 
     private fun updateUI(appointments: List<Appointment>) {

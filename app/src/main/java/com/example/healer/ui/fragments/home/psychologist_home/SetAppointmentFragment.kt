@@ -17,13 +17,11 @@ import com.example.healer.R
 import com.example.healer.databinding.AppointmentItemBinding
 import com.example.healer.databinding.SetAppointmentFragmentBinding
 import com.example.healer.models.Appointment
-import com.example.healer.notification.*
 import com.example.healer.notification.Notification
 import com.example.healer.utils.Constants.channelID
 import com.example.healer.utils.Constants.messageExtra
 import com.example.healer.utils.Constants.notificationId
 import com.example.healer.utils.Constants.titleExtra
-import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
@@ -106,11 +104,10 @@ class SetAppointmentFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             setAppointmentViewModel.getPsychologistAppointments().observe(
-                viewLifecycleOwner, {
-                    updateUI(it)
-                }
-
-            )
+                viewLifecycleOwner
+            ) {
+                updateUI(it)
+            }
         }
     }
 

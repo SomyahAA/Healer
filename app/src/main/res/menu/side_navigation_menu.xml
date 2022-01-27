@@ -13,13 +13,13 @@
 
 
     </group>
-    <item android:title="@string/profile">
+    <item android:title="@string/account">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/ic_person_24"
-                    android:title="@string/account" />
+                    android:title="@string/profile" />
                 <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/ic_login_24"

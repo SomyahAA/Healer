@@ -10,14 +10,8 @@ class LoginVM : ViewModel() {
 
     private val repo = Repository.getInstance()
 
-    fun userTypeIsUser(): Boolean {
-        var state = false
-        viewModelScope.launch {
-            state = repo.userTypeIsUser()
-        }.invokeOnCompletion {
-            state
-        }
-        return false
+    suspend fun userTypeIsUser(): Boolean {
+           return repo.userTypeIsUser()
     }
 
     fun login(loginEmail: String, loginPassword: String, requiredContext: Context) {
