@@ -40,7 +40,6 @@ class Repository {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val fireStore = Firebase.firestore
-    private val currentUser = auth.currentUser?.uid
 
     companion object {
         fun getInstance(): Repository = Repository()
@@ -146,7 +145,7 @@ class Repository {
         return state
     }
 
-    suspend fun readPsychologistDataFromFirestore(psychologistId: String = auth.currentUser!!.uid): Psychologist {
+    suspend fun readPsychologistDataFromFirestore(psychologistId: String = getCurrentUserId()): Psychologist {
         return fireStore.collection(psychologistCollection)
             .document(psychologistId)
             .get()
@@ -222,7 +221,7 @@ class Repository {
     }
 
     suspend fun uploadPhotoToFirebaseStorage(imageURI: Uri) {
-        val imageRef = FirebaseStorage.getInstance().getReference("/photos/$currentUser")
+        val imageRef = FirebaseStorage.getInstance().getReference("/photos/${getCurrentUserId()}")
 
         val uploadPhoto = imageRef.putFile(imageURI).await()
         if (uploadPhoto.task.isComplete) {
@@ -241,7 +240,7 @@ class Repository {
         }
     }
 
-    fun getPhotoFromStorage(userUrl: String = auth.currentUser!!.uid): LiveData<Uri> {
+    fun getPhotoFromStorage(userUrl: String = getCurrentUserId()): LiveData<Uri> {
 
         val imageUrl = FirebaseStorage.getInstance().getReference("/photos/$userUrl").downloadUrl
         fireStore.collection(usersCollection)
@@ -340,7 +339,7 @@ class Repository {
     }
 
     suspend fun deleteAccount() {
-        if (currentUser != null) {
+        if (currentUserExist()) {
             if (userTypeIsUser()) {
                 fireStore.collection(usersCollection)
                     .document(auth.currentUser!!.uid)
