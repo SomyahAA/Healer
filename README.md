@@ -20,3 +20,4 @@ Functionalities included:
 - Receive notifiications
 - change app language inside the app
 - get technical support 
+![1](https://user-images.githubusercontent.com/92253618/166106220-63494a4a-0206-44db-ab95-80177118ff3c.gif)
